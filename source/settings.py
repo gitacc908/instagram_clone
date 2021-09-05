@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-      # custom apps
+    # second part apps
+    'phonenumber_field',
+
+    # custom apps
     'users',
 ]
 
@@ -137,3 +140,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
     os.path.join(BASE_DIR, 'assets/static/'),
 )
+
+AUTH_USER_MODEL = 'users.User'
