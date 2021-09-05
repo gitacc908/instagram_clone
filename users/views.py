@@ -12,4 +12,4 @@ from django.views.generic.list import ListView
 
 
 def main(request):
-    return render(request, 'index.html')
+    return render(request, 'main/index.html')
