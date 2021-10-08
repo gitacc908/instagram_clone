@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
 
     # custom apps
-    'users',
+    'apps.users',
 ]
 
 MIDDLEWARE = [

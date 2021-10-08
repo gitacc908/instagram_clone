@@ -12,4 +12,5 @@ from django.views.generic.list import ListView
 
 
 def main(request):
-    return render(request, 'main/index.html')
+    # return render(request, 'main/index.html')
+    return render(request, 'users/base_users.html')
