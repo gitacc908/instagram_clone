@@ -15,4 +15,15 @@ from .forms import RegisterForm
 def main(request):
     # return render(request, 'main/index.html')
     form = RegisterForm()
-    return render(request, 'users/register.html',{'form':form})
+    return render(request, 'users/registration/register.html',{'form':form})
+
+class UserRegisterView(View):
+    def post(self, request, *args, **kwargs):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, 'users/registration/register.html',{'form':form})
+    
+    def get(self, request, *args, **kwargs):
+        form = RegisterForm(request.POST)
+        return render(request, 'users/registration/register.html',{'form':form})

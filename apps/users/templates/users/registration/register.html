@@ -18,6 +18,7 @@ Instagram
             <h1 class="NXVPg Szr5J  coreSpriteLoggedOutWordmark  "></h1>
             <div class="P8adC">
                <form class="XFYOY" method="post">
+               {% csrf_token %}
                   <h2 class="vvzhL ">Зарегистрируйтесь, чтобы смотреть фото и видео ваших друзей.</h2>
                   <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    "><button class="sqdOP  L3NKy   y3zKF     " type="button"><span class="fa fa-facebook coreSpriteFacebookIconInverted cneKx"></span>Войти через Facebook</button></div>
                   <div class="K-1uj hKTMS">
@@ -27,30 +28,40 @@ Instagram
                   </div>
                   <div class="WZdjL">
                      <div class="_9GP1n   ">
-                        <label class="f0n8F "><span class="_9nyy2">Моб. телефон или эл. адрес</span><input aria-label="Моб. телефон или эл. адрес" aria-required="true" autocapitalize="off" autocomplete="tel" autocorrect="off" name="emailOrPhone" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
+                        <label class="f0n8F "><span class="_9nyy2">Моб. телефон или эл. адрес</span><input aria-label="Моб. телефон или эл. адрес" required aria-required="true" autocapitalize="off" autocomplete="tel" autocorrect="off" name="email_or_phone" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
                         <div class="i24fI"></div>
                      </div>
                   </div>
                   <div class="WZdjL">
                      <div class="_9GP1n   ">
-                        <label class="f0n8F "><span class="_9nyy2">Имя и фамилия</span><input aria-label="Имя и фамилия" aria-required="false" autocapitalize="sentences" autocorrect="off" name="fullName" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
+                        <label class="f0n8F "><span class="_9nyy2">Имя и фамилия</span><input aria-label="Имя и фамилия" aria-required="false" required autocapitalize="sentences" autocorrect="off" name="fullname" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
                         <div class="i24fI"></div>
                      </div>
                   </div>
                   <div class="WZdjL">
                      <div class="_9GP1n   ">
-                        <label class="f0n8F "><span class="_9nyy2">Имя пользователя</span><input aria-label="Имя пользователя" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="30" name="username" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
+                        <label class="f0n8F "><span class="_9nyy2">Имя пользователя</span><input aria-label="Имя пользователя" required aria-required="true" autocapitalize="off" autocorrect="off" maxlength="30" name="username" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
                         <div class="i24fI"></div>
                      </div>
                   </div>
                   <div class="WZdjL">
                      <div class="_9GP1n   ">
-                        <label class="f0n8F "><span class="_9nyy2">Пароль</span><input aria-label="Пароль" aria-required="true" autocapitalize="off" autocomplete="new-password" autocorrect="off" name="password" type="password" class="_2hvTZ pexuQ zyHYP" value=""></label>
+                        <label class="f0n8F "><span class="_9nyy2">Пароль</span><input aria-label="Пароль" aria-required="true" required autocapitalize="off" autocomplete="new-password" autocorrect="off" name="password" type="password" class="_2hvTZ pexuQ zyHYP" value=""></label>
                         <div class="i24fI"></div>
                      </div>
                   </div>
+
+                 {% comment %} {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %} {% endcomment %}
                   <div>
-                     <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    "><button class="sqdOP  L3NKy   y3zKF     " disabled="" type="submit">Регистрация</button></div>
+                     <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    "><button class="sqdOP  L3NKy   y3zKF     "  type="submit">Регистрация</button></div>
                   </div>
                   <p class="ZGwn1">Регистрируясь, вы принимаете наши <a href="https://help.instagram.com/581066165581870" tabindex="0" target="_blank">Условия</a>, <a href="https://help.instagram.com/519522125107875" tabindex="0" target="_blank">Политику использования данных</a> и <a href="/legal/cookies/" tabindex="0" target="_blank">Политику в отношении файлов cookie</a>.</p>
                </form>

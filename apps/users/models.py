@@ -51,7 +51,10 @@ class User(PermissionsMixin, AbstractBaseUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return str(self.phone)
+        if self.phone:
+            return str(self.phone)
+        else:
+            return self.email
 
     def get_full_name(self):
         return f"{self.last_name}, {self.first_name}"
