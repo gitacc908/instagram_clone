@@ -1,19 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    {% block title %}
-    <title>Instagram</title>
-    {% endblock %}
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/users.css' %}">
-</head>
-<body>
+{% extends 'users/base/base_users.html' %}
 
-   <main class="SCxLW  o64aR " role="main">
+{% load static %}
+
+{% block title %}
+Instagram
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+<main class="SCxLW  o64aR " role="main">
       <article class="_4_yKc">
          <div class="yOZjD _80tAB">
             <div class="V64Sp" id="loop_image">
@@ -61,14 +58,11 @@
                   <p class="izU2O ">У вас ещё нет аккаунта? <a href="/accounts/emailsignup/" tabindex="0"><span class="_7UhW9   xLCgt       qyrsm      gtFbE      se6yk        ">Зарегистрироваться</span></a></p>
                </div>
             </div>
-            <!-- <div class="APQi1">
-               <p class="b_nGN">Установите приложение.</p>
-               {% comment %} <div class="iNy2T"><a class="z1VUo" href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8&amp;vt=lo" tabindex="0"><img alt="Доступно в Магазине приложений" class="Rt8TI " src="/static/images/appstore-install-badges/badge_ios_russian-ru.png/bfba6d0fd6bd.png"></a><a class="z1VUo" href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3D6B5FCA59-3C7E-430D-9F07-D516C2C27FA0%26utm_content%3Dlo%26utm_medium%3Dbadge" tabindex="0"><img alt="Доступно в Google Play" class="Rt8TI " src="/static/images/appstore-install-badges/badge_android_russian-ru.png/4c70948c09f3.png"></a></div> {% endcomment %}
-            </div> -->
          </div>
       </article>
    </main>
+{% endblock %}
 
-    <script src="{% static 'js/users.js' %}"></script> 
-</body>
-</html>
+{% block scripts %}
+<script src="{% static 'js/users.js' %}"></script> 
+{% endblock %}

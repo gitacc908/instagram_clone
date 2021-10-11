@@ -10,7 +10,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
+from .forms import RegisterForm
 
 def main(request):
     # return render(request, 'main/index.html')
-    return render(request, 'users/base_users.html')
+    form = RegisterForm()
+    return render(request, 'users/register.html',{'form':form})

@@ -23,11 +23,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     username = CharField(
         unique=True, verbose_name='username', max_length=255
     )
-    first_name = models.CharField(
-        verbose_name='first_name', max_length=255, null=True, blank=True
-    )
-    last_name = models.CharField(
-        verbose_name='last_name', max_length=255, null=True, blank=True
+    full_name = models.CharField(
+        verbose_name='full_name', max_length=255, null=True, blank=True
     )
     biography = models.CharField(
         verbose_name='about me', max_length=255, null=True, blank=True
