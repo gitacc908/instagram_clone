@@ -1,8 +1,6 @@
 from django import forms 
 from .models import User
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
-import re
+from .utils import validate_username
 
 
 class RegisterForm(forms.ModelForm):
@@ -17,15 +15,9 @@ class RegisterForm(forms.ModelForm):
         fields = ('full_name', 'username')
 
     def clean_email_or_phone(self):
-        data = self.cleaned_data.get('email_or_phone')
-        regex = "^(\+\d{1,3})?,?\s?\d{8,13}"
-        try:
-            validate_email(data)
-        except ValidationError:
-            if re.search(regex, data):
-                return {'phone': data}
-            raise ValidationError('Please type valid data.')
-        return {'email': data}
+        return validate_username(
+            self.cleaned_data.get('email_or_phone')
+            )
     
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
@@ -35,5 +27,21 @@ class RegisterForm(forms.ModelForm):
         elif 'email' in data:
             user.email = data.get('email')
         user.is_active = 1
+        user.set_password(self.cleaned_data['password'])
         user.save()
         return user
+
+
+class LoginForm(forms.Form):
+    username_email_phone = forms.CharField(
+        max_length=255, required=True, label='username'
+    )
+    password = forms.CharField(
+        label='Password', widget=forms.PasswordInput
+    )
+
+    def clean_username_email_phone(self):
+        return validate_username(
+            self.cleaned_data.get('username_email_phone'),
+            login_page=True
+        )

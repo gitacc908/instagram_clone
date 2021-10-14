@@ -45,16 +45,12 @@ class User(PermissionsMixin, AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
 
-    USERNAME_FIELD = 'phone'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
-
     def __str__(self):
-        if self.phone:
-            return str(self.phone)
-        else:
-            return self.email
+        return self.username
 
     def get_full_name(self):
         return f"{self.last_name}, {self.first_name}"

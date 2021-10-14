@@ -28,7 +28,7 @@ Instagram
                   </div>
                   <div class="WZdjL">
                      <div class="_9GP1n   ">
-                        <label class="f0n8F "><span class="_9nyy2">Моб. телефон или эл. адрес</span><input aria-label="Моб. телефон или эл. адрес" required aria-required="true" autocapitalize="off" autocomplete="tel" autocorrect="off" name="email_or_phone" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
+                        <label class="f0n8F "><span class="_9nyy2">Моб. телефон или эл. адрес</span><input  required autocapitalize="off" autocomplete="tel" autocorrect="off" name="email_or_phone" type="text" class="_2hvTZ pexuQ zyHYP" value=""></label>
                         <div class="i24fI"></div>
                      </div>
                   </div>
@@ -50,16 +50,15 @@ Instagram
                         <div class="i24fI"></div>
                      </div>
                   </div>
-
-                 {% comment %} {% if form.errors %}
-       {% for field in form %}
-           {% for error in field.errors %} 
-              <div class="alert alert-danger">
-                   <strong>{{ error|escape }}</strong>
-              </div>
-           {% endfor %}
-       {% endfor %}
-    {% endif %} {% endcomment %}
+                {% if form.errors %}
+                  {% for field in form %}
+                     {% for error in field.errors %} 
+                        <div class="alert alert-danger">
+                              <strong>{{ error|escape }}</strong>
+                        </div>
+                     {% endfor %}
+                  {% endfor %}
+               {% endif %} 
                   <div>
                      <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    "><button class="sqdOP  L3NKy   y3zKF     "  type="submit">Регистрация</button></div>
                   </div>
@@ -68,7 +67,7 @@ Instagram
             </div>
          </div>
          <div class="gr27e">
-            <p class="izU2O ">Есть аккаунт? <a href="/accounts/login/?source=auth_switcher" tabindex="0">Вход</a></p>
+            <p class="izU2O ">Есть аккаунт? <a href="{% url 'sign-in' %}" tabindex="0">Вход</a></p>
          </div>
       </div>
    </div>
