@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)r4m2)&japc#(^60j*x%k38@zc3$**)9zrcg*$0srvv=bn%3@j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['myinstagram.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # second part apps
     'phonenumber_field',
+    'django_extensions',
 
     # custom apps
     'apps.users',
@@ -146,4 +147,7 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'apps.users.backends.UserBackend',
+    # 'social_core.backends.facebook.FacebookOAuth2',
 ]
+# SOCIAL_AUTH_FACEBOOK_KEY = '242665691171702' # Facebook App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = '1f94d80918cd9aaf19297ec5833c060e' # Facebook App Secret

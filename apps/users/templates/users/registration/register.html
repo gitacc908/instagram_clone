@@ -8,9 +8,11 @@ Instagram
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v12.0&appId=242665691171702&autoLogAppEvents=1" nonce="2SHD5PFn"></script>
 {% endblock %}
 
 {% block content %}
+<div id="fb-root"></div>
 <main class="SCxLW  o64aR " role="main">
    <div class="            qF0y9          Igw0E   rBNOH          YBx95   ybXk5   vwCYk              MGky5                                                              i0EQd                                   " style="min-height: 100%;">
       <div class="rgFsT   ">
@@ -20,7 +22,7 @@ Instagram
                <form class="XFYOY" method="post">
                {% csrf_token %}
                   <h2 class="vvzhL ">Зарегистрируйтесь, чтобы смотреть фото и видео ваших друзей.</h2>
-                  <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    "><button class="sqdOP  L3NKy   y3zKF     " type="button"><span class="fa fa-facebook coreSpriteFacebookIconInverted cneKx"></span>Войти через Facebook</button></div>
+                  <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
                   <div class="K-1uj hKTMS">
                      <div class="s311c"></div>
                      <div class="_0tv-g">или</div>

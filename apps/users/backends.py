@@ -1,6 +1,5 @@
 from django.contrib.auth.backends import ModelBackend
 from .models import User
-from django import forms
 
 
 class UserBackend(ModelBackend):
@@ -18,8 +17,10 @@ class UserBackend(ModelBackend):
             if user.check_password(password) is True:
                 if user.is_active:
                     return user
-                raise forms.ValidationError("User with provided credentials banned from this site.")
-            else:
-                raise forms.ValidationError("User with provided credentials doesn't exist.")
+            #     raise forms.ValidationError("User with provided credentials banned from this site.")
+            # else:
+            #     raise forms.ValidationError("User with provided credentials doesn't exist.")
+            return None
         except User.DoesNotExist:
-            raise forms.ValidationError("User with provided credentials doesn't exist.")
+            # raise forms.ValidationError("User with provided credentials doesn't exist.")
+            return None

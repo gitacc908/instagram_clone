@@ -391,3 +391,15 @@ a{
 .sqdOP.yWX7d._8A5w5{
     color: black;
 }
+form ul {
+    text-align: left;
+    margin: 0 40px 6px;
+    color: #c72b2b;
+}
+.alert.alert-danger{
+    color: #c72b2b;
+    font-style: oblique;
+}
+#login-content{
+    margin-bottom: 16px;
+} 
