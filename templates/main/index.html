@@ -360,27 +360,22 @@
     firebase.auth().useDeviceLanguage();
 
     $(function() {
-   
-    $('.story__picture').click(
-    function(){
-            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-            'size': 'invisible',
-    //         'callback': (response) => {
-    //             alert(response)
-    //             // reCAPTCHA solved, allow signInWithPhoneNumber.
-    //             // ...
-             
-    //         },
-    //         'expired-callback': () => {
-    //     // Response expired. Ask user to solve reCAPTCHA again.
-    //     // ...
-    // }
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+        'callback': function (recapchaToken) {
+            // reCAPTCHA solved, send recapchaToken and phone number to backend.
+            
+            // a REST call to your backend
+            console.log('callback')
+        }
+        });
+    window.recaptchaVerifier.render().then(function (widgetId) {
+    window.recaptchaWidgetId = widgetId;
     });
-    
+        
     const phoneNumber = prompt('phone pls?')
     const appVerifier = window.recaptchaVerifier
-    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-    .then((confirmationResult) => {
+    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier).then((confirmationResult) => {
       // SMS sent. Prompt user to type the code from the message, then sign the
       // user in with confirmationResult.confirm(code).
       let code = prompt('code pls?')
@@ -406,12 +401,10 @@
     });
 
 
-        }
-    )
-
-
 });
-   
+
+
+
 
   
   </script>

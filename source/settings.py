@@ -147,7 +147,15 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'apps.users.backends.UserBackend',
-    # 'social_core.backends.facebook.FacebookOAuth2',
 ]
-# SOCIAL_AUTH_FACEBOOK_KEY = '242665691171702' # Facebook App ID
-# SOCIAL_AUTH_FACEBOOK_SECRET = '1f94d80918cd9aaf19297ec5833c060e' # Facebook App Secret
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+DEFAULT_FROM_EMAIL = 'test@test.com'
+
+# for sending into emails 'change above conf from console into smtp'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = '<paste your gmail account here>'
+# EMAIL_HOST_PASSWORD = '<paste Google password or app password here>'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True

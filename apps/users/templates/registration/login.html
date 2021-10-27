@@ -60,7 +60,7 @@ Instagram
                         </div>
                      <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
                      </div>
-                     <a class="_2Lks6" href="/accounts/password/reset/" tabindex="0">Забыли пароль?</a>
+                     <a class="_2Lks6" href="{% url 'password-reset' %}" tabindex="0">Забыли пароль?</a>
                   </form>
                </div>
             </div>
@@ -72,10 +72,6 @@ Instagram
          </div>
       </article>
    </main>
-{% comment %} <fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button> {% endcomment %}
 {% endblock %}
 
 {% block scripts %}
