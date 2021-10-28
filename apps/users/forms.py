@@ -14,6 +14,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth import (
     password_validation,
 )
+from django.core.validators import validate_email
 
 
 class RegisterForm(forms.ModelForm):
@@ -70,6 +71,10 @@ class UserEmailForm(forms.Form):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise ValidationError('Please type your email address.')
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:

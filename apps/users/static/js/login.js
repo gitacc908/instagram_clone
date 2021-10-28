@@ -19,4 +19,15 @@ jQuery(document).ready(function($) {
         }
         
         myLoop();
+      
+        const password = document.querySelector('#password');
+        $('#togglePassword').click(
+            function(e){
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                // toggle the eye / eye slash icon
+                // this.classList.toggle('bi-eye');
+            }
+        )
+
 });

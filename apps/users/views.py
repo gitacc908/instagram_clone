@@ -14,7 +14,8 @@ from .models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
-
+from django.http import JsonResponse
+import json
 
 
 def main(request):
@@ -23,10 +24,12 @@ def main(request):
 
 def password_reset(request):
     form = UserEmailForm()
-    if request.method == 'POST':
+    if request.method == 'POST' and request.is_ajax():
         form = UserEmailForm(request.POST, request=request)
         if form.is_valid():
-            return render(request, 'registration/password_reset.html', {'form':form})
+            return JsonResponse({'success': 'Reset link was sent to your email.'}, status=200)
+        error_dict = {'status': 'form_invalid', 'form_errors': form.errors}
+        return HttpResponse(json.dumps(error_dict),content_type="application/json", status=400)
     return render(request, 'registration/password_reset.html', {'form':form})
 
 
@@ -63,29 +66,31 @@ class PasswordResetConfirmView(View):
             user = User.objects.get(pk=uid)
         except (TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
-
         if user is not None and account_activation_token.check_token(user, token):
             request.session['user_id'] = user.pk
             form = SetPasswordForm(request.POST, user=user)
-            # user.is_active = True
-            # user.save(update_fields=['is_active'])
-            # login(request, user)
             return render(request, 'registration/password_set.html', {'form': form})
         else:
-            # messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
             return redirect('/')
     
-    def post(self, request, uidb64, token, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         try:
-            print(request.session.get('user_id'))
+            print('user id:', request.session.get('user_id'))
             user = User.objects.get(pk=request.session.get('user_id'))
         except User.DoesNotExist:
-            print('none')
+            print('user does not exist')
             pass
         else:
             del request.session['user_id']
             form = SetPasswordForm(request.POST, user=user)
             if form.is_valid():
                 form.save()
+                if user.username:
+                    user = authenticate(
+                        self.request, username=user.username, 
+                        password=form.cleaned_data['new_password1']
+                    )
+                    if user:
+                        login(self.request, user)
                 return redirect('/')
             return render(request, 'registration/password_set.html', {'form': form})
