@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # second part apps
     'phonenumber_field',
     'django_extensions',
+    'django.contrib.humanize',
 
     # custom apps
     'apps.users',

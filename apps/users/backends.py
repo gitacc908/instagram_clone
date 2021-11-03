@@ -7,6 +7,7 @@ class UserBackend(ModelBackend):
     def authenticate(self, request, **kwargs):
         username = kwargs['username']
         password = kwargs['password']
+        user = None
         try:
             if 'email' in username:
                 user = User.objects.get(email=username.get('email'))
@@ -14,13 +15,10 @@ class UserBackend(ModelBackend):
                 user = User.objects.get(phone=username.get('phone'))
             elif 'username' in username:
                 user = User.objects.get(username=username.get('username'))
-            if user.check_password(password) is True:
-                if user.is_active:
-                    return user
-            #     raise forms.ValidationError("User with provided credentials banned from this site.")
-            # else:
-            #     raise forms.ValidationError("User with provided credentials doesn't exist.")
+            if user:
+                if user.check_password(password) is True:
+                    if user.is_active:
+                        return user
             return None
-        except User.DoesNotExist:
-            # raise forms.ValidationError("User with provided credentials doesn't exist.")
+        except:
             return None

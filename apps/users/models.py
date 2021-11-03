@@ -42,6 +42,9 @@ class User(PermissionsMixin, AbstractBaseUser):
     web_site = models.URLField(
         verbose_name='web site', null=True, blank=True
     )
+    following = models.ManyToManyField(
+        'self', through='Contact', related_name='followers', symmetrical=False
+    )
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -62,3 +65,20 @@ class User(PermissionsMixin, AbstractBaseUser):
         verbose_name_plural = 'users'
     # def get_absolute_url(self):
     #     return reverse('get_profile', args=[self.id])
+
+
+class Contact(models.Model):
+    user_from = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='rel_from_set'
+    )
+    user_to = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='rel_to_set'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True, db_index=True
+    )
+    def __str__(self):
+        return f'{self.user_from} follows {self.user_to}'
+
+    class Meta:
+        ordering = ('created', )
