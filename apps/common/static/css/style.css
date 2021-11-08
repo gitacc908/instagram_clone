@@ -1157,3 +1157,6 @@ a, a:visited {
     background-color: transparent;
     border: 0;
 }
+.others-class{
+    font-weight: 500 !important;
+}

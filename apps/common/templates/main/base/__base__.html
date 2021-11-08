@@ -10,10 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.svg' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+    <link rel="shortcut icon" href="{% static 'img/download.jpeg'%}" type="image/x-icon">
 
     {%  block styles %}
     {% endblock %}
+    
 </head>
 
 <body>
@@ -90,7 +91,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
+                        <img src="{{ user.image.url }}" alt="User Picture">
                     </div>
                 </button>
      
@@ -302,7 +303,29 @@
 
 <script src="{% static 'js/script.js' %}" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 {% block scripts %}
 {% endblock %}  
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+
+<script>
+    var csrftoken = Cookies.get('csrftoken');
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+</script>
+
+{% block csrf_ready %}
+{% endblock %}
 
 </html>

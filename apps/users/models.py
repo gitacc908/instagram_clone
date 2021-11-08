@@ -57,8 +57,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     def __str__(self):
         return self.username
 
-    def get_full_name(self):
-        return f"{self.last_name}, {self.first_name}"
+    # def get_full_name(self):
+    #     return f"{self.last_name}, {self.first_name}"
 
     class Meta:
         verbose_name = 'user'
