@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_extensions',
     'django.contrib.humanize',
+    'emoji',
+    'emoji_picker',
 
     # custom apps
     'apps.users',

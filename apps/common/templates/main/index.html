@@ -1,6 +1,8 @@
 {% extends 'main/base/__base__.html' %}
 {% load static %}
 {% load humanize %}
+<!-- {% load emoji_tags %} -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
     {%  block styles %}
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
     <!-- <script src="{% static 'js/script.js' %}" defer></script> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/emojionearea.min.css' %}"> -->
     {% endblock %}
 </head>
 
@@ -58,7 +61,7 @@
                     </button>
                 </div>
 
-                <div class="posts" id="posts-id" data-like-url="{% url 'like' %}">
+                <div class="posts" id="posts-id" data-comment-url="{% url 'comment' %}" data-like-url="{% url 'like' %}" data-save-url="{% url 'save' %}">
                     {% for post in posts %}
                     <article class="post" >
                         <div class="post__header">
@@ -86,9 +89,9 @@
                         </div>
                         {% endwith %}
 
-                        <div class="post__footer">
+                        <div class="post__footer" data-post-id="{{ post.id }}">
                             <div class="post__buttons">
-                                <button class="post__button like_button"   data-post-id="{{ post.id }}">
+                                <button class="post__button like_button">
                                     <svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
                                         <path {% if request.user not in post.likes.all %} fill="#fdfdfd" stroke="#000000" {% else %} fill="rgb(237, 73, 86);" stroke="rgb(237, 73, 86)" {% endif %} stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
                                         </path>
@@ -99,18 +102,16 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd"  d="M21.2959 20.8165L20.2351 16.8602C20.1743 16.6385 20.2047 16.3994 20.309 16.1907C21.2351 14.3342 21.5438 12.117 20.9742 9.80402C20.2003 6.67374 17.757 4.16081 14.6354 3.33042C13.7833 3.10869 12.9442 3 12.1312 3C6.29665 3 1.74035 8.47365 3.31418 14.5647C4.04458 17.3819 7.05314 20.2992 9.88344 20.9861C10.6486 21.173 11.4008 21.26 12.1312 21.26C13.7006 21.26 15.1701 20.8557 16.4614 20.1601C16.6049 20.0818 16.7657 20.0383 16.9222 20.0383C17.0005 20.0383 17.0787 20.047 17.157 20.0688L21.009 21.0991C21.0307 21.1035 21.0525 21.1078 21.0699 21.1078C21.2177 21.1078 21.3351 20.9687 21.2959 20.8165ZM19.0178 17.1863L19.6178 19.4253L17.4831 18.8558C17.3005 18.8079 17.1135 18.7819 16.9222 18.7819C16.557 18.7819 16.1875 18.8775 15.8571 19.0558C14.6963 19.6818 13.4441 19.9992 12.1312 19.9992C11.4834 19.9992 10.8269 19.9166 10.1791 19.7601C7.78354 19.1775 5.14453 16.6037 4.53586 14.2473C3.90111 11.7865 4.40109 9.26057 5.90536 7.31719C7.40964 5.3738 9.6791 4.26081 12.1312 4.26081C12.8529 4.26081 13.5876 4.35646 14.3137 4.5521C16.9961 5.26511 19.0786 7.39544 19.7525 10.1084C20.2264 12.0213 20.0308 13.9299 19.183 15.6298C18.9395 16.1168 18.8787 16.6689 19.0178 17.1863Z" fill="var(--text-dark)" stroke="var(--text-dark)" stroke-width="0.7"/>
                                     </svg>
                                 </button>
-                                <button class="post__button">
+                                <button class="post__button share-button">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8555 3.44542C22.6978 3.16703 22.3962 3 22.0714 3L2.91369 3.01392C2.52859 3.01392 2.19453 3.25055 2.05997 3.60781C1.96254 3.86764 1.98574 4.14603 2.11565 4.37338C2.16669 4.45689 2.23165 4.53577 2.31052 4.60537L9.69243 10.9712L11.4927 20.5338C11.5623 20.9096 11.8499 21.188 12.2304 21.2483C12.6062 21.3086 12.9774 21.1323 13.1723 20.8029L22.8509 4.35018C23.0179 4.06715 23.0179 3.72381 22.8555 3.44542ZM4.21748 4.39194H19.8164L10.4255 9.75089L4.21748 4.39194ZM12.6248 18.9841L11.1122 10.948L20.5171 5.58436L12.6248 18.9841Z" fill="var(--text-dark)" stroke="var(--text-dark)" stroke-width="0.3"/>
                                     </svg>
                                 </button>
 
                                 <div class="post__indicators"></div>
-
-                                <button class="post__button post__button--align-right" id="save-post">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M19.875 2H4.125C3.50625 2 3 2.44939 3 3.00481V22.4648C3 23.0202 3.36563 23.1616 3.82125 22.7728L11.5444 16.1986C11.7244 16.0471 12.0225 16.0471 12.2025 16.1936L20.1731 22.7879C20.6287 23.1666 21 23.0202 21 22.4648V3.00481C21 2.44939 20.4994 2 19.875 2ZM19.3125 20.0209L13.3444 15.0827C12.9281 14.7394 12.405 14.5677 11.8763 14.5677C11.3363 14.5677 10.8019 14.7444 10.3856 15.0979L4.6875 19.9502V3.51479H19.3125V20.0209Z" fill="var(--text-dark)" stroke="var(--text-dark)" stroke-width="0.7"/>
-                                    </svg>
+                                <button class="post__button post__button--align-right save-button">
+                                    <svg aria-label="Удалить" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24">
+                                        <path  stroke-width="3" {% if post in request.user.bookmarked.posts.all %} fill="#262626" {% else %} fill="#ffffff" {% endif %} stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path></svg>
                                 </button>
                             </div>
 
@@ -128,8 +129,31 @@
                                         {{ post.body }}
                                     </span>
                                 </div>
+                                <div class="show-all-comments">
+                                    Посмотреть все комментарии (<div class="comment-counter">{{ post.comments.count }}</div>)
+                                </div>
+                                <div class="my-comments">
 
+                                </div>
                                 <span class="post__date-time">{{ post.created|naturaltime }}</span>
+                                <section class="add-comment sH9wk _JgwE">  
+                                    <div class="RxpZH">
+                                        <form action="" class="X7cDz">
+                                            <!-- <button class="wpO6b  " type="button">
+                                                <div class="QBdPU ">
+                                                    <svg aria-label="Смайлик" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24">
+                                                        <path d="M24 48C10.8 48 0 37.2 0 24S10.8 0 24 0s24 10.8 24 24-10.8 24-24 24zm0-45C12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21S35.6 3 24 3z">
+                                                        </path>
+                                                        <path d="M34.9 24c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5zm-21.8 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zM24 37.3c-5.2 0-8-3.5-8.2-3.7-.5-.6-.4-1.6.2-2.1.6-.5 1.6-.4 2.1.2.1.1 2.1 2.5 5.8 2.5 3.7 0 5.8-2.5 5.8-2.5.5-.6 1.5-.7 2.1-.2.6.5.7 1.5.2 2.1 0 .2-2.8 3.7-8 3.7z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </button> -->
+                                            <input data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input" >
+                                            <button data-post-id="{{ post.id }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                                        </form>
+                                    </div>
+                                </section>
                             </div>
                         </div>
                     </article>
@@ -141,13 +165,13 @@
                 <div class="side-menu__user-profile">
                     <a href="https://github.com/leocosta1" target="_blank" class="side-menu__user-avatar">
                     {% if request.user.image %}
-                        <img src="{{ request.user.image.url }}" alt="User Picture">
+                        <img class="prof-image" src="{{ request.user.image.url }}" alt="User Picture">
                     {% else %}
                         <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
                     {% endif %}
                     </a>
                     <div class="side-menu__user-info">
-                        <a href="https://github.com/leocosta1" target="_blank">{{ request.user.username }}</a>
+                        <a id="myusername" href="#" target="_blank">{{ request.user.username }}</a>
                         {% if request.user.full_name %}
                         <span>{{ request.user.full_name  }}</span>
                         {% else %}
@@ -219,6 +243,7 @@
             </section>
         </section>
     </main>
+
 {% endblock %}
 
     <div id='recaptcha-container'>
@@ -227,6 +252,8 @@
  
 
   {% block scripts %}
+  <script type="text/javascript" src="{% static 'js/emojionearea.min.js' %}"></script>
+
   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
   {% comment %} <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -305,6 +332,10 @@
 
 // });
 
+
+    // $('.comment-input').emojioneArea(
+    //     // { }
+    // );
   
   </script>
 
@@ -313,43 +344,110 @@
 {% endblock %}
 
 {% block csrf_ready %}
+
 <script>
-     $(document).ready(function(){
+$(document).ready(function(){
 
-        $('.like_button').click(function(){
-            let pathEl = this.getElementsByTagName('path')[0];
-            let likesTag = this.parentNode.parentNode.getElementsByClassName('likes-count')[0];
-            let totalLikes = parseInt(likesTag.text);
+    // Like or unlike post
+    $('.like_button').click(function(){
+        let pathEl = this.getElementsByTagName('path')[0];
+        let likesTag = this.parentNode.parentNode.getElementsByClassName('likes-count')[0];
+        let totalLikes = parseInt(likesTag.text);
+        let postId = this.parentNode.parentNode.getAttribute('data-post-id');
 
-            $.ajax({
-                url : $('#posts-id').attr('data-like-url'),
-                type : "POST", 
-                data : {'id': $(this).data('post-id')}, 
-
-                success : function(data) {
-                    if (data.status == 'liked'){
-                        pathEl.style.fill = 'rgb(237, 73, 86)';
-                        pathEl.style.stroke = 'rgb(237, 73, 86)';
-                        likesTag.text = totalLikes += 1;
-                    }
-                    else if (data.status == 'unliked'){
-                        pathEl.style.fill = '#fdfdfd';
-                        pathEl.style.stroke = '#000000';
-                        // if (totalLikes !== '0'){
-                            // likesTag.text = parseInt(totalLikes -= 1);
-                        // }
-                        likesTag.text = totalLikes -= 1;
-                    }
-                    
-                },
-                error : function(data) {
-                    console.log('not success')
+        $.ajax({
+            url : $('#posts-id').attr('data-like-url'),
+            type : "POST", 
+            data : {'post_id': postId}, 
+            success : function(data) {
+                if (data.status == 'liked'){
+                    pathEl.style.fill = 'rgb(237, 73, 86)';
+                    pathEl.style.stroke = 'rgb(237, 73, 86)';
+                    likesTag.text = totalLikes += 1;
                 }
-            });
+                else if (data.status == 'unliked'){
+                    pathEl.style.fill = '#fdfdfd';
+                    pathEl.style.stroke = '#000000';
+                    likesTag.text = totalLikes -= 1;
+                }
+            },
+            error : function(data) {
+                console.log('not success')
+            }
+        });
 
-        }); 
-     });
+    }); 
+
+    // Save or remove post
+    $('.save-button').click(function(){
+        let pathEl = this.getElementsByTagName('path')[0];
+        let postId = this.parentNode.parentNode.getAttribute('data-post-id');
+        $.ajax({
+            url : $('#posts-id').attr('data-save-url'),
+            type : "POST", 
+            data : {'post_id': postId}, 
+            success : function(data) {
+                if (data.status == 'saved'){
+                    pathEl.style.fill = '#262626'
+                }
+                else if (data.status == 'removed'){
+                    pathEl.style.fill = '#ffffff'
+                }
+            },
+            error : function(data) {
+                console.log('not success')
+            }
+        });
+    });
+
+    // Unable or disable comment button
+    $('.comment-input').on('input', function() {
+        console.log('asdasasd')
+        if (this.value == "") {
+            this.nextElementSibling.setAttribute('disabled', '');
+        }
+        else{
+            this.nextElementSibling.removeAttribute('disabled');
+        }
+    });
+
+    // Insert comments below post
+    $('.send-comment').click(function(){
+        let parentItem = this.parentNode.parentNode.parentNode.parentNode;
+        let commentSection = parentItem.getElementsByClassName('my-comments')[0];
+        let commentCounter = parentItem.getElementsByClassName('comment-counter')[0];
+        let totalComments = parseInt(commentCounter.textContent);
+        let postId = this.getAttribute('data-post-id');
+        let commentButton = this;
+        let commentInput = this.previousElementSibling;
+        let comment = commentInput.value;
+        let username = document.getElementById('myusername').textContent;
+        $.ajax({
+            url : $('#posts-id').attr('data-comment-url'),
+            type : "POST", 
+            data : {'post_id': postId, 'comment': comment}, 
+            success : function(data) {
+                if (data.status == 'created'){
+                    $(`<div class="post__description addedcomment">
+                                    <span>
+                                        <a class="post__name--underline" href="#" target="_blank">${username}</a>
+                                        ${comment}
+                                    </span>
+                    </div>`).appendTo(commentSection);
+                    commentCounter.textContent = totalComments += 1;
+                    commentInput.value = ""; // clear input after comment insert
+                    commentButton.setAttribute('disabled', '');
+                }
+            },
+            error : function(data) {
+                console.log('not success')
+            }
+        });
+    });
+
+});
 </script>
+
 {% endblock %}
 
 </html>

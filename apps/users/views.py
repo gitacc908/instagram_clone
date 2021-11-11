@@ -18,7 +18,6 @@ from django.http import JsonResponse
 import json
 
 
-
 def password_reset(request):
     form = UserEmailForm()
     if request.method == 'POST' and request.is_ajax():
@@ -69,7 +68,7 @@ class PasswordResetConfirmView(View):
             return render(request, 'registration/password_set.html', {'form': form})
         else:
             # return redirect('/')
-            return HttpResponse('user is none or activation link expired')
+            return HttpResponse('User is none or activation link expired')
     
     def post(self, request, *args, **kwargs):
         try:

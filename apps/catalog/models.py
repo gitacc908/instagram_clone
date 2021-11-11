@@ -48,7 +48,7 @@ class Image(models.Model):
         verbose_name_plural = 'images'
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments'
     )
@@ -74,7 +74,7 @@ class Bookmark(models.Model):
     """
     Saved posts by user
     """
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='bookmarked'
     )
     posts = models.ManyToManyField(
