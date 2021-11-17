@@ -42,7 +42,7 @@ class CommentView(View):
         user = request.user
         post_id = request.POST.get('post_id')
         comment = request.POST.get('comment')
-        print(comment, post_id)
+        # print(comment, post_id)
         post = get_object_or_404(Post, id=post_id)
         Comment.objects.create(user=user, post=post, text=comment)
         return JsonResponse({'status': 'created'})

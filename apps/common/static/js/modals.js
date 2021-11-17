@@ -16,6 +16,7 @@ $(function() {
         let sharePostModal = document.getElementsByClassName('inner-share-block')[0]
         let shareButton = e.target.parentNode.parentNode.parentNode.getElementsByClassName('share-button')[0]
 
+        // console.log(e.target)
         // Closing Modal Blocks
         if(profDrop.style.display == 'block'){
             if(!profDrop.contains(click_target)){

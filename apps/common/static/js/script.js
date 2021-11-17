@@ -85,7 +85,6 @@ posts.forEach(post => {
 
         post.querySelector('.post__content').appendChild(leftButtonElement);
         post.querySelector('.post__content').appendChild(rightButtonElement);
-
         post.querySelectorAll('.post__media').forEach(function() {
             const postMediaIndicatorElement = document.createElement('div');
             postMediaIndicatorElement.classList.add('post__indicator');

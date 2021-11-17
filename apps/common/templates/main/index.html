@@ -12,9 +12,9 @@
     {% endblock %}
     
     {%  block styles %}
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
-    <!-- <script src="{% static 'js/script.js' %}" defer></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/tinyslide.css' %}"> -->
     <!-- <link rel="stylesheet" href="{% static 'css/emojionearea.min.css' %}"> -->
+
     {% endblock %}
 </head>
 
@@ -63,13 +63,13 @@
 
                 <div class="posts" id="posts-id" data-comment-url="{% url 'comment' %}" data-like-url="{% url 'like' %}" data-save-url="{% url 'save' %}">
                     {% for post in posts %}
-                    <article class="post" >
+                    <article class="post">
                         <div class="post__header">
                             <div class="post__profile">
                                 <a href="#" target="_blank" class="post__avatar">
                                     <img src="{{ post.author.image.url }}" alt="User Picture">
                                 </a>
-                                <a href="https://github.com/leocosta1" target="_blank" class="post__user">{{ post.author.username }}</a>
+                                <a href="" target="_blank" class="post__user">{{ post.author.username }}</a>
                             </div>
 
                             <button class="post__more-options">
@@ -81,10 +81,12 @@
                             </button>
                         </div>
 
-                        {% with post.images.all|first as image %}
+                        {% with post.images.all as images %}
                         <div class="post__content">
                             <div class="post__medias">
+                                {% for image in images %}
                                 <img class="post__media" src="{{ image.image.url }}" alt="Post Content">
+                                {% endfor %}
                             </div>
                         </div>
                         {% endwith %}
@@ -125,7 +127,7 @@
 
                                 <div class="post__description">
                                     <span>
-                                        <a class="post__name--underline" href="https://github.com/leocosta1" target="_blank">{{ post.author.username }}</a>
+                                        <a class="post__name--underline" href="" target="_blank">{{ post.author.username }}</a>
                                         {{ post.body }}
                                     </span>
                                 </div>
@@ -163,7 +165,7 @@
 
             <section class="side-menu">
                 <div class="side-menu__user-profile">
-                    <a href="https://github.com/leocosta1" target="_blank" class="side-menu__user-avatar">
+                    <a href="" target="_blank" class="side-menu__user-avatar">
                     {% if request.user.image %}
                         <img class="prof-image" src="{{ request.user.image.url }}" alt="User Picture">
                     {% else %}
@@ -252,7 +254,7 @@
  
 
   {% block scripts %}
-  <script type="text/javascript" src="{% static 'js/emojionearea.min.js' %}"></script>
+  <!-- <script type="text/javascript" src="{% static 'js/emojionearea.min.js' %}"></script> -->
 
   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
@@ -340,7 +342,6 @@
   </script>
 
   <script src="{% static 'js/modals.js' %}"> </script>
-
 {% endblock %}
 
 {% block csrf_ready %}
@@ -402,7 +403,6 @@ $(document).ready(function(){
 
     // Unable or disable comment button
     $('.comment-input').on('input', function() {
-        console.log('asdasasd')
         if (this.value == "") {
             this.nextElementSibling.setAttribute('disabled', '');
         }
@@ -445,9 +445,77 @@ $(document).ready(function(){
         });
     });
 
-});
-</script>
+    $('.post-button').click(function(){
+        $('#image-loader').click();
+    });
+    $('#image-loader').change(function(){
+        let files = this.files;
+        let postBody = $('.post-body');
+        let postPreview = $('.post-preview');
 
+        if(files){ // if user chose some images
+            postBody.css('display', 'none');
+            postPreview.css('display', 'block');
+            for(let i = 0; i<files.length; i++){
+                if(i == 0){
+                    let reader = new FileReader();
+                    reader.onload = function(event){
+                        $($.parseHTML('<img class="item main">'))
+                        .attr('src', event.target.result).appendTo(postPreview.find('.carousel'));
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+                else{
+                    let reader = new FileReader();
+                    reader.onload = function(event){
+                        $($.parseHTML('<img class="item">'))
+                        .attr('src', event.target.result).appendTo(postPreview.find('.carousel'));
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+        
+            }
+        }
+        if (files.length == 1){
+            postPreview.find('.navigation').css('display', 'none');
+        }
+        const images = document.querySelector('.carousel').children;
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+        let index = 0;
+
+
+        prev.addEventListener('click', () => {
+        nextImage('next');
+        })
+
+        next.addEventListener('click', () => {
+        nextImage('prev');
+        })
+
+        function nextImage(direction) {
+            if(direction == 'next') {
+                index++;
+                if(index == files.length) {
+                    index = 0;
+                }
+            } else {
+                if(index == 0) {
+                    index = files.length - 1;
+                } else {
+                    index--;
+                }
+            }
+            for(let i = 0; i < files.length; i++) {
+                images[i].classList.remove('main');
+            }
+            images[index].classList.add('main');
+        }
+    });
+
+});
+
+</script>
 {% endblock %}
 
 </html>
