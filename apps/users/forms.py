@@ -43,7 +43,7 @@ class RegisterForm(forms.ModelForm):
         user.is_active = 1
         user.set_password(self.cleaned_data['password'])
         user.save()
-        return user
+        return userasd
 
 
 class LoginForm(forms.Form):
