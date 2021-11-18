@@ -334,6 +334,27 @@
     //     // { }
     // );
   
+
+    $('#share-button').click(function(){
+            let postForm = $("#post-form");
+            let formData = postForm.serialize();
+            let url = postForm.attr('data-post-url');
+            let images = $('#image-loader').val();
+            console.log(formData, images)
+            $.ajax({
+                url : url,
+                type : "POST", 
+                data : {'form': formData, 'images': images}, 
+                success : function(data) {
+                    console.log(' success')
+                 
+                },
+                error : function(data) {
+                    console.log('not success')
+                }
+            });
+        });
+
   </script>
 
   <script src="{% static 'js/modals.js' %}"> </script>
@@ -509,7 +530,10 @@ $(document).ready(function(){
             }
             images[index].classList.add('main');
         }
+
+ 
     });
+ 
 
 });
 

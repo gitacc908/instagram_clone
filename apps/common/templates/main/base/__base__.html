@@ -303,13 +303,14 @@
                         <div class="post-title">
                             <p>Создание публикации</p>
                         </div>
-                        <div class="post-preview">
+                        <form id="post-form" class="post-preview"  method="post" enctype="multipart/form-data" data-post-url="{% url 'post' %}">
+                            {% csrf_token %}
                             <div class="post-preview-box">
                                 <div class="carousel-container">
                                     <div class="carousel">
                                     </div>
                                     <div class="navigation">
-                                        <div class="prev nav-btn"><</div>
+                                        <div class="prev nav-btn"></div>
                                         <div class="next nav-btn">></div>
                                     </div>
                                 </div>
@@ -327,13 +328,13 @@
                                         </div>
                                     </div>
                                     <div class="post-description">
-                                        <input type="text" placeholder="Придумайте надпись..." >
+                                        <input name="body" type="text" placeholder="Придумайте надпись..." >
                                     </div>
                                     <div class="post-iscommentsallowed">
                                         <div class="">
                                             <div class="             qF0y9          Igw0E   rBNOH           CcYR1  ybXk5    _4EzTm                                                                                                              ">
                                                 <div class="_7UhW9    vy6Bb     MMzan  KV-D4          uL8Hv         ">Выключить комментарии</div>
-                                                <label class="QC_AM" for="f21c8f774f0e2a4"><input class="pnqXA" id="f21c8f774f0e2a4" type="checkbox" value=""><span class="gZk2f "></span></label>
+                                                <label class="QC_AM" for="f21c8f774f0e2a4"><input name="comments_on" class="pnqXA" id="f21c8f774f0e2a4" type="checkbox" value=""><span class="gZk2f "></span></label>
                                              </div>
                                         </div>
                                         <div>
@@ -341,11 +342,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="">
+                                <button type="button" id="share-button">
                                     Поделиться
                                 </button>
                             </div>
-                        </div>
+                        </form>
                        
                         <div class="post-body">
                             <div class="post-icon">
