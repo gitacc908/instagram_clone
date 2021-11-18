@@ -316,7 +316,11 @@
                                 <div class="post-conf">
                                     <div class="post-username">
                                         <div class="profile-button__picture user-icon">
+                                            {% if request.user.image %}
                                             <img src="{{ request.user.image.url }}" alt="user picture">
+                                            {% else %}
+                                            <img src="{% static 'assets/default-user.png' %}" alt="user picture">
+                                            {% endif %}
                                         </div>
                                         <div class="user-username">
                                             {{ request.user.username }}
@@ -337,6 +341,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="button" class="">
+                                    Поделиться
+                                </button>
                             </div>
                         </div>
                        
