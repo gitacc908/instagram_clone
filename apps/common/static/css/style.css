@@ -397,7 +397,7 @@ img { max-width: 100%; }
     top: 0; bottom: 0;
     left: 0; right: 0;
 
-    border: 1px solid var(--img-border);
+    border:solid 1px  var(--img-border);
     border-radius: 50%;
 }
 .post__user {
@@ -742,46 +742,8 @@ img { max-width: 100%; }
     text-transform: uppercase;
 }
 
-/* Profile Button */
-.profile-button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-}
-.profile-button__border {
-    display: none;
+/
 
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--text-dark);
-    border-radius: 50%;
-
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-}
-.profile-button:focus .profile-button__border {
-    display: block;
-}
-.profile-button__picture {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-
-    overflow: hidden;
-    position: relative;
-}
-.profile-button__picture::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-
-    border: 1px solid var(--img-border);
-    border-radius: 50%;
-}
 
 
 /* Media Queries */
@@ -826,6 +788,7 @@ img { max-width: 100%; }
     .post__date-time {
         margin-top: 6px;
     }
+
 }
 
 @media (min-width: 768px) {
@@ -1090,38 +1053,36 @@ a, a:visited {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     z-index: 10;
     background: rgba(0,0,0,.85);
+}
+.post-outer-body-container{
+    width: 100%; height: 100%;
+    display: flex;align-items: center;justify-content: center;
+    padding-left: 16px; padding-right: 16px;
 }
 .post-outer-body{
     background-color: rgba(var(--f23,255,255,255),1);
     overflow: hidden;
     border-radius: 12px;
-    margin: 8% auto;
-    max-width: 60%;
-    width: 100%;
-    height: fit-content;
-    
+    max-width: 880px; max-height: 600px;
 }
+.post-inner-body{width: 100%; height: 100%;}
 .post-title{
     text-align: center;
-    height: 43px;
-    border: 1px;
-    border-style: solid;
-    border-color: #bcc5c5;
+    border-bottom: solid 1px #bcc5c5;
+    font-weight: 500; line-height: 42px;
 }
-.post-title p {
-    margin: 10px;
-    font-weight: 400;
-}
+
+
 .post-body{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 400px;
+    padding: 40px;
 }
 ._8-yf5 {
     margin: auto;
@@ -1426,9 +1387,72 @@ a, a:visited {
     display: none;
 }
 
+
+
+
+
+
+
+.post-conf{
+    padding-top: 20px; border-left: solid 1px #bcc5c5;max-width: 307px;
+}
+
+/* Profile Button */
+.profile-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+.profile-button__border {
+    display: none;
+
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--text-dark);
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.profile-button:focus .profile-button__border {
+    display: block;
+}
+
+.post-username{ display: flex; align-items: center;padding-left: 10px; padding-right: 10px;}
+
+.profile-button__picture {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    overflow: hidden;
+    position: relative;
+}
+.profile-button__picture::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+
+    border: 1px solid var(--img-border);
+    border-radius: 50%;
+}
+.user-username{font-size: 16px; padding-left: 10px; font-weight: 500;}
+.post-description textarea{max-height: 168px; min-height: 168px; width: 100%; padding-left: 20px; padding-right: 20px; margin-top: 10px; line-height: 24px;font-size: 16px; border: none; outline: none;}
+
+
+
+
+
+
+
+
 .carousel-container{
-    width: 100%;
-    max-height: 749px;
+    width: 538px;
+    height: 538px;
     position: relative;
 }
 .navigation .prev {
@@ -1471,6 +1495,7 @@ a, a:visited {
 
   .carousel {
     transition: all 0.3s ease;
+    width: 100%; height: 100%; display: flex;align-items: center;justify-content: center; overflow: hidden;
   }
 
   .carousel img {
@@ -1482,8 +1507,7 @@ a, a:visited {
   .item {
     display: none;
     object-fit: cover;
-    max-width: 378px;
-    height: 445px;
+    height: 100%;
   }
   
   .main {
