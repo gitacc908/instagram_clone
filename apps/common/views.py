@@ -46,3 +46,16 @@ class CommentView(View):
         post = get_object_or_404(Post, id=post_id)
         Comment.objects.create(user=user, post=post, text=comment)
         return JsonResponse({'status': 'created'})
+
+
+class PostView(View):
+    def post(self, request, *args, **kwargs):
+        post = Post.objects.get(id=request.POST.get('post_id'))
+        user = request.user
+        if user in post.likes.all():
+            post.likes.remove(user)
+            return JsonResponse({'status': 'unliked'})
+        elif user not in post.likes.all():
+            post.likes.add(user)
+            return JsonResponse({'status': 'liked'})
+        return JsonResponse({'status': 'error'}, status=404)
