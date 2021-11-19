@@ -7,6 +7,7 @@ urlpatterns = [
  
 #    path('users/<username>/', views.user_detail, name='user_detail'),
 
+    path('profile/', views.profile, name='profile'),
 
     # user auth 
     path('signin/', views.UserSignInView.as_view(), name='sign-in'),
