@@ -446,6 +446,7 @@ $(document).ready(function(){
         let files = this.files;
         let postBody = $('.post-body');
         let postPreview = $('.post-preview');
+        const shareUrl = $(this).attr('data-share-url');
 
         if(files){ // if user chose some images
             postBody.css('display', 'none');
@@ -505,6 +506,41 @@ $(document).ready(function(){
             }
             images[index].classList.add('main');
         }
+
+        $('#share-post').click(function(){
+          
+            console.log(files)
+
+            // collect form data with multiple images
+            var formData = new FormData();
+            formData.append('body', $('#share-body').val());
+            formData.append('comments_off', $('#f21c8f774f0e2a4').is(':checked'));
+            for (var index = 0; index < files.length; index++) {
+                formData.append("images", document.getElementById('image-loader').files[index]);
+            }
+            // $.each(files, function(i, file) {
+            //     formData.append(i, file);
+            // });
+            // formData.append('images',  files[0]);
+     
+             $.ajax({
+                type : "POST", 
+                url : shareUrl,
+                cache: false,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                data : formData, 
+                success : function(data) {
+                    console.log(' success')
+                },
+                error : function(data) {
+                    console.log('not success')
+                }
+            });
+
+        });
+   
     });
 
 });

@@ -13,8 +13,8 @@ class Post(models.Model):
     likes = models.ManyToManyField(
         User, related_name='liked_posts', verbose_name='users who liked this post', blank=True
     )
-    comments_on = models.BooleanField(
-        default=True, verbose_name='is comments allowed?'
+    comments_off = models.BooleanField(
+        default=True, verbose_name='is comments disabled?'
     )
     created = models.DateTimeField(
         auto_now_add=True

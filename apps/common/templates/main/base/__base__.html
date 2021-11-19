@@ -314,7 +314,8 @@
                                             <div class="next nav-btn">></div>
                                         </div>
                                     </div>
-                                    <div class="post-conf">
+                                    <form class="post-conf" id="share-form" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
                                         <div class="post-username">
                                             <div class="profile-button__picture user-icon">
                                                 {% if request.user.image %}
@@ -328,13 +329,13 @@
                                             </div>
                                         </div>
                                         <div class="post-description">
-                                            <textarea type="text" placeholder="Придумайте надпись..." cols="30" rows="10"></textarea>
+                                            <textarea id="share-body" name="body" type="text" placeholder="Придумайте надпись..." cols="30" rows="10"></textarea>
                                         </div>
                                         <div class="post-iscommentsallowed">
                                             <div class="">
                                                 <div class="comment_edit             qF0y9          Igw0E   rBNOH           CcYR1  ybXk5    _4EzTm                                                                                                              ">
                                                     <div class="_7UhW9    vy6Bb     MMzan  KV-D4          uL8Hv         ">Выключить комментарии</div>
-                                                    <label class="QC_AM switch" for="f21c8f774f0e2a4"><input class="pnqXA" id="f21c8f774f0e2a4" type="checkbox" value=""><span class="gZk2f slider"></span></label>
+                                                    <label class="QC_AM switch" for="f21c8f774f0e2a4"><input name="comments_off" class="pnqXA" id="f21c8f774f0e2a4" type="checkbox"><span class="gZk2f slider"></span></label>
                                                 </div>
                                             </div>
                                             <div class="description">
@@ -342,9 +343,9 @@
                                             </div>
                                         </div>
                                         <div class="public">
-                                            <button type="button" class="public-button">Поделиться</button>
+                                            <button id="share-post" type="button" class="public-button">Поделиться</button>
                                         </div>
-                                    </div>
+                                    </form>
                                     
                                 </div>
                             </div>
@@ -360,7 +361,7 @@
                                     </p>
                                 </div>
                                 <div class="post-button-container">
-                                    <input id="image-loader" type="file" hidden multiple accept="image/*">
+                                    <input data-share-url="{% url 'post' %}" id="image-loader" name="images[]" type="file" hidden multiple accept="image/*">
                                         <button class="post-button">
                                             Выбрать с компьютера
                                         </button>
