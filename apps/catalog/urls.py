@@ -7,6 +7,4 @@ urlpatterns = [
  
     # path('', views.main, name='index'),
    
-
 ]
-    
