@@ -18,6 +18,10 @@ from django.http import JsonResponse
 import json
 
 
+def profile(request):
+    return render(request, 'profile/profile.html')
+
+
 def password_reset(request):
     form = UserEmailForm()
     if request.method == 'POST' and request.is_ajax():
