@@ -508,7 +508,6 @@ $(document).ready(function(){
         }
 
         $('#share-post').click(function(){
-          
             console.log(files)
 
             // collect form data with multiple images
@@ -516,12 +515,8 @@ $(document).ready(function(){
             formData.append('body', $('#share-body').val());
             formData.append('comments_off', $('#f21c8f774f0e2a4').is(':checked'));
             for (var index = 0; index < files.length; index++) {
-                formData.append("images", document.getElementById('image-loader').files[index]);
+                formData.append("images", files[index]);
             }
-            // $.each(files, function(i, file) {
-            //     formData.append(i, file);
-            // });
-            // formData.append('images',  files[0]);
      
              $.ajax({
                 type : "POST", 
