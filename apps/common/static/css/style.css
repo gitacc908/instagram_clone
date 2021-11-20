@@ -1531,3 +1531,7 @@ a, a:visited {
 .public{width: 100%; margin-top: 24px;}
 .public-button{background: #2196F3;line-height: 35px; width: 100%; color: #fff; border: none; outline: none; cursor: pointer; border-radius: 4px;}
 .public-button:active{background: #2196f399;}
+
+.navigation{
+    display: none;
+}

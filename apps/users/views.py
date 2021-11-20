@@ -18,8 +18,9 @@ from django.http import JsonResponse
 import json
 
 
-def profile(request):
-    return render(request, 'profile/profile.html')
+def profile(request, username):
+    user_detail = get_object_or_404(User, username=username)
+    return render(request, 'profile/profile.html', {'user_detail': user_detail})
 
 
 def password_reset(request):

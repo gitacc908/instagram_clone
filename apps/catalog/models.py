@@ -8,13 +8,13 @@ class Post(models.Model):
         verbose_name='host of post'
     )
     body = models.TextField(
-        verbose_name='description of post'
+        verbose_name='description of post', null=True, blank=True
     )
     likes = models.ManyToManyField(
         User, related_name='liked_posts', verbose_name='users who liked this post', blank=True
     )
     comments_off = models.BooleanField(
-        default=True, verbose_name='is comments disabled?'
+        default=False, verbose_name='is comments disabled?'
     )
     created = models.DateTimeField(
         auto_now_add=True

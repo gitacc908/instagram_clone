@@ -54,17 +54,15 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     objects = CustomUserManager()
 
-    def __str__(self):
-        return self.username
-
-    # def get_full_name(self):
-    #     return f"{self.last_name}, {self.first_name}"
-
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
-    # def get_absolute_url(self):
-    #     return reverse('get_profile', args=[self.id])
+    
+    def __str__(self):
+        return self.username
+
+    def get_absolute_url(self):
+        return reverse('profile', args=[self.username])
 
 
 class Contact(models.Model):

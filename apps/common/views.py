@@ -1,10 +1,10 @@
 from django.http.response import JsonResponse
-from django.shortcuts import get_object_or_404, render
-from apps.users.models import User
+from django.shortcuts import get_object_or_404, render, HttpResponse
 from apps.catalog.models import Post, Bookmark, Comment
 from django.views import View
-# from apps.common.forms import PostForm
+from apps.common.forms import PostForm
 from apps.catalog.models import Image
+import json
 
 
 def main(request):
@@ -52,10 +52,12 @@ class CommentView(View):
 
 class PostView(View):
     def post(self, request, *args, **kwargs):
-        post = Post.objects.create(author=request.user)
-        post.body = request.POST.get('body')
-        post.comments_off = True if request.POST.get('comments_off') == 'true' else False
-        post.save()
-        for image in request.FILES.getlist('images'):
-            Image.objects.create(post=post, image=image)
-        return JsonResponse({'status': 'returned'})
+        form = PostForm(request.POST, request=request)
+        if form.is_valid():
+            form.save()
+            Image.objects.bulk_create([
+                Image(post=form.instance, image=image) for image in request.FILES.getlist('images')
+            ])
+            return JsonResponse({'status': 'created'})
+        error_dict = {'status': 'form_invalid', 'form_errors': form.errors}
+        return HttpResponse(json.dumps(error_dict),content_type="application/json", status=400)

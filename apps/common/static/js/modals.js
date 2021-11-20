@@ -3,7 +3,6 @@ $(function() {
     window.addEventListener('click', function(e) {
         // e.preventDefault();
         let click_target = e.target
-
         let profButtonPicture = document.getElementsByClassName('profile-button__picture')[0]
         let profDrop = document.getElementById('profile-drop')
         let mentionDrop = document.getElementsByClassName('mention_drop')[0]
@@ -16,7 +15,12 @@ $(function() {
         let sharePostModal = document.getElementsByClassName('inner-share-block')[0]
         let shareButton = e.target.parentNode.parentNode.parentNode.getElementsByClassName('share-button')[0]
 
-        // console.log(e.target)
+        // profile page modals
+        var confWindow = document.getElementById("myModal");
+        var confModalContent = document.getElementsByClassName("modal-content")[0];
+        var confButton = document.getElementById("myBtn");
+        var confCloseButton = document.getElementsByClassName("close")[0];
+        
         // Closing Modal Blocks
         if(profDrop.style.display == 'block'){
             if(!profDrop.contains(click_target)){
@@ -41,6 +45,17 @@ $(function() {
                 sharePostWindow.style.display = 'none'
             }
         }
+        else if(confWindow){
+             if(confWindow.style.display == 'block'){
+                if(!confModalContent.contains(click_target)){
+                    confWindow.style.display = 'none'
+                }
+                else if(confCloseButton.contains(click_target)){
+                    confWindow.style.display = 'none'
+                }
+            }
+        }
+    
 
         // Opening Modal Blocks
         else if(shareButton){
@@ -56,6 +71,9 @@ $(function() {
         }
         else if (profButtonPicture.contains(click_target)){
             profDrop.style.display = 'block'
+        }
+        else if (confButton.contains(click_target)){
+            confWindow.style.display = 'block'
         }
     });
 });
