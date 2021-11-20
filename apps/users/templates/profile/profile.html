@@ -13,10 +13,201 @@ Instagram
 
 
 {% block content %}
-<h1>NEW PROFILE PAGE</h1>
+<main>
+	<header class="header-profile">
+		<div class="header-profile-user-img">
+			<button><img src="data:image/jpeg;base64,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" alt=""></button>
+		</div>
+		<div class="header-profile-user-info">
+			<!-- Имя профиля, редактирования профиля и настройка -->
+			<div class="username-editprofile">
+				<div class="header-profile-username">dcllns</div>
+				<a href="#" class="btn-edit-profile">Редактировать профиль</a>
+				<button id="myBtn"><svg aria-label="Параметры" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24"><path clip-rule="evenodd" d="M46.7 20.6l-2.1-1.1c-.4-.2-.7-.5-.8-1-.5-1.6-1.1-3.2-1.9-4.7-.2-.4-.3-.8-.1-1.2l.8-2.3c.2-.5 0-1.1-.4-1.5l-2.9-2.9c-.4-.4-1-.5-1.5-.4l-2.3.8c-.4.1-.8.1-1.2-.1-1.4-.8-3-1.5-4.6-1.9-.4-.1-.8-.4-1-.8l-1.1-2.2c-.3-.5-.8-.8-1.3-.8h-4.1c-.6 0-1.1.3-1.3.8l-1.1 2.2c-.2.4-.5.7-1 .8-1.6.5-3.2 1.1-4.6 1.9-.4.2-.8.3-1.2.1l-2.3-.8c-.5-.2-1.1 0-1.5.4L5.9 8.8c-.4.4-.5 1-.4 1.5l.8 2.3c.1.4.1.8-.1 1.2-.8 1.5-1.5 3-1.9 4.7-.1.4-.4.8-.8 1l-2.1 1.1c-.5.3-.8.8-.8 1.3V26c0 .6.3 1.1.8 1.3l2.1 1.1c.4.2.7.5.8 1 .5 1.6 1.1 3.2 1.9 4.7.2.4.3.8.1 1.2l-.8 2.3c-.2.5 0 1.1.4 1.5L8.8 42c.4.4 1 .5 1.5.4l2.3-.8c.4-.1.8-.1 1.2.1 1.4.8 3 1.5 4.6 1.9.4.1.8.4 1 .8l1.1 2.2c.3.5.8.8 1.3.8h4.1c.6 0 1.1-.3 1.3-.8l1.1-2.2c.2-.4.5-.7 1-.8 1.6-.5 3.2-1.1 4.6-1.9.4-.2.8-.3 1.2-.1l2.3.8c.5.2 1.1 0 1.5-.4l2.9-2.9c.4-.4.5-1 .4-1.5l-.8-2.3c-.1-.4-.1-.8.1-1.2.8-1.5 1.5-3 1.9-4.7.1-.4.4-.8.8-1l2.1-1.1c.5-.3.8-.8.8-1.3v-4.1c.4-.5.1-1.1-.4-1.3zM24 41.5c-9.7 0-17.5-7.8-17.5-17.5S14.3 6.5 24 6.5 41.5 14.3 41.5 24 33.7 41.5 24 41.5z" fill-rule="evenodd"></path></svg></button>
+			</div>
+			<!-- Публикации, подписчики и подписки -->
+			<div class="desktop-publications-subscribers-subscriptions">
+				<ul class="publications-subscribers-subscriptions">
+					<li class="publications"><span>1</span> публикация</li>
+					<li class="subscribers"><span>561</span> подписчиков</li>
+					<li class="subscriptions"><span>77</span> подписков</li>
+				</ul>
+			</div>
+			<!-- О себе -->
+			<div class="desktop-about">
+				<div class="about">
+					Меня зовут Чынгыз.
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal " >
+
+		<div class="modal-content-container">
+		  <div class="modal-content ">
+		    <button>Сменить пароль</button>
+		    <button>Профессиональный аккаунт</button>
+		    <button>instagram - визитка</button>
+		    <button>Приложения и сайты</button>
+		    <button>Уведомления</button>
+		    <button>Конфиденциальность и безопасность</button>
+		    <button>Входы в аккаунт</button>
+		    <button>Электронные письма от instagram</button>
+		    <button>Сообщить о проблеме</button>
+		    <button>Выйти</button>
+		    <button class="close" style="border: unset;">Отмена</button>
+		  </div>
+	    </div>
+
+	</div>
+	
+
+	<!-- О себе -->
+	<div class="mobile-about">
+		<div class="about">
+			Меня зовут Чынгыз.
+		</div>
+	</div>
+	<div class="mobile-publications-subscribers-subscriptions">
+		<ul class="publications-subscribers-subscriptions">
+			<li class="publications"><span>1</span> публикация</li>
+			<li class="subscribers"><span>561</span> подписчиков</li>
+			<li class="subscriptions"><span>77</span> подписков</li>
+		</ul>
+	</div>
+
+
+		<div class="tabs">
+		  <button class="tablinks" onclick="openTab(event, 'publications')" id="defaultOpen">
+		  		<svg aria-label="Публикации"  height="24" role="img" viewBox="0 0 48 48" width="24"><path clip-rule="evenodd" d="M45 1.5H3c-.8 0-1.5.7-1.5 1.5v42c0 .8.7 1.5 1.5 1.5h42c.8 0 1.5-.7 1.5-1.5V3c0-.8-.7-1.5-1.5-1.5zm-40.5 3h11v11h-11v-11zm0 14h11v11h-11v-11zm11 25h-11v-11h11v11zm14 0h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11zm14 28h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11z" fill-rule="evenodd"></path></svg>
+		  		<p>Публикации</p>
+		  </button>
+		  <button class="tablinks" onclick="openTab(event, 'saves')">
+		  		<svg aria-label="Сохраненное" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path></svg>
+		  		<p>Сохраненное</p>
+		  </button>
+		  <button class="tablinks" onclick="openTab(event, 'marks')">
+		  		<svg aria-label="Отметки"  height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M41.5 5.5H30.4c-.5 0-1-.2-1.4-.6l-4-4c-.6-.6-1.5-.6-2.1 0l-4 4c-.4.4-.9.6-1.4.6h-11c-3.3 0-6 2.7-6 6v30c0 3.3 2.7 6 6 6h35c3.3 0 6-2.7 6-6v-30c0-3.3-2.7-6-6-6zm-29.4 39c-.6 0-1.1-.6-1-1.2.7-3.2 3.5-5.6 6.8-5.6h12c3.4 0 6.2 2.4 6.8 5.6.1.6-.4 1.2-1 1.2H12.1zm32.4-3c0 1.7-1.3 3-3 3h-.6c-.5 0-.9-.4-1-.9-.6-5-4.8-8.9-9.9-8.9H18c-5.1 0-9.4 3.9-9.9 8.9-.1.5-.5.9-1 .9h-.6c-1.7 0-3-1.3-3-3v-30c0-1.7 1.3-3 3-3h11.1c1.3 0 2.6-.5 3.5-1.5L24 4.1 26.9 7c.9.9 2.2 1.5 3.5 1.5h11.1c1.7 0 3 1.3 3 3v30zM24 12.5c-5.3 0-9.6 4.3-9.6 9.6s4.3 9.6 9.6 9.6 9.6-4.3 9.6-9.6-4.3-9.6-9.6-9.6zm0 16.1c-3.6 0-6.6-2.9-6.6-6.6 0-3.6 2.9-6.6 6.6-6.6s6.6 2.9 6.6 6.6c0 3.6-3 6.6-6.6 6.6z"></path></svg>
+		  		<p>Отметки</p>
+		  </button>
+		</div>
+
+
+	<div id="publications" class="tabcontent">
+		<div class="grid-publications">
+			<!-- публикация 1 -->
+			<div class="publication">
+				<a href="#" class="publication-link">
+					<img src="https://cdnimg.rg.ru/img/content/220/87/86/android1(istock)1000_d_850.jpg" alt="">
+					<div class="likes-comments-hover">
+						<div class="hover-likes"><span>1</span> like</div>
+						<div class="hover-comments"><span>4</span> comments</div>
+					</div>
+				</a>
+			</div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+	  	</div>
+	</div>
+
+	<div id="saves" class="tabcontent">
+
+		<div class="new-selection">
+			<p>Список сохраненного виден только вам</p>
+			<button>+ Новая подборка</button>
+		</div>
+
+	  <div class="grid-publications">
+			<div class="publication">
+				<a href="#" class="publication-link">
+					<img src="https://cdnimg.rg.ru/img/content/220/87/86/android1(istock)1000_d_850.jpg" alt="">
+					<div class="likes-comments-hover">
+						<div class="hover-likes"><span>1</span> like</div>
+						<div class="hover-comments"><span>4</span> comments</div>
+					</div>
+				</a>
+			</div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+			<div class="publication"></div>
+	  	</div> 
+	</div>
+
+	<div id="marks" class="tabcontent">
+		<div class="grid-publications">
+			<div class="publication">
+				<a href="#" class="publication-link">
+					<img src="https://cdnimg.rg.ru/img/content/220/87/86/android1(istock)1000_d_850.jpg" alt="">
+					<div class="likes-comments-hover">
+						<div class="hover-likes"><span>1</span> like</div>
+						<div class="hover-comments"><span>4</span> comments</div>
+					</div>
+				</a>
+			</div>
+			<div class="publication"></div>
+	  	</div> 
+	</div>
+
+
+
+
+
+</main>
+
 {% endblock %}
 
 
 
 {% block scripts %}
+<script>
+	function openTab(evt, TabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(TabName).style.display = "block";
+    evt.currentTarget.className += " active";
+   }
+   document.getElementById("defaultOpen").click();
+
+
+
+   // modal
+	var modal = document.getElementById("myModal");
+	var btn = document.getElementById("myBtn");
+	var span = document.getElementsByClassName("close")[0];
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	}
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
+
+</script>
+
 {% endblock %}
