@@ -1535,3 +1535,25 @@ a, a:visited {
 .navigation{
     display: none;
 }
+.post-inner-body{
+    position: relative;
+}
+.success-alert{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 19%;
+    top: 27%;
+    text-align: center;
+    visibility: hidden;
+}
+#success-gif{
+    width: 150px;
+}
+.success-alert p{
+    font-weight: 300;
+    font-size: 22px;
+    margin-top: 10px;
+}

@@ -191,14 +191,22 @@ $(document).ready(function(){
             enctype: 'multipart/form-data',
             data : formData, 
             success : function(data) {
-                // setting modals to its default css values
+                // clear out data
                 body.val('');
+                input.val('');
+                // setting modals to its default css values
                 postPreview.css('display', '');
                 postBody.css('display', '');
+                postBody.css('visibility', 'hidden');
                 postPreview.find('.carousel').empty();
                 postPreview.find('.navigation').css('display', '');
-                input.val('');
                 console.log('success')
+                $('.success-alert').css('visibility', 'visible');
+                $('#success-gif').attr('src', '/static/img/10a8cbeb94ba.gif')
+                setTimeout(function() {
+                    $('.success-alert').css('visibility', '');
+                    postBody.css('visibility', '');
+                }, 2000); 
             },
             error : function(data) {
                 console.log('not success')
