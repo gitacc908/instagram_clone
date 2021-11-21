@@ -14,11 +14,7 @@ $(function() {
         let sharePostWindow = document.getElementsByClassName('share-post')[0]
         let sharePostModal = document.getElementsByClassName('inner-share-block')[0]
         let shareButton = e.target.parentNode.parentNode.parentNode.getElementsByClassName('share-button')[0]
-        // profile page modals
-        var confWindow = document.getElementById("myModal");
-        var confModalContent = document.getElementsByClassName("modal-content")[0];
-        var confButton = document.getElementById("myBtn");
-        var confCloseButton = document.getElementsByClassName("close")[0];
+
         
         // Closing Modal Blocks
         if(profDrop.style.display == 'block'){
@@ -44,20 +40,6 @@ $(function() {
                 sharePostWindow.style.display = 'none'
             }
         }
-        else if(confWindow){
-            if(confWindow.style.display == 'block'){
-                if(!confModalContent.contains(click_target)){
-                    confWindow.style.display = 'none'
-                }
-                else if(confCloseButton.contains(click_target)){
-                    confWindow.style.display = 'none'
-                }
-            }
-            else if (confButton.contains(click_target)){
-                confWindow.style.display = 'block'
-            }
-        }
-    
 
         // Opening Modal Blocks
         else if(shareButton){
@@ -76,4 +58,5 @@ $(function() {
         }
      
     });
+
 });
