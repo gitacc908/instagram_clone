@@ -929,7 +929,7 @@ img { max-width: 100%; }
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    /* flex-direction: column; */
+    align-items: center;
 }
 ._8-yf5 {
     display: block;

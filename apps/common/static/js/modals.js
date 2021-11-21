@@ -7,7 +7,8 @@ $(function() {
         let profDrop = document.getElementById('profile-drop')
         let mentionDrop = document.getElementsByClassName('mention_drop')[0]
         let mentionButton = document.getElementById('mention_button')
-        let newPostButton = document.getElementById('new-post')
+        let newPostButton = document.getElementsByClassName('new-post')
+
         let newPostWindow = document.getElementById('post-image-body')
         let newPostModal = document.getElementsByClassName('post-inner-body')[0]
         let sharePostCloseButton = document.getElementsByClassName('x-button')[0]
@@ -47,9 +48,6 @@ $(function() {
                 sharePostWindow.style.display = 'block'
             }
         }
-        else if (newPostButton.contains(click_target)){
-            newPostWindow.style.display = 'block'
-        }
         else if (mentionButton.contains(click_target)){
             mentionDrop.style.display = 'block'
         }
@@ -57,6 +55,12 @@ $(function() {
             profDrop.style.display = 'block'
         }
      
+        for(let newPostClass = 0; newPostClass < newPostButton.length; newPostClass++){
+            if (newPostButton[newPostClass].contains(click_target)){
+                newPostWindow.style.display = 'block'
+            }
+        }
+
     });
 
 });
