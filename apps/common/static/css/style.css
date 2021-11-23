@@ -1123,6 +1123,7 @@ a, a:visited {
 .post-text{
     font-weight: 300;
     font-size: 20px;
+    text-align: center;
 }
 .post-button-container{
     margin: 12px;
@@ -1493,6 +1494,9 @@ a, a:visited {
       display: block;
       max-height: 65vh;
       overflow: auto;
+  }
+  .post__content{
+      max-height: 468px;
   }
   .carousel-container{width: 100%; max-height: 400px;}
   .post-conf{max-width: 100%; width: 100%; min-width: 100%;}

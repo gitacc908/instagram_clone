@@ -215,4 +215,24 @@ $(document).ready(function(){
 
     });
 
+    $('.follow').click(function(){
+        let followButton = $(this);
+        $.ajax({
+            type : "POST",
+            url : $(this).attr('data-follow-url'),
+            data : {follow_user_id:$(this).attr('data-user-id')},
+            success: function(data){
+                if(data.status == 'followed'){
+                    followButton.text('Unfollow')
+                }
+                else if (data.status == 'unfollowed'){
+                    followButton.text('Follow')
+                }
+            },
+            error: function(data){
+                console.log('error')
+            }
+        });
+    });
+
 });

@@ -6,6 +6,8 @@ from apps.common.forms import PostForm
 from apps.catalog.models import Image
 import json
 
+from apps.users.models import User, Contact
+
 
 def main(request):
 
@@ -61,3 +63,14 @@ class PostView(View):
             return JsonResponse({'status': 'created'})
         error_dict = {'status': 'form_invalid', 'form_errors': form.errors}
         return HttpResponse(json.dumps(error_dict),content_type="application/json", status=400)
+
+
+class FollowView(View):
+    def post(self, request, *args, **kwargs):
+        follow_user = get_object_or_404(User, pk=request.POST.get('follow_user_id'))
+        if follow_user not in request.user.following.all():
+            Contact.objects.create(user_from=request.user, user_to=follow_user)
+            return JsonResponse({'status': 'followed'})
+        else:
+            Contact.objects.filter(user_from=request.user, user_to=follow_user).delete()
+            return JsonResponse({'status': 'unfollowed'})

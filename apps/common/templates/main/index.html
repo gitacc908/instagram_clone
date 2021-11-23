@@ -1,6 +1,7 @@
 {% extends 'main/base/__base__.html' %}
 {% load static %}
 {% load humanize %}
+{% load custom_tags %}
 <!-- {% load emoji_tags %} -->
 
 
@@ -113,10 +114,20 @@
 
                             <div class="post__infos">
                                 <div class="post__likes">
-                                    <a href="#" class="post__likes-avatar">
-                                        <img src="{{ post.author.image.url }}" alt="User Picture">
-                                    </a>
-                                    <span>Liked by <a class="post__name--underline" href="#">user123</a> and <a href="#" class="likes-count">{{ post.likes.count }} </a> <span class="others-class"> others</span> </span>
+                                    {% with request.user.following.all|get_liked_users:post.likes.all as liked_users %}
+                                        {% if liked_users %}
+                                            {% for user in liked_users %}
+                                                <a href="{{ user.get_absolute_url }}" class="post__likes-avatar">
+                                                    <img src="{% if user.image.url %} {{ user.image.url }} {% else %} {% static 'assets/default-user.png' %} {% endif %}" alt="User Picture">
+                                                </a>
+                                            {% endfor %}
+                                            {% with liked_users|get_first_user as first_object %}
+                                                <span>Нравится <a class="post__name--underline" href="{{ first_object.get_absolute_url }}">{{ first_object.username }}</a> и <span class="others-class">ещё </span><a href="#" class="likes-count">{{ post.likes.count|add:-1 }} </a> </span>
+                                            {% endwith %}
+                                        {% else %}
+                                        <span> <a class="post__name--underline likes-count" href="#">{{ post.likes.count }}</a>   <span class="others-class">Отметок "Нравится"</span> </span>
+                                        {% endif %}
+                                    {% endwith %}
                                 </div>
 
                                 <div class="post__description">
@@ -183,16 +194,18 @@
                         <button>See All</button>
                     </div>
                     <div class="side-menu__suggestions-content">
-                        <div class="side-menu__suggestion">
-                            <a href="#" class="side-menu__suggestion-avatar">
-                                <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
-                            </a>
-                            <div class="side-menu__suggestion-info">
-                                <a href="#">usernick16</a>
-                                <span>Followed by user1, user2 and 9 others</span>
+                        {% for suggestion in request.user|follow_suggestion %}
+                            <div class="side-menu__suggestion">
+                                <a href="#" class="side-menu__suggestion-avatar">
+                                    <img src="{% if suggestion.image %} {{ suggestion.image.url }} {% else %} {% static 'assets/default-user.png' %} {% endif %}" alt="User Picture">
+                                </a>
+                                <div class="side-menu__suggestion-info">
+                                    <a href="{{ suggestion.get_absolute_url }}">{{ suggestion.username }}</a>
+                                    <span>Followed by user1, user2 and 9 others</span>
+                                </div>
+                                <button class="side-menu__suggestion-button follow" data-follow-url="{% url 'follow' %}" data-user-id="{{ suggestion.id }}">Follow</button>
                             </div>
-                            <button class="side-menu__suggestion-button">Follow</button>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="side-menu__footer">
