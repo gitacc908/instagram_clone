@@ -1,18 +1,38 @@
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render, HttpResponse
-from apps.catalog.models import Post, Bookmark, Comment
 from django.views import View
 from apps.common.forms import PostForm
-from apps.catalog.models import Image
+
+from apps.catalog.models import (
+    Post, Bookmark, Comment, Image
+)
+from apps.users.models import User, Contact
 import json
 
-from apps.users.models import User, Contact
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def main(request):
 
     posts = Post.objects.filter(author__in=request.user.following.all())
-    return render(request, 'main/index.html', {'posts': posts,})
+    paginator = Paginator(posts, 3)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        print('empty page')
+        if request.is_ajax():
+        # If the request is AJAX and the page is out of range
+        # return an empty page
+            return HttpResponse('')
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request, 'list_ajax/posts.html', {'posts': posts})
+    return render(request, 'main/index.html',{'posts': posts})
 
 
 class LikeView(View):
