@@ -1554,6 +1554,10 @@ a, a:visited {
     font-weight: 300;
     font-size: 18px;
     margin-top: 10px;
+<<<<<<< HEAD
     width: 100%; text-align: center;
     white-space: nowrap;
 }
+=======
+}
+>>>>>>> b9c55f850f0e435072c832b433f913918e6ca5d7
