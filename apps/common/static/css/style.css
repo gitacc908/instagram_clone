@@ -452,7 +452,6 @@ img { max-width: 100%; }
 .post__buttons {
     display: flex;
     position: relative;
-    padding-left: 16px; padding-right: 16px;
 }
 .post__button {
     background-color: transparent;
