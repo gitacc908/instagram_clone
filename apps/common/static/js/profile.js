@@ -10,7 +10,6 @@
             var confCloseButton = document.getElementsByClassName("close")[0];
 
 
-<<<<<<< HEAD
         // post page modals
         var confWindowPost = document.getElementById("postModal");
         var confModalContentPost = document.getElementsByClassName("post-modal-content")[0];
@@ -23,20 +22,11 @@
         if(confWindow.style.display == 'block'){
             if(!confModalContent.contains(click_target)){
                 confWindow.style.display = 'none'
-=======
-            if(confWindow.style.display == 'block'){
-                if(!confModalContent.contains(click_target)){
-                    confWindow.style.display = 'none'
-                }
-                else if(confCloseButton.contains(click_target)){
-                    confWindow.style.display = 'none'
-                }
->>>>>>> b9c55f850f0e435072c832b433f913918e6ca5d7
+
             }
             else if (confButton.contains(click_target)){
                 confWindow.style.display = 'block'
             }
-<<<<<<< HEAD
         }
         else if (confButton.contains(click_target)){
             confWindow.style.display = 'block'
@@ -68,10 +58,4 @@
 function openNav() {document.getElementById("comments").style.bottom = "0";}
 function closeNav() {document.getElementById("comments").style.bottom = "-60%";}
 
-=======
-                
-        });
 
-
-    });
->>>>>>> b9c55f850f0e435072c832b433f913918e6ca5d7

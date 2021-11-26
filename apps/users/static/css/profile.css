@@ -234,9 +234,6 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 	
 }
 
-<<<<<<< HEAD
-.header-profile-user-img button img{object-fit: cover;}
-=======
 .header-profile-user-img button img{
 	object-fit: cover;
 }
@@ -244,4 +241,3 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 .Igw0E{
 	align-items: revert !important;
 }
->>>>>>> b9c55f850f0e435072c832b433f913918e6ca5d7
