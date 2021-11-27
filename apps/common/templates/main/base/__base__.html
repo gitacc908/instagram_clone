@@ -1,6 +1,8 @@
 {% load static %}
+{% load user_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <title>
     {% block title %}
@@ -91,7 +93,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="{{ user.image.url }}" alt="User Picture">
+                        <img src="{{ request.user|get_user_photo }}" alt="User Picture">
                     </div>
                 </button>
      
@@ -319,11 +321,7 @@
                                         {% csrf_token %}
                                         <div class="post-username">
                                             <div class="profile-button__picture user-icon">
-                                                {% if request.user.image %}
-                                                <img src="{{ request.user.image.url }}" alt="user picture">
-                                                {% else %}
-                                                <img src="{% static 'assets/default-user.png' %}" alt="user picture">
-                                                {% endif %}
+                                                <img src="{{ request.user|get_user_photo }}" alt="user picture">
                                             </div>
                                             <div class="user-username">
                                                 {{ request.user.username }}
@@ -409,7 +407,7 @@
         <button class="navbar__button profile-button">
             <div class="profile-button__border"></div>
             <a href="{{ request.user.get_absolute_url }}" class="profile-button__picture">
-                <img src=" {% if request.user.image %} {{ request.user.image.url }} {% else %} {% static 'assets/default-user.png' %} {% endif %}" alt="User Picture">
+                <img src="{{ request.user|get_user_photo }}" alt="User Picture">
             </a>
         </button>
     </nav>

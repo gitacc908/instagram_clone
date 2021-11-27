@@ -391,7 +391,11 @@ img { max-width: 100%; }
     overflow: hidden;
     position: relative;
 }
-.post__avatar img{height: 100%;}
+.post__avatar img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 .post__avatar::after {
     content: '';
     position: absolute;
@@ -1554,10 +1558,7 @@ a, a:visited {
     font-weight: 300;
     font-size: 18px;
     margin-top: 10px;
-<<<<<<< HEAD
     width: 100%; text-align: center;
     white-space: nowrap;
 }
-=======
-}
->>>>>>> b9c55f850f0e435072c832b433f913918e6ca5d7
+

@@ -1,61 +1,65 @@
-    $(function() {
-
-        window.addEventListener('click', function(e) {
-
-            // profile page modals
-            let click_target = e.target
-            var confWindow = document.getElementById("myModal");
-            var confModalContent = document.getElementsByClassName("modal-content")[0];
-            var confButton = document.getElementById("myBtn");
-            var confCloseButton = document.getElementsByClassName("close")[0];
-
-
-        // post page modals
-        var confWindowPost = document.getElementById("postModal");
-        var confModalContentPost = document.getElementsByClassName("post-modal-content")[0];
-        var confButtonPost = document.getElementById("postBtn");
-        var confCloseButtonPost = document.getElementsByClassName("postclose")[0];
-
+$(function() {
+    // profile page modals
+    window.addEventListener('click', function(e) {
+        let click_target = e.target;
         
+        var postWindow;
+        var postModalContent;
+        var postCloseButton;
+        var postModalButton;
 
+        let confWindow = document.getElementById("myModal");
+        let confModalContent = document.getElementsByClassName("modal-content")[0];
+        let confButton = document.getElementById("myBtn");
+        let confCloseButton = document.getElementsByClassName("close")[0];
+        
+        try {
+            postWindow = click_target.closest('.publication-link').closest('.publication').getElementsByClassName('post-window')[0];
+            postModalButton = click_target.closest('.publication-link');    
+        }
+        catch (TypeError) {
+            $( ".post-window" ).each(function( index ) {
+                // get opened modal 
+                if (this.style.display == 'block'){
+                        postWindow = this;
+                        postModalContent = this.getElementsByClassName('post-modal-content')[0];
+                        postCloseButton = this.getElementsByClassName('postclose')[0];
+                        if(!postModalContent.contains(click_target)){
+                            postWindow.style.display = 'none'
+                        }
+                        else if(postCloseButton.contains(click_target)){
+                            postWindow.style.display = 'none'
+                        }
+                }
+            });
+        }
 
+        // hiding modals
         if(confWindow.style.display == 'block'){
             if(!confModalContent.contains(click_target)){
                 confWindow.style.display = 'none'
 
             }
-            else if (confButton.contains(click_target)){
-                confWindow.style.display = 'block'
+            else if (confCloseButton.contains(click_target)){
+                confWindow.style.display = 'none'
             }
         }
+
+        // showing modals
         else if (confButton.contains(click_target)){
             confWindow.style.display = 'block'
         }
-
-
-
-
-        if(confWindowPost.style.display == 'block'){
-            if(!confModalContentPost.contains(click_target)){
-                confWindowPost.style.display = 'none'
-            }
-            else if(confCloseButtonPost.contains(click_target)){
-                confWindowPost.style.display = 'none'
+        else if (postModalButton){
+            if (postModalButton.contains(click_target)){
+                postWindow.style.display = 'block'
             }
         }
-        else if (confButtonPost.contains(click_target)){
-            confWindowPost.style.display = 'block'
-        }
-
-             
+            
     });
 
 
 });
 
 
-
 function openNav() {document.getElementById("comments").style.bottom = "0";}
 function closeNav() {document.getElementById("comments").style.bottom = "-60%";}
-
-

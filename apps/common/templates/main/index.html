@@ -1,7 +1,8 @@
 {% extends 'main/base/__base__.html' %}
-<!-- {% load static %}
-{% load humanize %}
-{% load custom_tags %} -->
+{% load static %}
+{% load user_tags %}
+<!-- {% load humanize %} -->
+<!-- {% load custom_tags %} -->
 <!-- {% load emoji_tags %} -->
 
 
@@ -64,11 +65,7 @@
             <section class="side-menu">
                 <div class="side-menu__user-profile">
                     <a href="" target="_blank" class="side-menu__user-avatar">
-                    {% if request.user.image %}
-                        <img class="prof-image" src="{{ request.user.image.url }}" alt="User Picture">
-                    {% else %}
-                        <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
-                    {% endif %}
+                        <img class="prof-image" src="{{ request.user|get_user_photo }}" alt="User Picture">
                     </a>
                     <div class="side-menu__user-info">
                         <a id="myusername" href="#" target="_blank">{{ request.user.username }}</a>
@@ -90,7 +87,7 @@
                         {% for suggestion in request.user|follow_suggestion %}
                             <div class="side-menu__suggestion">
                                 <a href="#" class="side-menu__suggestion-avatar">
-                                    <img src="{% if suggestion.image %} {{ suggestion.image.url }} {% else %} {% static 'assets/default-user.png' %} {% endif %}" alt="User Picture">
+                                    <img src="{{ suggestion|get_user_photo }}" alt="User Picture">
                                 </a>
                                 <div class="side-menu__suggestion-info">
                                     <a href="{{ suggestion.get_absolute_url }}">{{ suggestion.username }}</a>
