@@ -15,7 +15,11 @@ $(function() {
         
         try {
             postWindow = click_target.closest('.publication-link').closest('.publication').getElementsByClassName('post-window')[0];
-            postModalButton = click_target.closest('.publication-link');    
+            postModalButton = click_target.closest('.publication-link');
+            if (postModalButton.contains(click_target)){
+                postWindow.style.display = 'block'
+            }
+              
         }
         catch (TypeError) {
             $( ".post-window" ).each(function( index ) {
@@ -38,7 +42,6 @@ $(function() {
         if(confWindow.style.display == 'block'){
             if(!confModalContent.contains(click_target)){
                 confWindow.style.display = 'none'
-
             }
             else if (confCloseButton.contains(click_target)){
                 confWindow.style.display = 'none'
@@ -49,12 +52,7 @@ $(function() {
         else if (confButton.contains(click_target)){
             confWindow.style.display = 'block'
         }
-        else if (postModalButton){
-            if (postModalButton.contains(click_target)){
-                postWindow.style.display = 'block'
-            }
-        }
-            
+
     });
 
 
