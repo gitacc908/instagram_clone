@@ -7,6 +7,8 @@ $(function() {
         var postModalContent;
         var postCloseButton;
         var postModalButton;
+        var commentsDrop;
+        var commentsButton;
 
         let confWindow = document.getElementById("myModal");
         let confModalContent = document.getElementsByClassName("modal-content")[0];
@@ -28,12 +30,25 @@ $(function() {
                         postWindow = this;
                         postModalContent = this.getElementsByClassName('post-modal-content')[0];
                         postCloseButton = this.getElementsByClassName('postclose')[0];
-                        if(!postModalContent.contains(click_target)){
+                        
+                        commentsDrop = postWindow.nextElementSibling;
+                        commentsButton = postWindow.getElementsByClassName('comments_button')[0];
+
+                        if (commentsDrop.style.bottom == '0px'){
+                            if (!commentsDrop.contains(click_target)){
+                                commentsDrop.style.bottom = '-60%'
+                            }
+                        }
+                        else if(!postModalContent.contains(click_target)){
                             postWindow.style.display = 'none'
                         }
                         else if(postCloseButton.contains(click_target)){
                             postWindow.style.display = 'none'
                         }
+                        else if (commentsButton.contains(click_target)){
+                            commentsDrop.style.bottom = '0'
+                        }
+                       
                 }
             });
         }
@@ -59,5 +74,5 @@ $(function() {
 });
 
 
-function openNav() {document.getElementById("comments").style.bottom = "0";}
-function closeNav() {document.getElementById("comments").style.bottom = "-60%";}
+// function openNav() {document.getElementById("comments").style.bottom = "0";}
+// function closeNav() {document.getElementById("comments").style.bottom = "-60%";}
