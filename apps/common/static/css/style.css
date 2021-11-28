@@ -467,7 +467,28 @@ img { max-width: 100%; }
 .post__button--align-right {
     margin-left: auto;
 }
-.post__indicators{position: absolute; z-index: 2; bottom: 40px;justify-content: center;display: flex; gap: 4px; left: 0; right: 0; top: unset; transform: unset;}
+.post__indicators{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+.post-indicators{
+    position: absolute; 
+    z-index: 2; 
+    bottom: 40px;
+    justify-content: center;
+    display: flex; 
+    gap: 4px; 
+    left: 0; 
+    right: 0; 
+    top: unset; 
+    transform: unset;
+}
+
 .post__indicator {
     width: 6px;
     height: 6px;
@@ -1492,7 +1513,7 @@ a, a:visited {
       max-height: 65vh;
       overflow: auto;
   }
-  .post__content{
+  .post-content{
       max-height: 468px;
   }
   .carousel-container{width: 100%; max-height: 400px;}
