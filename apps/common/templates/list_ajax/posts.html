@@ -64,7 +64,7 @@
                     {% if liked_users %}
                         {% for user in liked_users %}
                             <a href="{{ user.get_absolute_url }}" class="post__likes-avatar">
-                                <img src="{% if user.image.url %} {{ user.image.url }} {% else %} {% static 'assets/default-user.png' %} {% endif %}" alt="User Picture">
+                                <img src="{{ user|get_user_photo }}" alt="User Picture">
                             </a>
                         {% endfor %}
                         {% with liked_users|get_first_user as first_object %}

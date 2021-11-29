@@ -14,6 +14,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.actions.utils import create_action
 
 
+def post_detail(request):
+    return render(request, 'main/post_detail.html')
+
+
+def edit_profile(request):
+    return render(request, 'main/edit_profile.html')
+
+
 def main(request):
     actions = Action.objects.exclude(user=request.user)
     following_ids = request.user.following.values_list('id', flat=True)
