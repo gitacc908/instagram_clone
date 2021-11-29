@@ -69,7 +69,7 @@ class PasswordResetConfirmView(View):
             user = None
         if user is not None and account_activation_token.check_token(user, token):
             request.session['user_id'] = user.pk
-            form = SetPasswordForm(request.POST, user=user)
+            form = SetPasswordForm(user=user)
             return render(request, 'registration/password_set.html', {'form': form})
         else:
             # return redirect('/')

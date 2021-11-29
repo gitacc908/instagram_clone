@@ -12,9 +12,9 @@ def get_first_user(liked_users):
     return list(liked_users)[0]
 
 def follow_suggestion(user):
-    if user.following.all():
-        following_users = user.following.all()
-    following_of_following = [user.following.all() for user in following_users]
+    # if user.following.all():
+    #     following_users = user.following.all()
+    # following_of_following = [user.following.all() for user in following_users]
 
 
     exclude_list = [user.pk for user in user.following.all()]

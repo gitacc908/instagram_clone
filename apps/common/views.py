@@ -7,13 +7,19 @@ from apps.catalog.models import (
     Post, Bookmark, Comment, Image
 )
 from apps.users.models import User, Contact
+from apps.actions.models import Action
 import json
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from apps.actions.utils import create_action
 
 
 def main(request):
-
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list('id', flat=True)
+    if following_ids:
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions[:10]
     posts = Post.objects.filter(author__in=request.user.following.all())
     paginator = Paginator(posts, 3)
     page = request.GET.get('page')
@@ -32,7 +38,7 @@ def main(request):
         posts = paginator.page(paginator.num_pages)
     if request.is_ajax():
         return render(request, 'list_ajax/posts.html', {'posts': posts})
-    return render(request, 'main/index.html',{'posts': posts})
+    return render(request, 'main/index.html',{'posts': posts, 'actions': actions})
 
 
 class LikeView(View):
@@ -44,6 +50,7 @@ class LikeView(View):
             return JsonResponse({'status': 'unliked'})
         elif user not in post.likes.all():
             post.likes.add(user)
+            create_action(request.user, 'likes', post)
             return JsonResponse({'status': 'liked'})
         return JsonResponse({'status': 'error'}, status=404)
         
@@ -90,6 +97,7 @@ class FollowView(View):
         follow_user = get_object_or_404(User, pk=request.POST.get('follow_user_id'))
         if follow_user not in request.user.following.all():
             Contact.objects.create(user_from=request.user, user_to=follow_user)
+            create_action(request.user, 'follows', follow_user)
             return JsonResponse({'status': 'followed'})
         else:
             Contact.objects.filter(user_from=request.user, user_to=follow_user).delete()

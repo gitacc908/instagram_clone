@@ -1,13 +1,14 @@
 {% load custom_tags %}
 {% load static %}
 {% load humanize %}
+{% load user_tags %}
 
 {% for post in posts %}
 <article class="post">
     <div class="post__header">
         <div class="post__profile">
             <a href="{{ post.author.get_absolute_url }}" class="post__avatar">
-                <img src="{{ post.author.image.url }}" alt="User Picture">
+                <img src="{{ post.author|get_user_photo }}" alt="User Picture">
             </a>
             <a href="{{ post.author.get_absolute_url }}"  class="post__user">{{ post.author.username }}</a>
         </div>

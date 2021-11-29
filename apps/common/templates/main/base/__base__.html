@@ -1,5 +1,6 @@
 {% load static %}
 {% load user_tags %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,25 +111,27 @@
                                 <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                      soMvl                                    DhRcB                      zQLcH            XTCZH                  ">
                                     <div class="_7UhW9   xLCgt       qyrsm KV-D4          uL8Hv         ">Ранее</div>
                                 </div>
-                                <div class="PUHRj  H_sJK" role="button" tabindex="-1">
-                                    <div class="cek9Q">
-                                        <div class="              AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              ">
-                                        <div class="RR-M- h5uC0" aria-disabled="false" role="button" tabindex="0">
-                                            <canvas class="CfWVH" height="108" width="108" style="position: absolute; top: -5px; left: -5px; width: 54px; height: 54px;"></canvas>
-                                            <span class="_2dbep " role="link" tabindex="-1" style="width: 44px; height: 44px;"><img alt="Фото профиля bauflex.bishkek" class="_6q-tv" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="{% static 'img/download.jpeg' %}"></span>
+                                {% for action in actions %}
+                                    <div class="PUHRj  H_sJK" role="button" tabindex="-1">
+                                        <div class="cek9Q">
+                                            <div class="              AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              ">
+                                            <div class="RR-M- h5uC0" aria-disabled="false" role="button" tabindex="0">
+                                                <canvas class="CfWVH" height="108" width="108" style="position: absolute; top: -5px; left: -5px; width: 54px; height: 54px;"></canvas>
+                                                <span class="_2dbep " role="link" tabindex="-1" style="width: 44px; height: 44px;"><img alt="Фото профиля bauflex.bishkek" class="_6q-tv" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="{{ action.user|get_user_photo }}"></span>
+                                            </div>
+                                            </div>
                                         </div>
+                                        <div class="YFq-A"><span class="_7UhW9   xLCgt      MMzan  KV-D4           se6yk        "><a class="FPmhX notranslate  yrJyr" title="bauflex.bishkek" href="/bauflex.bishkek/" tabindex="0">{{ action.user.username }}</a><span> {{ action.verb }} <a class="notranslate" href="/near6778/" tabindex="0"><!--@near6778--> </a><!-- Спасибо Вам за обращение, подробную информацию отправим в директ--></span></span><time class="HsXaJ Nzb55" datetime="2021-06-24T03:28:24.641Z" title="24 июня 2021 г.">{{ action.created|naturaltime }}.</time></div>
+                                        <div class="iTMfC">
+                                            <a class="kIKUG H-dnq" href="/p/CQYZohxpZht/" tabindex="0">
+                                            <div class="eLAPa GzVn2">
+                                                <div class="KL4Bh"><img crossorigin="anonymous" class="FFVAD" src="{% static 'img/download.jpeg' %}" style="object-fit: cover;"></div>
+                                                <div class="_9AhH0"></div>
+                                            </div>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="YFq-A"><span class="_7UhW9   xLCgt      MMzan  KV-D4           se6yk        "><a class="FPmhX notranslate  yrJyr" title="bauflex.bishkek" href="/bauflex.bishkek/" tabindex="0">bauflex.bishkek</a><span> упомянул(-а) вас в комментарии: Здравствуйте <a class="notranslate" href="/near6778/" tabindex="0">@near6778</a>! Спасибо Вам за обращение, подробную информацию отправим в директ</span></span><time class="HsXaJ Nzb55" datetime="2021-06-24T03:28:24.641Z" title="24 июня 2021 г.">18 нед.</time></div>
-                                    <div class="iTMfC">
-                                        <a class="kIKUG H-dnq" href="/p/CQYZohxpZht/" tabindex="0">
-                                        <div class="eLAPa GzVn2">
-                                            <div class="KL4Bh"><img crossorigin="anonymous" class="FFVAD" src="{% static 'img/download.jpeg' %}" style="object-fit: cover;"></div>
-                                            <div class="_9AhH0"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                             </div>
                         </div>
