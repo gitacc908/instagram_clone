@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .yOZjD {
@@ -403,3 +404,19 @@ form ul {
 #login-content{
     margin-bottom: 16px;
 } 
+
+@media(max-width: 522px) {
+    body{
+        background: #fafafa;box-sizing: border-box; padding: 0; margin: 0;
+    }
+    .yOZjD{display: none;}
+    .rgFsT{margin-top: 0;max-width: 100%;}
+    .gr27e  {border: none; background: none;}
+    .EPjEi{margin: auto;}
+}
+@media(max-width: 750px) {
+    .yOZjD{display: none;}
+}
+.signup-container{
+    height: 100vh;
+}
