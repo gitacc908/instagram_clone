@@ -190,9 +190,6 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 	.mobile-about{display: block;}
 	.about{font-weight: 500; padding-left: 16px; padding-right: 16px; padding-bottom: 20px;}
 
-.post-modal-content::-webkit-scrollbar {
-  opacity: 0;
-}
 
 
 
@@ -260,5 +257,4 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 
 .action-buttons{display: inline-block; gap: 5px; margin-top: 14px; gap: 10px; }.action-buttons a{color: #8e8e8e;font-weight: 100; }
 .action-button{font-size: 12px; font-weight: 600; color: #8e8e8e;  white-space: nowrap; margin: 5px;} 
-.data-comment{max-width: 20px; overflow: hidden; text-overflow: ellipsis;}
 .complaint{font-size: 16px; font-weight: bold;}
