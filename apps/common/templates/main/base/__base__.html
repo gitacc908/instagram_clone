@@ -94,7 +94,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="{{ request.user|get_user_photo }}" alt="User Picture">
+                        <img src="" alt="User Picture">
                     </div>
                 </button>
      
@@ -324,7 +324,7 @@
                                         {% csrf_token %}
                                         <div class="post-username">
                                             <div class="profile-button__picture user-icon">
-                                                <img src="{{ request.user|get_user_photo }}" alt="user picture">
+                                                <img src="" alt="user picture">
                                             </div>
                                             <div class="user-username">
                                                 {{ request.user.username }}
@@ -410,7 +410,7 @@
         <button class="navbar__button profile-button">
             <div class="profile-button__border"></div>
             <a href="{{ request.user.get_absolute_url }}" class="profile-button__picture">
-                <img src="{{ request.user|get_user_photo }}" alt="User Picture">
+                <img src="" alt="User Picture">
             </a>
         </button>
     </nav>
