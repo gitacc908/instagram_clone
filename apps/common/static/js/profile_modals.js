@@ -72,7 +72,3 @@ $(function() {
 
 
 });
-
-
-// function openNav() {document.getElementById("comments").style.bottom = "0";}
-// function closeNav() {document.getElementById("comments").style.bottom = "-60%";}

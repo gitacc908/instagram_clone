@@ -69,7 +69,7 @@
             </div>
 
             <div class="header__buttons header__buttons--desktop">
-                <a href="#">
+                <a href="{% url 'index' %}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.45307 11.751L11.9773 2.02175L21.5015 11.751C21.7906 12.0463 21.9545 12.4468 21.9545 12.8711V20.4556C21.9545 20.7747 21.7037 21 21.4427 21H15.964C15.713 21 15.4721 20.7849 15.4721 20.476V15.8886C15.4721 13.9497 13.9267 12.34 11.9773 12.34C10.0279 12.34 8.48244 13.9497 8.48244 15.8886V20.476C8.48244 20.7849 8.24157 21 7.99053 21H2.51187C2.25085 21 2 20.7747 2 20.4556V12.8711C2 12.4468 2.16397 12.0463 2.45307 11.751Z" stroke="var(--text-dark)" stroke-width="2"/>
                     </svg>
@@ -94,7 +94,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="" alt="User Picture">
+                        <img src="{{ request.user|get_user_photo }}" id="prof-image" alt="User Picture">
                     </div>
                 </button>
      
@@ -163,7 +163,7 @@
                          </div>
                       </div>
                    </a>
-                   <a class="-qQT3" href="/near6778/saved/" tabindex="0">
+                   <a class="-qQT3" id="saved_url" href="{{ request.user.get_absolute_url }}" tabindex="0">
                       <div aria-labelledby="f13b8d7a0941918 ff76441e897fc f1ecf84ad7cd6fc f1d3d5e7e928e9c" class="            qF0y9          Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                   XfCBB          HVWg4                 ">
                          <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                         yC0tu                                                                     ">
                             <svg aria-label="Сохраненное" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 32 32" width="16">
@@ -218,7 +218,7 @@
                       </div>
                    </div>
                    <hr class="W4P49">
-                   <div class="-qQT3" aria-disabled="false" role="button" tabindex="0">
+                   <a href="{% url 'logout' %}" class="-qQT3" aria-disabled="false" role="button" tabindex="0">
                       <div aria-labelledby="f37abf8f0ef391 f24e3f2dc9e4ec f18ec0f8954dd f17306c1b24a3d" class="            qF0y9          Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                   XfCBB          HVWg4                  _09OdB ZUqME">
                          <div class="            qF0y9          Igw0E     IwRSH        YBx95      vwCYk                                                                                                               ">
                             <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              " id="f24e3f2dc9e4ec">
@@ -230,7 +230,7 @@
                             </div>
                          </div>
                       </div>
-                   </div>
+                    </a>
                 </div>
                 <div class="TOh1s"></div>
              </div>

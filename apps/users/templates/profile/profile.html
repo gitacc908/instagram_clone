@@ -94,7 +94,7 @@ Instagram
 		  		<svg aria-label="Публикации"  height="24" role="img" viewBox="0 0 48 48" width="24"><path clip-rule="evenodd" d="M45 1.5H3c-.8 0-1.5.7-1.5 1.5v42c0 .8.7 1.5 1.5 1.5h42c.8 0 1.5-.7 1.5-1.5V3c0-.8-.7-1.5-1.5-1.5zm-40.5 3h11v11h-11v-11zm0 14h11v11h-11v-11zm11 25h-11v-11h11v11zm14 0h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11zm14 28h-11v-11h11v11zm0-14h-11v-11h11v11zm0-14h-11v-11h11v11z" fill-rule="evenodd"></path></svg>
 		  		<p>Публикации</p>
 		  </button>
-		  <button class="tablinks" onclick="openTab(event, 'saves')">
+		  <button class="tablinks" onclick="openTab(event, 'saves')" id="savedOpen">
 		  		<svg aria-label="Сохраненное" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path></svg>
 		  		<p>Сохраненное</p>
 		  </button>
@@ -160,97 +160,31 @@ Instagram
 											</button>
 									</header>
 									<div class="post-actions-comments">
+										{% for comment in user_post.comments.all %}
 										<div class="user-post-action-comment">
 											<div class="user-profile-comment">
 											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
+											  <img src="{{ comment.user|get_user_photo }}" alt="">
 											 </a>
 											</div>
 											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
+											 <span class="user-name">{{ comment.user.username }}</span>
+											 <p>{{ comment.text }}</p>
 											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+											  <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
 											 </div>
 											</div>
 											<button class="like-comment">
 											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
 											</button>
 										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
+										{% endfor %}
 									</div>
-									<footer class="post-actions-footer">
+									<footer class="post-actions-footer" data-post-id="{{ user_post.id }}" id="posts-id" data-comment-url="{% url 'comment' %}" data-save-url="{% url 'save' %}" data-like-url="{% url 'like' %}">
 										<div class="post__buttons">
 												<button class="post__button like_button">
 													<svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
-														<path fill="#fdfdfd" stroke="#000000" stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+														<path {% if request.user not in user_post.likes.all %} fill="#fdfdfd" stroke="#000000" {% else %} fill="rgb(237, 73, 86);" stroke="rgb(237, 73, 86)" {% endif %} stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
 														</path>
 													</svg>
 												</button>
@@ -266,19 +200,20 @@ Instagram
 												</button>
 
 												<button class="post__button post__button--align-right save-button">
+													
 													<svg aria-label="Удалить" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24">
-														<path stroke-width="3" fill="#ffffff" stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path></svg>
+														<path stroke-width="3" {% if user_post in request.user.bookmarked.posts.all %} fill="#262626" {% else %} fill="#ffffff" {% endif %} stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path></svg>
 												</button>
 											</div>
 										<div class="post-actions-footer-likes">
-											<span>1 442</span> отметок "Нравится"
+											<a class="likes-count">{{ user_post.total_likes }}</a> отметок "Нравится"
 										</div>
-										<span class="post__date-time">1&nbsp;day, 3&nbsp;hours ago</span>
+										<span class="post__date-time">{{ user_post.created|naturaltime }}</span>
 										<section class="add-comment sH9wk _JgwE">  
 													<div class="RxpZH">
 														<form action="" class="X7cDz">
 															<textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-															<button data-post-id="15" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+															<button data-post-id="{{ user_post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
 														</form>
 													</div>
 										</section>
@@ -290,63 +225,31 @@ Instagram
 					<div class="comments">
 						<div class="title-comments">Комментарии <button class="closebtn"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> </div>
 						<div class="post-actions-comments-mobile">
+							{% for comment in user_post.comments.all %}
 							<div class="user-post-action-comment">
 								<div class="user-profile-comment">
 								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
+								  <img src="{{ comment.user|get_user_photo }}" alt="">
 								 </a>
 								</div>
 								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
+								 <span class="user-name">{{ comment.user.username }}</span>
+								 <p>{{ comment.text }}</p>
 								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+								  <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
 								 </div>
 								</div>
 								<button class="like-comment">
 								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
 								</button>
 							</div>
-							<div class="user-post-action-comment">
-								<div class="user-profile-comment">
-								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-								 </a>
-								</div>
-								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-								 </div>
-								</div>
-								<button class="like-comment">
-								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-								</button>
-							</div>
-							<div class="user-post-action-comment">
-								<div class="user-profile-comment">
-								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-								 </a>
-								</div>
-								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-								 </div>
-								</div>
-								<button class="like-comment">
-								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-								</button>
-							</div>
-									</div>
+							{% endfor %}
+						</div>
 						<section class="add-comment sH9wk _JgwE">  
 							<div class="RxpZH">
 								<form action="" class="X7cDz">
 									<textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-									<button data-post-id="15" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+									<button data-post-id="{{ user_post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
 								</form>
 							</div>
 						</section>
@@ -421,63 +324,31 @@ Instagram
 											</button>
 									</header>
 									<div class="post-actions-comments">
+										{% for comment in bookmark.comments.all %}
 										<div class="user-post-action-comment">
 											<div class="user-profile-comment">
 											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
+											  <img src="{{ comment.user|get_user_photo }}" alt="">
 											 </a>
 											</div>
 											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
+											 <span class="user-name">{{ comment.user.username }}</span>
+											 <p>{{ comment.text }}</p>
 											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+											  <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
 											 </div>
 											</div>
 											<button class="like-comment">
 											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
 											</button>
 										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
-										<div class="user-post-action-comment">
-											<div class="user-profile-comment">
-											 <a href="#">
-											  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-											 </a>
-											</div>
-											<div class="user-comment">
-											 <span class="user-name">Mark</span>
-											 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-											 <div class="action-buttons">
-											  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-											 </div>
-											</div>
-											<button class="like-comment">
-											 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-											</button>
-										</div>
+										{% endfor %}
 									</div>
-									<footer class="post-actions-footer">
+									<footer class="post-actions-footer" data-post-id="{{ bookmark.id }}">
 										<div class="post__buttons">
 												<button class="post__button like_button">
 													<svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
-														<path fill="#fdfdfd" stroke="#000000" stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+														<path {% if request.user not in bookmark.likes.all %} fill="#fdfdfd" stroke="#000000" {% else %} fill="rgb(237, 73, 86);" stroke="rgb(237, 73, 86)" {% endif %} stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
 														</path>
 													</svg>
 												</button>
@@ -494,18 +365,18 @@ Instagram
 
 												<button class="post__button post__button--align-right save-button">
 													<svg aria-label="Удалить" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24">
-														<path stroke-width="3" fill="#ffffff" stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path></svg>
+														<path stroke-width="3" {% if bookmark in request.user.bookmarked.posts.all %} fill="#262626" {% else %} fill="#ffffff" {% endif %} stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path></svg>
 												</button>
 											</div>
 										<div class="post-actions-footer-likes">
-											<span>1 442</span> отметок "Нравится"
+											<a class="likes-count">{{ bookmark.total_likes }}</a> отметок "Нравится"
 										</div>
-										<span class="post__date-time">1&nbsp;day, 3&nbsp;hours ago</span>
+										<span class="post__date-time">{{ bookmark.created|naturaltime }}</span>
 										<section class="add-comment sH9wk _JgwE">  
 													<div class="RxpZH">
 														<form action="" class="X7cDz">
 															<textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-															<button data-post-id="15" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+															<button data-post-id="{{ bookmark.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
 														</form>
 													</div>
 										</section>
@@ -517,61 +388,31 @@ Instagram
 					<div class="comments">
 						<div class="title-comments">Комментарии <button class="closebtn"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> </div>
 						<div class="post-actions-comments-mobile">
+							{% for comment in bookmark.comments.all %}
 							<div class="user-post-action-comment">
 								<div class="user-profile-comment">
 								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
+								  <img src="{{ comment.user|get_user_photo }}" alt="">
 								 </a>
 								</div>
 								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
+								 <span class="user-name">{{ comment.user.username }}</span>
+								 <p>{{ comment.text }}</p>
 								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-								 </div>
-								</div>
-								<button class="like-comment">
-								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-								</button>
-							</div>		<div class="user-post-action-comment">
-								<div class="user-profile-comment">
-								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-								 </a>
-								</div>
-								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-								 </div>
-								</div>
-								<button class="like-comment">
-								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-								</button>
-							</div>		<div class="user-post-action-comment">
-								<div class="user-profile-comment">
-								 <a href="#">
-								  <img src="https://avatars.mds.yandex.net/i?id=e821721629991038b2ea6b79d5c60647-3598775-images-thumbs&n=13" alt="">
-								 </a>
-								</div>
-								<div class="user-comment">
-								 <span class="user-name">Mark</span>
-								 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe, officiis molestias perspiciatis. Consectetur expedita earum, fugiat! Quae obcaecati, reprehenderit quisquam! Vel, quas aliquam quidem ea, saepe exercitationem autem tempore cum?</p>
-								 <div class="action-buttons">
-								  <a href="#" class="action-button data-comment">6 нед.</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+								  <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
 								 </div>
 								</div>
 								<button class="like-comment">
 								 <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
 								</button>
 							</div>
-									</div>
+							{% endfor %}	
+						</div>
 						<section class="add-comment sH9wk _JgwE">  
 							<div class="RxpZH">
 								<form action="" class="X7cDz">
 									<textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-									<button data-post-id="15" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+									<button data-post-id="{{ bookmark.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
 								</form>
 							</div>
 						</section>
@@ -614,114 +455,9 @@ Instagram
 
 
 <script src="{% static 'js/modals.js' %}"> </script>
-<script src="{% static 'js/profile.js' %}"> </script>
-
-
-<script>
-	function openTab(evt, TabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(TabName).style.display = "block";
-    evt.currentTarget.className += " active";
-   }
-   document.getElementById("defaultOpen").click();
-
-
-// adding slider to post modals
-const posts = document.querySelectorAll('.post-modal-content');
-const postsContent = document.querySelectorAll('.post__content');
-
-posts.forEach(post => {
-    if(post.querySelectorAll('.post__media').length > 1) {
-        const leftButtonElement = document.createElement('button');
-        leftButtonElement.classList.add('post__left-button');
-        leftButtonElement.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="var(--primary)" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"></path>
-            </svg>
-        `;
-
-        const rightButtonElement = document.createElement('button');
-        rightButtonElement.classList.add('post__right-button');
-        rightButtonElement.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="var(--primary)" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path>
-            </svg>
-        `;
-
-        post.querySelector('.post__content').appendChild(leftButtonElement);
-        post.querySelector('.post__content').appendChild(rightButtonElement);
-        post.querySelectorAll('.post__media').forEach(function() {
-            const postMediaIndicatorElement = document.createElement('div');
-            postMediaIndicatorElement.classList.add('post__indicator');
-
-            post.querySelector('.post__indicators').appendChild(postMediaIndicatorElement);
-        });
-
-        // Observer to change the actual media indicator
-        const postMediasContainer = post.querySelector('.post__medias');
-        const postMediaIndicators = post.querySelectorAll('.post__indicator');
-        const postIndicatorObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    // Removing all the indicators
-                    postMediaIndicators.forEach(indicator => indicator.classList.remove('post__indicator--active'));
-                    // Adding the indicator that matches the current post media
-                    postMediaIndicators[Array.from(postMedias).indexOf(entry.target)].classList.add('post__indicator--active');
-                }
-            });
-        }, { root: postMediasContainer, threshold: 0.5 });
-
-        // Calling the observer for every post media
-        const postMedias = post.querySelectorAll('.post__media');
-        postMedias.forEach(media => {
-            postIndicatorObserver.observe(media);
-        });
-    }
-});
-// Adding buttons features on every post with multiple medias
-postsContent.forEach(post => {
-    if(post.querySelectorAll('.post__media').length > 1) {
-        const leftButton = post.querySelector('.post__left-button');
-        const rightButton = post.querySelector('.post__right-button');
-        const postMediasContainer = post.querySelector('.post__medias');
-
-        // Functions for left and right buttons
-        leftButton.addEventListener('click', () => {
-            postMediasContainer.scrollLeft -= 400;
-        });
-        rightButton.addEventListener('click', () => {
-            postMediasContainer.scrollLeft += 400;
-        });
-
-        // Observer to hide button if necessary
-        const postButtonObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if(entry.target === post.querySelector('.post__media:first-child')) {
-                    leftButton.style.display = (entry.isIntersecting) ? 'none' : 'unset';
-                }
-                else if(entry.target === post.querySelector('.post__media:last-child')) {
-                    rightButton.style.display = (entry.isIntersecting) ? 'none' : 'unset';
-                }
-            });
-        }, { root: postMediasContainer, threshold: 0.5 });
-
-        if(window.matchMedia('(min-width: 1024px)').matches) {
-            postButtonObserver.observe(post.querySelector('.post__media:first-child'));
-            postButtonObserver.observe(post.querySelector('.post__media:last-child'));
-        }
-    }
-});
-
-</script>
-
+<script src="{% static 'js/profile_modals.js' %}"> </script>
+<script src="{% static 'js/modal_slider.js'%}"></script>
+<script src="{% static 'js/profile_tabs.js'%}"></script>
 {% endblock %}
 
 {% block csrf_ready %}

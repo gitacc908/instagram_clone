@@ -1,12 +1,16 @@
 $(document).ready(function(){
 
+    // open page with saved posts tab
+    $('#saved_url').click(function(){
+        localStorage.setItem("saved", 'saved'); 
+    });
+    
     // Like or unlike post
     $('.like_button').click(function(){
         let pathEl = this.getElementsByTagName('path')[0];
         let likesTag = this.parentNode.parentNode.getElementsByClassName('likes-count')[0];
         let totalLikes = parseInt(likesTag.text);
         let postId = this.parentNode.parentNode.getAttribute('data-post-id');
-
         $.ajax({
             url : $('#posts-id').attr('data-like-url'),
             type : "POST", 
@@ -65,20 +69,30 @@ $(document).ready(function(){
     // Insert comments below post
     $('.send-comment').click(function(){
         let parentItem = this.parentNode.parentNode.parentNode.parentNode;
-        let commentSection = parentItem.getElementsByClassName('my-comments')[0];
-        let commentCounter = parentItem.getElementsByClassName('comment-counter')[0];
-        let totalComments = parseInt(commentCounter.textContent);
+        try{
+            // check if its main page
+            var commentSection = parentItem.getElementsByClassName('my-comments')[0];
+            var commentCounter = parentItem.getElementsByClassName('comment-counter')[0];
+            var totalComments = parseInt(commentCounter.textContent);
+        }
+        catch(TypeError){
+            // profile page 
+            var commentList = parentItem.previousElementSibling;
+            var profImage = document.getElementById('prof-image');
+        }
+
         let postId = this.getAttribute('data-post-id');
         let commentButton = this;
         let commentInput = this.previousElementSibling;
         let comment = commentInput.value;
-        let username = document.getElementById('myusername').textContent;
+        let username = this.getAttribute('data-author-of-comment');
         $.ajax({
             url : $('#posts-id').attr('data-comment-url'),
             type : "POST", 
             data : {'post_id': postId, 'comment': comment}, 
             success : function(data) {
-                if (data.status == 'created'){
+                // check which page is this
+                if (totalComments){
                     $(`<div class="post__description addedcomment">
                                     <span>
                                         <a class="post__name--underline" href="#" target="_blank">${username}</a>
@@ -87,6 +101,27 @@ $(document).ready(function(){
                     </div>`).appendTo(commentSection);
                     commentCounter.textContent = totalComments += 1;
                     commentInput.value = ""; // clear input after comment insert
+                    commentButton.setAttribute('disabled', '');
+                }
+                else{
+                    $(`<div class="user-post-action-comment">
+                            <div class="user-profile-comment">
+                                <a href="#">
+                                <img src="${profImage.src}" alt="">
+                                </a>
+                            </div>
+                            <div class="user-comment">
+                                <span class="user-name">${username}</span>
+                                <p>${comment}</p>
+                                <div class="action-buttons">
+                                <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button"></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+                                </div>
+                            </div>
+                            <button class="like-comment">
+                                <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                            </button>
+                    </div>`).appendTo(commentList)
+                    commentInput.value = "";
                     commentButton.setAttribute('disabled', '');
                 }
             },

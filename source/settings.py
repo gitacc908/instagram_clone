@@ -165,3 +165,10 @@ DEFAULT_FROM_EMAIL = 'test@test.com'
 # EMAIL_HOST_PASSWORD = '<paste Google password or app password here>'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'sign-in'

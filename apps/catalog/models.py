@@ -13,6 +13,9 @@ class Post(models.Model):
     likes = models.ManyToManyField(
         User, related_name='liked_posts', verbose_name='users who liked this post', blank=True
     )
+    total_likes = models.PositiveIntegerField(
+        db_index=True, default=0
+    )
     comments_off = models.BooleanField(
         default=False, verbose_name='is comments disabled?'
     )
