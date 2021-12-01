@@ -1,0 +1,19 @@
+*{box-sizing: border-box; padding: 0; margin: 0;}
+
+
+
+
+main
+{
+	max-width: 975px;
+	width: 100%;
+	height: 100vh;
+	margin-top: 54px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background: orange;
+}

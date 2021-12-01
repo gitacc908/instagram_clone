@@ -124,7 +124,6 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 
 
 
-
 	
 /*Post Modal Content */
 .modal-content-container{width: 100%; height: 100%; display: flex;align-items: center;justify-content: center; padding-left: 60px; padding-right: 60px; }
@@ -142,7 +141,7 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 
 .post-content{  position: relative;}
 .post__indicators{ width: 100%; display: flex;}
-.post-medias{display: flex;overflow-y: hidden;overflow-x: auto; background: #000; align-items: center; scroll-snap-type: x mandatory; width: 100%;height: 100%; scrollbar-width: none;}
+.post-medias{display: flex;overflow-y: hidden;overflow-x: auto; background: #000; align-items: center; scroll-snap-type: x mandatory; width: 100%;min-height: 100%; scrollbar-width: none;}
 .post-medias img{object-fit: cover; flex: none; width: 100%; scroll-snap-align: start;}
 
 
