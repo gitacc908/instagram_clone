@@ -12,6 +12,12 @@ import json
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.actions.utils import create_action
+import redis 
+from django.conf import settings
+
+r = redis.Redis(host=settings.REDIS_HOST, 
+                port=settings.REDIS_PORT, 
+                db=settings.REDIS_DB)
 
 
 def post_detail(request):

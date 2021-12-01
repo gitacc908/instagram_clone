@@ -103,7 +103,7 @@
                             </div>
                         </button> -->
                         <input data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input" >
-                        <button data-post-id="{{ post.id }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                        <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled data-testid="post-comment-input-button" type="button">Опубликовать</button>
                     </form>
                 </div>
             </section>
