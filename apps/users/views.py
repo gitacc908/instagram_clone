@@ -16,12 +16,33 @@ from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.http import JsonResponse
 import json
+from django.contrib.admin.views.decorators import staff_member_required
+from django.template.loader import render_to_string
+import weasyprint
+from django.conf import settings
 
 
-def profile(request, username, tab=None):
-    print(tab)
+@staff_member_required
+def admin_user_pdf(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    html = render_to_string('users/pdf/user_detail_pdf.html',{'user': user})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'filename=user_{user.id}.pdf'
+    weasyprint.HTML(string=html).write_pdf(response, stylesheets=\
+        # TODO finish with styles
+        [weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')])
+    return response
+
+
+@staff_member_required
+def admin_user_detail(request, user_id):
+    user_detail = get_object_or_404(User, id=user_id)
+    return render(request, 'admin/users/user_detail.html', {'user_detail': user_detail})
+
+
+def profile(request, username):
     user_detail = get_object_or_404(User, username=username)
-    return render(request, 'profile/profile.html', {'user_detail': user_detail, 'tab': tab})
+    return render(request, 'profile/profile.html', {'user_detail': user_detail})
 
 
 def password_reset(request):

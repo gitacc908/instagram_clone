@@ -190,9 +190,6 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 	.mobile-about{display: block;}
 	.about{font-weight: 500; padding-left: 16px; padding-right: 16px; padding-bottom: 20px;}
 
-.post-modal-content::-webkit-scrollbar {
-  opacity: 0;
-}
 
 
 

@@ -3,18 +3,13 @@ from django.core.exceptions import ValidationError
 from .models import User
 from .utils import validate_username
 
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
-from .tokens import account_activation_token
-from django.core.mail import send_mail
-from django.conf import settings
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth import (
     password_validation,
 )
 from django.core.validators import validate_email
+from apps.users.tasks import email_users
+from django.contrib.sites.shortcuts import get_current_site
 
 
 class RegisterForm(forms.ModelForm):
@@ -80,15 +75,9 @@ class UserEmailForm(forms.Form):
         except User.DoesNotExist:
             raise ValidationError('Given email is not registered in this site.')
         else:
-            current_site = get_current_site(self.request)
-            subject = 'Reset your password'
-            message = render_to_string('emails/password_reset_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+            domain = get_current_site(self.request)
+            # sending asynchronomous emails
+            email_users.delay(str(domain), user.pk)
             return email
 
 
