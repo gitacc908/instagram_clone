@@ -3,12 +3,12 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.utils.translation import ugettext_lazy as _
+# from django.utils.translation import ugettext_lazy as _
 
 from .managers import CustomUserManager
 from django.urls import reverse
 from django.utils import timezone
-
+from django.utils.translation import gettext_lazy as _
 
 class User(PermissionsMixin, AbstractBaseUser):
     class Gender(models.TextChoices):
@@ -16,31 +16,32 @@ class User(PermissionsMixin, AbstractBaseUser):
         FEMALE = 'female', 'female'
 
     phone = PhoneNumberField(
-        verbose_name='phone', unique=True
+        _('phone'), unique=True
     )
     username = models.CharField(
-        unique=True, verbose_name='username', max_length=255
+        _('username'), unique=True, max_length=255
     )
     image = models.ImageField(
-        upload_to='profile_images/'
+        _('image'), upload_to='profile_images/'
     )
     full_name = models.CharField(
-        verbose_name='full_name', max_length=255, null=True, blank=True
+        _('full name'), max_length=255, null=True, blank=True
     )
     biography = models.CharField(
-        verbose_name='about me', max_length=255, null=True, blank=True
+        _('about me'), max_length=255, null=True, blank=True
     )
     gender = models.CharField(
+        _('gender'),
         max_length=32,
-        verbose_name='sex',
+        # verbose_name='sex',
         choices=Gender.choices,
         default=Gender.MALE,
     )
     email = models.EmailField(
-        unique=True, verbose_name='email', max_length=255, null=True, blank=True
+        _('email'), unique=True, max_length=255, null=True, blank=True
     )
     web_site = models.URLField(
-        verbose_name='web site', null=True, blank=True
+        _('web site'), null=True, blank=True
     )
     following = models.ManyToManyField(
         'self', through='Contact', related_name='followers', symmetrical=False

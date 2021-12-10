@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load custom_tags %}
 {% load static %}
 {% load humanize %}
@@ -68,10 +69,10 @@
                             </a>
                         {% endfor %}
                         {% with liked_users|get_first_user as first_object %}
-                            <span>Нравится <a class="post__name--underline" href="{{ first_object.get_absolute_url }}">{{ first_object.username }}</a> и <span class="others-class">ещё </span><a href="#" class="likes-count">{{ post.likes.count|add:-1 }} </a> </span>
+                            <span>{% blocktrans %} Нравится<a class="post__name--underline" href="{{ first_object.get_absolute_url }}">{{ first_object.username }}</a> и <span class="others-class">ещё </span><a href="#" class="likes-count">{{ post.likes.count|add:-1 }} </a> </span>{% endblocktrans %}
                         {% endwith %}
                     {% else %}
-                    <span> <a class="post__name--underline likes-count" href="#">{{ post.likes.count }}</a>   <span class="others-class">Отметок "Нравится"</span> </span>
+                    <span> <a class="post__name--underline likes-count" href="#">{{ post.likes.count }}</a>   <span class="others-class">{% blocktrans %}Отметок "Нравится" {% endblocktrans%}</span> </span>
                     {% endif %}
                 {% endwith %}
             </div>
@@ -83,7 +84,7 @@
                 </span>
             </div>
             <div class="show-all-comments">
-                Посмотреть все комментарии (<div class="comment-counter">{{ post.comments.count }}</div>)
+               {% trans "Посмотреть все комментарии" %}(<div class="comment-counter">{{ post.comments.count }}</div>)
             </div>
             <div class="my-comments">
 
@@ -102,8 +103,8 @@
                                 </svg>
                             </div>
                         </button> -->
-                        <input data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input" >
-                        <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                        <input data-testid="post-comment-text-area" id="tstid" placeholder="{% trans 'Добавьте комментарий...'%}" class="Ypffh comment-input" >
+                        <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled data-testid="post-comment-input-button" type="button">{% trans 'Опубликовать'%}</button>
                     </form>
                 </div>
             </section>

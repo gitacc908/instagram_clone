@@ -1,6 +1,6 @@
 from django.contrib import admin
 from apps.catalog.models import (
-    Post, Image, Comment, Bookmark,
+    Post, Image, Comment, Bookmark, CommentReply, Tag
 )
 
 class PostAdmin(admin.ModelAdmin):
@@ -16,5 +16,7 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Image)
+admin.site.register(Tag)
+admin.site.register(CommentReply)
 admin.site.register(Comment)
 admin.site.register(Bookmark)

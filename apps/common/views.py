@@ -29,11 +29,11 @@ def edit_profile(request):
 
 
 def main(request):
-    actions = Action.objects.exclude(user=request.user)
-    following_ids = request.user.following.values_list('id', flat=True)
-    if following_ids:
-        actions = actions.filter(user_id__in=following_ids)
-    actions = actions[:10]
+    # actions = Action.objects.exclude(user=request.user)
+    # following_ids = request.user.following.values_list('id', flat=True)
+    # if following_ids:
+    #     actions = actions.filter(user_id__in=following_ids)
+    # actions = actions[:10]
     posts = Post.objects.filter(author__in=request.user.following.all())
     paginator = Paginator(posts, 3)
     page = request.GET.get('page')
@@ -52,7 +52,7 @@ def main(request):
         posts = paginator.page(paginator.num_pages)
     if request.is_ajax():
         return render(request, 'list_ajax/posts.html', {'posts': posts})
-    return render(request, 'main/index.html',{'posts': posts, 'actions': actions})
+    return render(request, 'main/index.html',{'posts': posts})
 
 
 class LikeView(View):

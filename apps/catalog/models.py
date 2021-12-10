@@ -1,5 +1,6 @@
 from django.db import models
 from apps.users.models import User
+from apps.catalog.validators import validate_tag
 
 
 class Post(models.Model):
@@ -12,6 +13,9 @@ class Post(models.Model):
     )
     likes = models.ManyToManyField(
         User, related_name='liked_posts', verbose_name='users who liked this post', blank=True
+    )
+    tags = models.ManyToManyField(
+        'Tag', related_name='posts', verbose_name='tags of post', blank=True
     )
     total_likes = models.PositiveIntegerField(
         db_index=True, default=0
@@ -61,6 +65,9 @@ class Comment(models.Model):
     text = models.CharField(
         max_length=255, verbose_name='users comment',
     )
+    likes = models.ManyToManyField(
+        User, related_name='liked_comments', symmetrical=False, blank=True
+    )
     created = models.DateTimeField(
         auto_now_add=True
     )
@@ -89,3 +96,41 @@ class Bookmark(models.Model):
     class Meta:
         verbose_name = 'bookmarked post'
         verbose_name_plural = 'bookmarked posts'
+
+
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=255, verbose_name='Tag', validators=[validate_tag]
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
+
+
+class CommentReply(models.Model):
+    text = models.CharField(
+        max_length=255, verbose_name='reply'
+    )
+    user = models.ForeignKey(
+        User, related_name='comment_replys', on_delete=models.CASCADE,
+        verbose_name='author of reply'
+    )
+    comment = models.ForeignKey(
+        Comment, related_name='replies', on_delete=models.CASCADE,
+        verbose_name='replied comment'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True, verbose_name='answer date'
+    )
+    
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = 'Comment Reply'
+        verbose_name_plural = 'Comment Replies'
+        ordering = ('-created',)

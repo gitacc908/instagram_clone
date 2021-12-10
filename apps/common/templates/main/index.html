@@ -1,4 +1,5 @@
 {% extends 'main/base/__base__.html' %}
+{% load i18n %}
 {% load static %}
 {% load user_tags %}
 <!-- {% load humanize %} -->
@@ -75,13 +76,13 @@
                         <span>{{ request.user.username }}</span>
                         {% endif %}
                     </div>
-                    <button class="side-menu__user-button">Switch</button>
+                    <button class="side-menu__user-button">{% trans 'Переключить'%}</button>
                 </div>
 
                 <div class="side-menu__suggestions-section">
                     <div class="side-menu__suggestions-header">
-                        <h2>Suggestions for You</h2>
-                        <button>See All</button>
+                        <h2>{% trans 'Рекомендации' %} </h2>
+                        <button>{% trans 'Посмотреть все'%}</button>
                     </div>
                     <div class="side-menu__suggestions-content">
                         {% for suggestion in request.user|follow_suggestion %}
