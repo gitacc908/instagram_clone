@@ -68,12 +68,15 @@ class Comment(models.Model):
     likes = models.ManyToManyField(
         User, related_name='liked_comments', symmetrical=False, blank=True
     )
+    total_likes = models.PositiveIntegerField(
+        default=0, db_index=True
+    )
     created = models.DateTimeField(
         auto_now_add=True
     )
 
     def __str__(self):
-        return f'{self.id}'
+        return f'author: {self.user.username}, comment: {self.text}'
     
     class Meta:
         verbose_name = 'comment'
@@ -100,7 +103,7 @@ class Bookmark(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(
-        max_length=255, verbose_name='Tag', validators=[validate_tag]
+        max_length=30, verbose_name='Tag', validators=[validate_tag]
     )
 
     def __str__(self):
@@ -128,7 +131,7 @@ class CommentReply(models.Model):
     )
     
     def __str__(self):
-        return self.text
+        return f'author{self.user} reply: {self.text}'
 
     class Meta:
         verbose_name = 'Comment Reply'
