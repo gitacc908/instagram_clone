@@ -156,6 +156,22 @@ Instagram
 											</button>
 									</header>
 									<div class="post-actions-comments" data-comment-like-url="{% url 'like_comment'%}">
+										{% if user_post.body %}
+											<div class="user-post-action-comment">
+												<div class="user-profile-comment">
+													<a href="#">
+													<img src="{{ user_post.author|get_user_photo }}" alt="">
+													</a>
+												</div>
+												<div class="user-comment">
+													<span class="user-name">{{ user_post.author.username }}</span>
+													<p>{{ user_post.body }}</p>
+													<div class="action-buttons">
+													<a href="#" class="action-button data-comment">{{ user_post.created|naturaltime }}</a>
+													</div>
+												</div>
+											</div>
+										{% endif %}
 										{% for comment in user_post.comments.all %}
 										<div class="user-post-action-comment">
 											<div class="user-profile-comment">
@@ -221,6 +237,22 @@ Instagram
 					<div class="comments">
 						<div class="title-comments">{% trans 'Комментарии'%}</div>
 						<div class="post-actions-comments-mobile" data-comment-like-url="{% url 'like_comment'%}">
+							{% if user_post.body %}
+								<div class="user-post-action-comment">
+									<div class="user-profile-comment">
+										<a href="#">
+										<img src="{{ user_post.author|get_user_photo }}" alt="">
+										</a>
+									</div>
+									<div class="user-comment">
+										<span class="user-name">{{ user_post.author.username }}</span>
+										<p>{{ user_post.body }}</p>
+										<div class="action-buttons">
+										<a href="#" class="action-button data-comment">{{ user_post.created|naturaltime }}</a>
+										</div>
+									</div>
+								</div>
+							{% endif %}
 							{% for comment in user_post.comments.all %}
 							<div class="user-post-action-comment">
 								<div class="user-profile-comment">
@@ -320,6 +352,22 @@ Instagram
 											</button>
 									</header>
 									<div class="post-actions-comments" data-comment-like-url="{% url 'like_comment'%}">
+										{% if bookmark.body %}
+											<div class="user-post-action-comment">
+												<div class="user-profile-comment">
+													<a href="#">
+													<img src="{{ bookmark.author|get_user_photo }}" alt="">
+													</a>
+												</div>
+												<div class="user-comment">
+													<span class="user-name">{{ bookmark.author.username }}</span>
+													<p>{{ bookmark.body }}</p>
+													<div class="action-buttons">
+													<a href="#" class="action-button data-comment">{{ bookmark.created|naturaltime }}</a>
+													</div>
+												</div>
+											</div>
+										{% endif %}
 										{% for comment in bookmark.comments.all %}
 										<div class="user-post-action-comment">
 											<div class="user-profile-comment">
@@ -384,6 +432,22 @@ Instagram
 					<div class="comments">
 						<div class="title-comments">{% trans 'Комментарии'%} <button class="closebtn"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> </div>
 						<div class="post-actions-comments-mobile" data-comment-like-url="{% url 'like_comment'%}">
+							{% if bookmark.body %}
+								<div class="user-post-action-comment">
+									<div class="user-profile-comment">
+										<a href="#">
+										<img src="{{ bookmark.author|get_user_photo }}" alt="">
+										</a>
+									</div>
+									<div class="user-comment">
+										<span class="user-name">{{ bookmark.author.username }}</span>
+										<p>{{ bookmark.body }}</p>
+										<div class="action-buttons">
+										<a href="#" class="action-button data-comment">{{ bookmark.created|naturaltime }}</a>
+										</div>
+									</div>
+								</div>
+							{% endif %}
 							{% for comment in bookmark.comments.all %}
 							<div class="user-post-action-comment">
 								<div class="user-profile-comment">

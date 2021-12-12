@@ -4,7 +4,7 @@ from django.views import View
 from apps.common.forms import PostForm
 
 from apps.catalog.models import (
-    Post, Bookmark, Comment, Image
+    Post, Bookmark, Comment, Image, Tag
 )
 from apps.users.models import User, Contact
 from apps.actions.models import Action
@@ -105,10 +105,15 @@ class PostView(View):
     def post(self, request, *args, **kwargs):
         form = PostForm(request.POST, request=request)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            tags = form.cleaned_data.get('tag')
+            for tag in tags:
+                tag, _ = Tag.objects.get_or_create(name=tag)
+                post.tags.add(tag)
             Image.objects.bulk_create([
                 Image(post=form.instance, image=image) for image in request.FILES.getlist('images')
             ])
+            post.save()    
             return JsonResponse({'status': 'created'})
         error_dict = {'status': 'form_invalid', 'form_errors': form.errors}
         return HttpResponse(json.dumps(error_dict),content_type="application/json", status=400)

@@ -103,7 +103,7 @@ class Bookmark(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(
-        max_length=30, verbose_name='Tag', validators=[validate_tag]
+        max_length=30, verbose_name='Tag', validators=[validate_tag], unique=True
     )
 
     def __str__(self):
