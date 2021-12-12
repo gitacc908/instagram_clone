@@ -14,9 +14,20 @@ class PostAdmin(admin.ModelAdmin):
         'body', 'author'
     )
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = (
+        'post', 'user', 'text', 
+    )
+    list_filter = (
+        'post', 
+    )
+    # search_fields = (
+    #     'body', 'author'
+    # )
 admin.site.register(Post, PostAdmin)
 admin.site.register(Image)
 admin.site.register(Tag)
 admin.site.register(CommentReply)
-admin.site.register(Comment)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Bookmark)

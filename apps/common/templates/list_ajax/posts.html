@@ -69,7 +69,7 @@
                             </a>
                         {% endfor %}
                         {% with liked_users|get_first_user as first_object %}
-                            <span>{% blocktrans %} Нравится<a class="post__name--underline" href="{{ first_object.get_absolute_url }}">{{ first_object.username }}</a> и <span class="others-class">ещё </span><a href="#" class="likes-count">{{ post.likes.count|add:-1 }} </a> </span>{% endblocktrans %}
+                            <span>Нравится <a class="post__name--underline" href="{{ first_object.get_absolute_url }}">{{ first_object.username }}</a> и <span class="others-class">ещё </span><a href="#" class="likes-count">{{ post.likes.count|add:-1 }} </a> </span>
                         {% endwith %}
                     {% else %}
                     <span> <a class="post__name--underline likes-count" href="#">{{ post.likes.count }}</a>   <span class="others-class">{% blocktrans %}Отметок "Нравится" {% endblocktrans%}</span> </span>

@@ -50,7 +50,7 @@ def main(request):
     return render(request, 'main/index.html',{'posts': posts})
 
 
-class LikeView(View):
+class LikePostView(View):
     def post(self, request, *args, **kwargs):
         post = Post.objects.get(id=request.POST.get('post_id'))
         user = request.user
@@ -62,7 +62,20 @@ class LikeView(View):
             create_action(request.user, 'likes', post)
             return JsonResponse({'status': 'liked'})
         return JsonResponse({'status': 'error'}, status=404)
-        
+
+
+class LikeCommentView(View):
+    def post(self, request, *args, **kwargs):
+        comment = Comment.objects.get(id=request.POST.get('comment_id'))
+        user = request.user
+        if user in comment.likes.all():
+            comment.likes.remove(user)
+            return JsonResponse({'status': 'unliked'})
+        elif user not in comment.likes.all():
+            comment.likes.add(user)
+            return JsonResponse({'status': 'liked'})
+        return JsonResponse({'status': 'error'}, status=404)
+
 
 class SaveView(View):
     def post(self, request, *args, **kwargs):
@@ -84,8 +97,8 @@ class CommentView(View):
         post_id = request.POST.get('post_id')
         comment = request.POST.get('comment')
         post = get_object_or_404(Post, id=post_id)
-        Comment.objects.create(user=user, post=post, text=comment)
-        return JsonResponse({'status': 'created'})
+        comment = Comment.objects.create(user=user, post=post, text=comment)
+        return JsonResponse({'status': 'created', 'comment_id': comment.id})
 
 
 class PostView(View):

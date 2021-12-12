@@ -56,39 +56,38 @@ $(document).ready(function(){
         });
     });
     // Unable or disable comment button
-    // $('.comment-input').on("input", function() {
-    //     if (this.value == "") {
-    //         this.nextElementSibling.setAttribute('disabled', '');
-    //     }
-    //     else{
-    //         this.nextElementSibling.removeAttribute('disabled');
-    //     }
-    // });
-    // $(document).on('change', 'input', function() {
-    //     console.log('asdasd')
-    //     // Does some stuff and logs the event to the console
-    //     if (this.value == "") {
-    //         this.nextElementSibling.setAttribute('disabled', '');
-    //     }
-    //     else{
-    //         this.nextElementSibling.removeAttribute('disabled');
-    //     }
-    //   });
+    $('#posts-id').on("input", "input.comment-input", function() {
+        if (this.value == "") {
+            this.nextElementSibling.setAttribute('disabled', '');
+        }
+        else{
+            this.nextElementSibling.removeAttribute('disabled');
+        }
+    });
+    $('.comment-input').on('input', function(){
+        if (this.value == "") {
+            this.nextElementSibling.setAttribute('disabled', '');
+        }
+        else{
+            this.nextElementSibling.removeAttribute('disabled');
+        }
+    });
 
     // Insert comments below post
     $('.send-comment').click(function(){
         let parentItem = this.parentNode.parentNode.parentNode.parentNode;
-        try{
-            // check if its main page
-            var commentSection = parentItem.getElementsByClassName('my-comments')[0];
-            var commentCounter = parentItem.getElementsByClassName('comment-counter')[0];
-            var totalComments = parseInt(commentCounter.textContent);
-        }
-        catch(TypeError){
-            // profile page 
-            var commentList = parentItem.previousElementSibling;
-            var profImage = document.getElementById('prof-image');
-        }
+        var mobileCommentSection = parentItem.getElementsByClassName('post-actions-comments-mobile')[0];
+            try{
+                // check if its main page
+                var commentSection = parentItem.getElementsByClassName('my-comments')[0];
+                var commentCounter = parentItem.getElementsByClassName('comment-counter')[0];
+                var totalComments = parseInt(commentCounter.textContent);
+            }
+            catch(TypeError){
+                // profile page 
+                var commentList = parentItem.previousElementSibling;
+            }
+        var profImage = document.getElementById('prof-image');
         let postId = this.getAttribute('data-post-id');
         let commentButton = this;
         let commentInput = this.previousElementSibling;
@@ -111,6 +110,28 @@ $(document).ready(function(){
                     commentInput.value = ""; // clear input after comment insert
                     commentButton.setAttribute('disabled', '');
                 }
+                else if(mobileCommentSection){
+                    $(`<div class="user-post-action-comment">
+                    <div class="user-profile-comment">
+                     <a href="#">
+                      <img src="${profImage.src}" alt="">
+                     </a>
+                    </div>
+                    <div class="user-comment">
+                     <span class="user-name">${username}</span>
+                     <p>${comment}</p>
+                     <div class="action-buttons">
+                      <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+                     </div>
+                    </div>
+                    <button class="like-comment" data-comment-id=${data.comment_id}>
+                        <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                    </button>
+                </div>`).appendTo(mobileCommentSection);
+                commentInput.value = "";
+                commentButton.setAttribute('disabled', '');
+                mobileCommentSection.scrollTop = mobileCommentSection.scrollHeight;
+                }
                 else{
                     $(`<div class="user-post-action-comment">
                             <div class="user-profile-comment">
@@ -122,15 +143,16 @@ $(document).ready(function(){
                                 <span class="user-name">${username}</span>
                                 <p>${comment}</p>
                                 <div class="action-buttons">
-                                <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button"></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+                                <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
                                 </div>
                             </div>
-                            <button class="like-comment">
-                            <svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="white" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                            <button class="like-comment" data-comment-id=${data.comment_id}>
+                            <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
                             </button>
                     </div>`).appendTo(commentList)
                     commentInput.value = "";
                     commentButton.setAttribute('disabled', '');
+                    commentList.scrollTop = commentList.scrollHeight;
                 }
             },
             error : function(data) {
