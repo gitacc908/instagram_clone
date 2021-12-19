@@ -184,3 +184,4 @@ REDIS_DB = 0
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'sign-in'
+LOGIN_URL = 'sign-in'

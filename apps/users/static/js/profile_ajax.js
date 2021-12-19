@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	// like comments
     $('.post-actions-comments, .post-actions-comments-mobile').on('click', 'button.like-comment', function(){
 		let heartIcon = this.querySelector('._8-yf5');
 		let commentLikesTag = this.previousElementSibling.querySelector('.comment-like-counter');
@@ -27,5 +28,35 @@ $(document).ready(function(){
 		})
 
 	});
+	// prepare for reply on comment
+	$('.post-actions-comments, .post-actions-comments-mobile').on('click', '.reply-button', function(){
+		let commentId = $(this).attr('data-comment-id');
+		let username = this.closest('.user-comment').querySelector('.user-name').innerHTML; //get author of comment
+		try{
+			var commentInput = this.closest('.post-actions').querySelector('.comment-input');
+		}
+		catch(TypeError){
+			var commentInput = this.closest('.comments').querySelector('.comment-input');
+		}
 
+		commentInput.value = `@${username} `//fill in input with username
+		dct = {
+			'commentId':commentId,
+			'username': username,
+		}
+		localStorage.setItem('data', JSON.stringify(dct))
+	});
+	$('.show-replies').click(function(){
+		let replies = this.closest('.reply-counter').nextElementSibling;
+		if (replies.style.display=='block'){
+			replies.style.display = ''
+		}
+		else{
+			replies.style.display = 'block'
+		}
+	
+	});
+	$('#upload_image').click(function(){
+		document.getElementById("upload_image_input").click();
+	});
 });

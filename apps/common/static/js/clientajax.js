@@ -101,7 +101,6 @@ $(document).ready(function(){
             if (!replyUrl){
                 let publication = $(this).closest('.publication')[0];
                 replyUrl = $(publication.querySelector('.post-actions-footer')).attr('data-reply-url');
-                console.log('mobile')
             }
         $.ajax({
             type: 'POST',

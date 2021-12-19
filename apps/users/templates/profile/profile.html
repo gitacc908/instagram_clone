@@ -17,9 +17,12 @@ Instagram
 <main>
 	{% with user_detail as this_user %}
 	<header class="header-profile">
-		<div class="header-profile-user-img">
-			<button><img src="{{ this_user|get_user_photo }}" alt=""></button>
-		</div>
+		<form id="avatar_form" data-avatar-url="{% url 'avatar' %}" method="post" class="header-profile-user-img" enctype="multipart/form-data" novalidate="">
+			{% csrf_token %}
+			<button type="button" id="upload_image">
+				<input id="upload_image_input" type="file" name="image" accept=".jpg, .jpeg, .png" hidden onchange="loadFile(event)">
+				<img class="upload_image_element" src="{{ this_user|get_user_photo }}" alt=""></button>
+			</form>
 		<div class="header-profile-user-info">
 			<!-- Имя профиля, редактирования профиля и настройка -->
 			<div class="username-editprofile">
@@ -477,7 +480,7 @@ Instagram
 										</div>
 										{% endfor %}
 									</div>
-									<footer class="post-actions-footer" data-post-id="{{ bookmark.id }}">
+									<footer class="post-actions-footer" data-reply-url="{% url 'reply' %}" data-post-id="{{ bookmark.id }}">
 										<div class="post__buttons">
 												<button class="post__button like_button">
 													<svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
@@ -637,35 +640,7 @@ Instagram
 <script src="{% static 'js/profile_tabs.js'%}"></script>
 <script src="{% static 'js/profile_ajax.js' %}"></script>
 
-<script>
-	$('.show-replies').click(function(){
-		let replies = this.closest('.reply-counter').nextElementSibling;
-		if (replies.style.display=='block'){
-			replies.style.display = ''
-		}
-		else{
-			replies.style.display = 'block'
-		}
-	
-	});
-	$('.post-actions-comments, .post-actions-comments-mobile').on('click', '.reply-button', function(){
-		let commentId = $(this).attr('data-comment-id');
-		let username = this.closest('.user-comment').querySelector('.user-name').innerHTML; //get author of comment
-		try{
-			var commentInput = this.closest('.post-actions').querySelector('.comment-input');
-		}
-		catch(TypeError){
-			var commentInput = this.closest('.comments').querySelector('.comment-input');
-		}
-
-		commentInput.value = `@${username} `//fill in input with username
-		dct = {
-			'commentId':commentId,
-			'username': username,
-		}
-		localStorage.setItem('data', JSON.stringify(dct))
-});
-</script>
+<script src="{% static 'js/avatar_update.js' %}"> </script>
 {% endblock %}
 
 {% block csrf_ready %}

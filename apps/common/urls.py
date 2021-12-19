@@ -19,6 +19,7 @@ urlpatterns = [
     path('comment/', views.CommentView.as_view(), name='comment'),
     path('reply/', views.CommentReplyView.as_view(), name='reply'),
     path('follow/', views.FollowView.as_view(), name='follow'),
+    path('avatar/', views.UpdateAvatarView.as_view(), name='avatar'),
 
 ]
     

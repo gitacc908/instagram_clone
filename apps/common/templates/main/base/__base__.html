@@ -412,7 +412,13 @@
     
 {% block content %}
 {% endblock %}
-
+<div id="notify">
+    <div class="notification">
+        <p class="notification-text">
+            You are notified!
+        </p>
+    </div>
+</div>
     <nav class="navbar">
         <a href="{% url 'index' %}" class="navbar__button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -439,7 +445,7 @@
         <button class="navbar__button profile-button">
             <div class="profile-button__border"></div>
             <a href="{{ request.user.get_absolute_url }}" class="profile-button__picture">
-                <img src="{{ request.user|get_user_photo }}" alt="User Picture">
+                <img src="{{ request.user|get_user_photo }}" id="nav-icon" alt="User Picture">
             </a>
         </button>
     </nav>

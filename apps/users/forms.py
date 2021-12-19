@@ -123,3 +123,9 @@ class SetPasswordForm(forms.Form):
         self.user.set_password(password)
         self.user.save()
         return self.user
+
+
+class UserAvatarForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('image',)

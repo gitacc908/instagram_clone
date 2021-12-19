@@ -14,7 +14,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.actions.utils import create_action
 import redis 
 from django.conf import settings
-
+from apps.users.forms import UserAvatarForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 # r = redis.Redis(host=settings.REDIS_HOST, 
 #                 port=settings.REDIS_PORT, 
 #                 db=settings.REDIS_DB)
@@ -27,7 +29,7 @@ def post_detail(request):
 def edit_profile(request):
     return render(request, 'main/edit_profile.html')
 
-
+@login_required
 def main(request):
     posts = Post.objects.filter(author__in=request.user.following.all())
     paginator = Paginator(posts, 3)
@@ -103,8 +105,6 @@ class CommentView(View):
 
 class CommentReplyView(View):
     def post(self, request, *args, **kwargs):
-        print('in view')
-        print(request.POST.get('commentId'), request.POST.get('replyText'))
         comment = get_object_or_404(Comment, id=request.POST.get('commentId'))
         CommentReply.objects.create(user=request.user, comment=comment, text=request.POST.get('replyText'))
         return JsonResponse({'status': 'created'})
@@ -138,3 +138,14 @@ class FollowView(View):
         else:
             Contact.objects.filter(user_from=request.user, user_to=follow_user).delete()
             return JsonResponse({'status': 'unfollowed'})
+
+
+class UpdateAvatarView(LoginRequiredMixin, View):
+    login_url = 'signin'
+    
+    def post(self, request, *args, **kwargs):
+        form = UserAvatarForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'status': 'avatar updated!'}, status=200)
+        return JsonResponse({'status':'error'}, status=424)
