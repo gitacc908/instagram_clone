@@ -4,7 +4,7 @@ from django.views import View
 from apps.common.forms import PostForm
 
 from apps.catalog.models import (
-    Post, Bookmark, Comment, Image, Tag
+    Post, Bookmark, Comment, Image, Tag, CommentReply
 )
 from apps.users.models import User, Contact
 from apps.actions.models import Action
@@ -99,6 +99,15 @@ class CommentView(View):
         post = get_object_or_404(Post, id=post_id)
         comment = Comment.objects.create(user=user, post=post, text=comment)
         return JsonResponse({'status': 'created', 'comment_id': comment.id})
+
+
+class CommentReplyView(View):
+    def post(self, request, *args, **kwargs):
+        print('in view')
+        print(request.POST.get('commentId'), request.POST.get('replyText'))
+        comment = get_object_or_404(Comment, id=request.POST.get('commentId'))
+        CommentReply.objects.create(user=request.user, comment=comment, text=request.POST.get('replyText'))
+        return JsonResponse({'status': 'created'})
 
 
 class PostView(View):

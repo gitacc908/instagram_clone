@@ -17,6 +17,7 @@ urlpatterns = [
     path('like_comment/', views.LikeCommentView.as_view(), name='like_comment'),
     path('save/', views.SaveView.as_view(), name='save'),
     path('comment/', views.CommentView.as_view(), name='comment'),
+    path('reply/', views.CommentReplyView.as_view(), name='reply'),
     path('follow/', views.FollowView.as_view(), name='follow'),
 
 ]

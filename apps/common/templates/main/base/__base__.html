@@ -439,7 +439,7 @@
         <button class="navbar__button profile-button">
             <div class="profile-button__border"></div>
             <a href="{{ request.user.get_absolute_url }}" class="profile-button__picture">
-                <img src="" alt="User Picture">
+                <img src="{{ request.user|get_user_photo }}" alt="User Picture">
             </a>
         </button>
     </nav>

@@ -92,73 +92,102 @@ $(document).ready(function(){
         let commentButton = this;
         let commentInput = this.previousElementSibling;
         let comment = commentInput.value;
-        let username = this.getAttribute('data-author-of-comment');
+
+        // add reply
+        let data = JSON.parse(localStorage.getItem('data'))
+        commentText = comment.split(" ")
+        if (commentText[0] == `@${data.username}`){
+            var replyUrl = $(this).closest('.post-actions-footer').attr('data-reply-url');
+            if (!replyUrl){
+                let publication = $(this).closest('.publication')[0];
+                replyUrl = $(publication.querySelector('.post-actions-footer')).attr('data-reply-url');
+                console.log('mobile')
+            }
         $.ajax({
-            url : $('#posts-id').attr('data-comment-url'),
-            type : "POST", 
-            data : {'post_id': postId, 'comment': comment}, 
-            success : function(data) {
-                // check which page is this
-                if (totalComments){
-                    $(`<div class="post__description addedcomment">
-                                    <span>
-                                        <a class="post__name--underline" href="#" target="_blank">${username}</a>
-                                        ${comment}
-                                    </span>
-                    </div>`).appendTo(commentSection);
-                    commentCounter.textContent = totalComments += 1;
-                    commentInput.value = ""; // clear input after comment insert
-                    commentButton.setAttribute('disabled', '');
-                }
-                else if(mobileCommentSection){
-                    $(`<div class="user-post-action-comment">
-                    <div class="user-profile-comment">
-                     <a href="#">
-                      <img src="${profImage.src}" alt="">
-                     </a>
-                    </div>
-                    <div class="user-comment">
-                     <span class="user-name">${username}</span>
-                     <p>${comment}</p>
-                     <div class="action-buttons">
-                      <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-                     </div>
-                    </div>
-                    <button class="like-comment" data-comment-id=${data.comment_id}>
-                        <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                    </button>
-                </div>`).appendTo(mobileCommentSection);
+            type: 'POST',
+            url : replyUrl,
+            data: {'commentId': data.commentId, 'replyText': comment},
+            success: function(data){
+                console.log('success')
                 commentInput.value = "";
                 commentButton.setAttribute('disabled', '');
-                mobileCommentSection.scrollTop = mobileCommentSection.scrollHeight;
-                }
-                else{
-                    $(`<div class="user-post-action-comment">
-                            <div class="user-profile-comment">
-                                <a href="#">
-                                <img src="${profImage.src}" alt="">
-                                </a>
-                            </div>
-                            <div class="user-comment">
-                                <span class="user-name">${username}</span>
-                                <p>${comment}</p>
-                                <div class="action-buttons">
-                                <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-                                </div>
-                            </div>
-                            <button class="like-comment" data-comment-id=${data.comment_id}>
+                // return;
+            },
+            error: function(data){
+                console.log('error')
+                // return;
+            }
+        })
+        }
+        else{ // add comment 
+            let username = this.getAttribute('data-author-of-comment');
+            $.ajax({
+                url : $('#posts-id').attr('data-comment-url'),
+                type : "POST", 
+                data : {'post_id': postId, 'comment': comment}, 
+                success : function(data) {
+                    // check which page is this
+                    if (totalComments){
+                        $(`<div class="post__description addedcomment">
+                                        <span>
+                                            <a class="post__name--underline" href="#" target="_blank">${username}</a>
+                                            ${comment}
+                                        </span>
+                        </div>`).appendTo(commentSection);
+                        commentCounter.textContent = totalComments += 1;
+                        commentInput.value = ""; // clear input after comment insert
+                        commentButton.setAttribute('disabled', '');
+                    }
+                    else if(mobileCommentSection){
+                        $(`<div class="user-post-action-comment">
+                        <div class="user-profile-comment">
+                         <a href="#">
+                          <img src="${profImage.src}" alt="">
+                         </a>
+                        </div>
+                        <div class="user-comment">
+                         <span class="user-name">${username}</span>
+                         <p>${comment}</p>
+                         <div class="action-buttons">
+                          <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button reply-button" data-comment-id=${data.comment_id}>Ответить</button><button class="action-button complaint">···</button>
+                         </div>
+                        </div>
+                        <button class="like-comment" data-comment-id=${data.comment_id}>
                             <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                            </button>
-                    </div>`).appendTo(commentList)
+                        </button>
+                    </div>`).appendTo(mobileCommentSection);
                     commentInput.value = "";
                     commentButton.setAttribute('disabled', '');
-                    commentList.scrollTop = commentList.scrollHeight;
+                    mobileCommentSection.scrollTop = mobileCommentSection.scrollHeight;
+                    }
+                    else{
+                        $(`<div class="user-post-action-comment">
+                                <div class="user-profile-comment">
+                                    <a href="#">
+                                    <img src="${profImage.src}" alt="">
+                                    </a>
+                                </div>
+                                <div class="user-comment">
+                                    <span class="user-name">${username}</span>
+                                    <p>${comment}</p>
+                                    <div class="action-buttons">
+                                    <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button reply-button" data-comment-id=${data.comment_id}>Ответить</button><button class="action-button complaint">···</button>
+                                    </div>
+                                </div>
+                                <button class="like-comment" data-comment-id=${data.comment_id}>
+                                <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                                </button>
+                        </div>`).appendTo(commentList)
+                        commentInput.value = "";
+                        commentButton.setAttribute('disabled', '');
+                        commentList.scrollTop = commentList.scrollHeight;
+                    }
+                },
+                error : function(data) {
+                    console.log('not success')
                 }
-            },
-            error : function(data) {
-                console.log('not success')
-            }
-        });
+            });
+        }
     });
 
     $('.post-button').click(function(){

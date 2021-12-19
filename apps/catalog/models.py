@@ -79,6 +79,7 @@ class Comment(models.Model):
         return f'author: {self.user.username}, comment: {self.text}'
     
     class Meta:
+        ordering = ('-created',)
         verbose_name = 'comment'
         verbose_name_plural = 'comments'
 
@@ -116,7 +117,7 @@ class Tag(models.Model):
 
 class CommentReply(models.Model):
     text = models.CharField(
-        max_length=255, verbose_name='reply'
+        max_length=255, verbose_name='replies'
     )
     user = models.ForeignKey(
         User, related_name='comment_replys', on_delete=models.CASCADE,

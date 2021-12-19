@@ -18,6 +18,8 @@ class PostForm(forms.ModelForm):
         body = self.cleaned_data.get('body')
         tags = [word for word in body.split(' ') if word.startswith('#')]
         hashtags = []
+        # filter(validate_tag, tags)
+        # hashtags.extend(tags)
         for tag in tags:
             # tag = Tag(name=tag)
             # if object is valid
