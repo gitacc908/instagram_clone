@@ -16,7 +16,7 @@ class User(PermissionsMixin, AbstractBaseUser):
         FEMALE = 'female', 'female'
 
     phone = PhoneNumberField(
-        _('phone'), unique=True
+        _('phone'), unique=True, null=True, blank=True
     )
     username = models.CharField(
         _('username'), unique=True, max_length=255

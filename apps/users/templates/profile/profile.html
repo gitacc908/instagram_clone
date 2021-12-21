@@ -15,6 +15,7 @@ Instagram
 
 {% block content %}
 <main>
+	<input hidden id="posts-id" data-comment-url="{% url 'comment' %}" data-reply-url="{% url 'reply' %}" data-save-url="{% url 'save' %}" data-like-url="{% url 'like' %}">
 	{% with user_detail as this_user %}
 	<header class="header-profile">
 		<form id="avatar_form" data-avatar-url="{% url 'avatar' %}" method="post" class="header-profile-user-img" enctype="multipart/form-data" novalidate="">
@@ -113,6 +114,17 @@ Instagram
 				{% with user_post.images.all|first as preview_image %}
 				<div class="publication">
 				<!-- The post Modal --> 
+				<div class="post-setting-container">
+					<div class="post-setting-outer">
+						<div class="post-setting-inner">
+							<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+							<a href="#" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+							<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
+							<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
+							<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+						</div>
+					</div>
+				</div>
 					<div class="modal post-window">
 						<button class="postclose" style="border: unset;">✕</button>
 						<div class="modal-content-container">
@@ -168,7 +180,12 @@ Instagram
 												</div>
 												<div class="user-comment">
 													<span class="user-name">{{ user_post.author.username }}</span>
-													<p>{{ user_post.body }}</p>
+													<p>{{ user_post.body }}
+														{% for tag in user_post.tags.all %}
+														<a class="tag" href="/">{{ tag }} </a>
+														{% endfor %}
+													</p>
+												
 													<div class="action-buttons">
 													<a href="#" class="action-button data-comment">{{ user_post.created|naturaltime }}</a>
 													</div>
@@ -226,7 +243,7 @@ Instagram
 										</div>
 										{% endfor %}
 									</div>
-									<footer class="post-actions-footer" data-post-id="{{ user_post.id }}" id="posts-id" data-comment-url="{% url 'comment' %}" data-reply-url="{% url 'reply' %}" data-save-url="{% url 'save' %}" data-like-url="{% url 'like' %}">
+									<footer class="post-actions-footer" data-post-id="{{ user_post.id }}" >
 										<div class="post__buttons">
 												<button class="post__button like_button">
 													<svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
@@ -254,7 +271,7 @@ Instagram
 										<div class="post-actions-footer-likes">
 											<a class="likes-count">{{ user_post.total_likes }}</a> {% trans 'отметок "Нравится"'%}
 										</div>
-										<span class="post__date-time">{{ user_post.created|naturaltime }}</span>
+										<span class="post__date-time profile-post-time">{{ user_post.created|naturaltime }}</span>
 										<section class="add-comment sH9wk _JgwE">  
 													<div class="RxpZH">
 														<form action="" class="X7cDz">
@@ -280,7 +297,11 @@ Instagram
 									</div>
 									<div class="user-comment">
 										<span class="user-name">{{ user_post.author.username }}</span>
-										<p>{{ user_post.body }}</p>
+										<p>{{ user_post.body }}
+											{% for tag in user_post.tags.all %}
+											<a class="tag" href="/">{{ tag }} </a>
+											{% endfor %}
+										</p>
 										<div class="action-buttons">
 										<a href="#" class="action-button data-comment">{{ user_post.created|naturaltime }}</a>
 										</div>
@@ -424,7 +445,11 @@ Instagram
 												</div>
 												<div class="user-comment">
 													<span class="user-name">{{ bookmark.author.username }}</span>
-													<p>{{ bookmark.body }}</p>
+													<p>{{ bookmark.body }}
+														{% for tag in bookmark.tags.all %}
+														<a class="tag" href="/">{{ tag }} </a>
+														{% endfor %}
+													</p>
 													<div class="action-buttons">
 													<a href="#" class="action-button data-comment">{{ bookmark.created|naturaltime }}</a>
 													</div>
@@ -480,7 +505,7 @@ Instagram
 										</div>
 										{% endfor %}
 									</div>
-									<footer class="post-actions-footer" data-reply-url="{% url 'reply' %}" data-post-id="{{ bookmark.id }}">
+									<footer class="post-actions-footer" data-post-id="{{ bookmark.id }}">
 										<div class="post__buttons">
 												<button class="post__button like_button">
 													<svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
@@ -507,7 +532,7 @@ Instagram
 										<div class="post-actions-footer-likes">
 											<a class="likes-count">{{ bookmark.total_likes }}</a> отметок "Нравится"
 										</div>
-										<span class="post__date-time">{{ bookmark.created|naturaltime }}</span>
+										<span class="post__date-time profile-post-time">{{ bookmark.created|naturaltime }}</span>
 										<section class="add-comment sH9wk _JgwE">  
 													<div class="RxpZH">
 														<form action="" class="X7cDz">
@@ -533,7 +558,11 @@ Instagram
 									</div>
 									<div class="user-comment">
 										<span class="user-name">{{ bookmark.author.username }}</span>
-										<p>{{ bookmark.body }}</p>
+										<p>{{ bookmark.body }}
+											{% for tag in bookmark.tags.all %}
+											<a class="tag" href="/">{{ tag }} </a>
+											{% endfor %}
+										</p>
 										<div class="action-buttons">
 										<a href="#" class="action-button data-comment">{{ bookmark.created|naturaltime }}</a>
 										</div>
@@ -633,7 +662,7 @@ Instagram
 
 {% block scripts %}
 
-
+<script src="{% static 'js/post_setting.js' %}"> </script>
 <script src="{% static 'js/modals.js' %}"> </script>
 <script src="{% static 'js/profile_modals.js' %}"> </script>
 <script src="{% static 'js/modal_slider.js'%}"></script>

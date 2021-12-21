@@ -27,12 +27,12 @@ class PostForm(forms.ModelForm):
             # if not tag.full_clean():
             hashtags.append(tag)
         return hashtags
-        
-
 
     def save(self, commit=True):
         post = super(PostForm, self).save(commit=False)
         post.author = self.request.user
         post.comments_off = True if self.cleaned_data.get('comments_off') == 'true' else False
+        body = self.cleaned_data.get('body')
+        post.body = " ".join(filter(lambda x:x[0]!='#', body.split()))
         post.save()
         return post

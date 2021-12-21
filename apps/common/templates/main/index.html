@@ -145,100 +145,18 @@
     </main>
 
 {% endblock %}
-<!-- 
-    <div id='recaptcha-container'>
-    </div>  -->
- 
 
   {% block scripts %}
-  <!-- <script type="text/javascript" src="{% static 'js/emojionearea.min.js' %}"></script> -->
-
-  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-  {% comment %} <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script> -->
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> --> {% endcomment %}
-
    <script>
-   
-    // TODO: Replace the following with your app's Firebase project configuration
-    // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
- 
-//     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   const firebaseConfig = {
-//     apiKey: "AIzaSyBHxC2yBovLR0MUM56JHcCeDhfDQVEz8vQ",
-//     authDomain: "project-86088.firebaseapp.com",
-//     projectId: "project-86088",
-//     storageBucket: "project-86088.appspot.com",
-//     messagingSenderId: "163034169517",
-//     appId: "1:163034169517:web:1160bd803cf2e533c84624",
-//     measurementId: "G-HQBXMKHQSQ"
-//     };
-
-//     // Initialize Firebase
-//     firebase.initializeApp(firebaseConfig);
-
-//     firebase.auth().settings.appVerificationDisabledForTesting = true;
-//     firebase.auth().useDeviceLanguage();
-
-//     $(function() {
-//         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-//         'size': 'invisible',
-//         'callback': function (recapchaToken) {
-//             // reCAPTCHA solved, send recapchaToken and phone number to backend.
-            
-//             // a REST call to your backend
-//             console.log('callback')
-//         }
-//         });
-//     window.recaptchaVerifier.render().then(function (widgetId) {
-//     window.recaptchaWidgetId = widgetId;
-//     });
-        
-//     const phoneNumber = prompt('phone pls?')
-//     const appVerifier = window.recaptchaVerifier
-//     firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier).then((confirmationResult) => {
-//       // SMS sent. Prompt user to type the code from the message, then sign the
-//       // user in with confirmationResult.confirm(code).
-//       let code = prompt('code pls?')
-//       window.confirmationResult = code;
-//           // const code = getCodeFromUserInput();
-//         // confirmationResult.confirm(code).then((result) => {
-//         //     console.log('successfully confirmed')
-//         // // User signed in successfully.
-//         // // const user = result.user;
-//         // // ...
-//         // }).catch((error) => {
-//         //     console.log('User couldnt sign in (bad verification code?)')
-
-//         // // User couldn't sign in (bad verification code?)
-//         // // ...
-//         // });
-//       // ...
-//     }).catch((error) => {
-//         console.log(' // Error; SMS not sent')
-//         console.log(error)
-
-//       // ...
-//     });
-
-
-// });
-
 
     // $('.comment-input').emojioneArea(
     //     // { }
     // );
-  
     </script>
 <script src="{% static 'js/script.js' %}" defer></script>
 <script src="{% static 'js/modals.js' %}"> </script>
+<script src="{% static 'js/post_setting.js' %}"> </script>
+<script src="{% static 'js/index.js' %}"> </script>
     
 <script>
 $(document).ready(function(){
@@ -261,7 +179,6 @@ $(document).ready(function(){
             });
         }
     });
-
 });
     
 </script>

@@ -4,57 +4,7 @@ $(document).ready(function(){
     $('#saved_url').click(function(){
         localStorage.setItem("saved", 'saved'); 
     });
-    
-    // Like or unlike post
-    $('.like_button').click(function(){
-        let pathEl = this.getElementsByTagName('path')[0];
-        let likesTag = this.parentNode.parentNode.getElementsByClassName('likes-count')[0];
-        let totalLikes = parseInt(likesTag.text);
-        let postId = this.parentNode.parentNode.getAttribute('data-post-id');
-        $.ajax({
-            url : $('#posts-id').attr('data-like-url'),
-            type : "POST", 
-            data : {'post_id': postId}, 
-            success : function(data) {
-                if (data.status == 'liked'){
-                    pathEl.style.fill = 'rgb(237, 73, 86)';
-                    pathEl.style.stroke = 'rgb(237, 73, 86)';
-                    likesTag.text = totalLikes += 1;
-                }
-                else if (data.status == 'unliked'){
-                    pathEl.style.fill = '#fdfdfd';
-                    pathEl.style.stroke = '#000000';
-                    likesTag.text = totalLikes -= 1;
-                }
-            },
-            error : function(data) {
-                console.log('not success')
-            }
-        });
 
-    }); 
-
-    // Save or remove post
-    $('.save-button').click(function(){
-        let pathEl = this.getElementsByTagName('path')[0];
-        let postId = this.parentNode.parentNode.getAttribute('data-post-id');
-        $.ajax({
-            url : $('#posts-id').attr('data-save-url'),
-            type : "POST", 
-            data : {'post_id': postId}, 
-            success : function(data) {
-                if (data.status == 'saved'){
-                    pathEl.style.fill = '#262626'
-                }
-                else if (data.status == 'removed'){
-                    pathEl.style.fill = '#ffffff'
-                }
-            },
-            error : function(data) {
-                console.log('not success')
-            }
-        });
-    });
     // Unable or disable comment button
     $('#posts-id').on("input", "input.comment-input", function() {
         if (this.value == "") {
@@ -97,23 +47,23 @@ $(document).ready(function(){
         let data = JSON.parse(localStorage.getItem('data'))
         commentText = comment.split(" ")
         if (commentText[0] == `@${data.username}`){
-            var replyUrl = $(this).closest('.post-actions-footer').attr('data-reply-url');
-            if (!replyUrl){
-                let publication = $(this).closest('.publication')[0];
-                replyUrl = $(publication.querySelector('.post-actions-footer')).attr('data-reply-url');
-            }
+            var replyUrl = $('#posts-id').attr('data-reply-url');
         $.ajax({
             type: 'POST',
             url : replyUrl,
             data: {'commentId': data.commentId, 'replyText': comment},
             success: function(data){
-                console.log('success')
                 commentInput.value = "";
                 commentButton.setAttribute('disabled', '');
+                $('.notification-text').html('Reply has been added');
+                $('#notify').fadeIn('slow');
+                $('#notify').delay(3000).fadeOut();
                 // return;
             },
             error: function(data){
-                console.log('error')
+                $('.notification-text').html("Couldn't update reply");
+                $('#notify').fadeIn('slow');
+                $('#notify').delay(3000).fadeOut();
                 // return;
             }
         })
@@ -258,6 +208,7 @@ $(document).ready(function(){
     });
 
 
+    // publish new post
     $('#share-post').click(function(){
 
         let postPreview = $('.post-preview');
