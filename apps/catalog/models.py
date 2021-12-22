@@ -1,6 +1,7 @@
 from django.db import models
 from apps.users.models import User
 from apps.catalog.validators import validate_tag
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -29,6 +30,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.id}'
+    
+    def get_absolute_url(self):
+        return reverse("post_detail", kwargs={"pk": self.pk})
+    
 
     class Meta:
         ordering = ('-created', )

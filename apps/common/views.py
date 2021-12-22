@@ -22,8 +22,10 @@ from django.contrib.auth.decorators import login_required
 #                 db=settings.REDIS_DB)
 
 
-def post_detail(request):
-    return render(request, 'main/post_detail.html')
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    latest_six_posts = Post.objects.filter(author=post.author).exclude(id=post.id)[:6]
+    return render(request, 'main/post_detail.html', {'post':post, 'latest_posts':latest_six_posts})
 
 
 def edit_profile(request):

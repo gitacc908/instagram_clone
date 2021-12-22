@@ -1,4 +1,5 @@
 {% extends 'main/base/__base__.html' %}
+{% load i18n %}
 {% load static %}
 {% load user_tags %}
 <!-- {% load humanize %} -->
@@ -19,18 +20,17 @@
 <main>
     <div class="gotopost">
        <div class="post__medias post-medias">
-          <img src="https://wallpaperskingdom.com/sites/default/files/golden-gate-bridge-wallpaper-43405-5474139.png" class="post__media">
-          <img src="https://avatars.mds.yandex.net/i?id=084259c76f994522e0dd37cad889e433-5906867-images-thumbs&n=13" class="post__media">
-          <img src="https://wallpaperskingdom.com/sites/default/files/golden-gate-bridge-wallpaper-43405-5474139.png" class="post__media">
-          <img src="https://wallpaperskingdom.com/sites/default/files/golden-gate-bridge-wallpaper-43405-5474139.png" class="post__media">
-       </div>
+          {% for image in post.images.all %}
+          <img src="{{ image.image.url }}" class="post__media">
+         {% endfor %}
+         </div>
        <div class="post__comments">
           <header class="post__header">
              <div class="post__profile">
-                <a href="#" class="post__avatar">
-                <img src="" alt="User Picture">
+                <a href="{{ post.author.get_absolute_url}}" class="post__avatar">
+                <img src="{{ post.author|get_user_photo }}" alt="User Picture">
                 </a>
-                <a href="" class="post__user"></a>
+                <a href="{{ post.author.get_absolute_url}}" class="post__user">{{ post.author.username }}</a>
              </div>
              <button class="post__more-options">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,22 +41,46 @@
              </button>
           </header>
           <div class="post-actions-comments">
+               {% if post.body %}
+               <div class="user-post-action-comment">
+                <div class="user-post-action-comment-box">
+                  <div class="user-profile-comment">
+                     <a href="{{ post.author_get_absolute_url }}">
+                     <img src="{{ post.author|get_user_photo }}" alt="">
+                     </a>
+                  </div>
+                  <div class="user-comment">
+                     <span class="user-name">{{ post.author.username }}</span>
+                     <p>{{ post.body }}
+                        {% for tag in post.tags.all %}
+                        <a class="tag" href="/">{{ tag }} </a>
+                        {% endfor %}
+                     </p>
+                     <div class="action-buttons">
+                     <a href="#" class="action-button data-comment">{{ post.created|naturaltime }}</a>
+                     </div>
+                  </div>
+                  </div>
+               </div>
+            {% endif %}
+
+            {% for comment in post.comments.all %}
              <div class="user-post-action-comment">
                 <div class="user-post-action-comment-box">
                    <div class="user-profile-comment">
                       <a href="#">
-                      <img src="" alt="">
+                      <img src="{{ comment.user|get_user_photo }}" alt="">
                       </a>
                    </div>
                    <div class="user-comment">
                       <span class="user-name">
-                         <!-- {{ comment.user.username }} --> dcllns
+                         <!-- {{ comment.user.username }} --> {{ comment.user.username }}
                       </span>
                       <p>
-                         <!-- {{ comment.text }} --> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Doloribus voluptate unde eum tempore maxime nostrum id, atque, ut. Consectetur aperiam expedita nisi magnam voluptatem assumenda ducimus veniam laboriosam saepe doloribus.
+                         <!-- {{ comment.text }} -->{{ comment.text }}
                       </p>
                       <div class="action-buttons">
-                         <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>1</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+                          <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>{{ comment.total_likes }}</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
                       </div>
                    </div>
                    <button class="like-comment">
@@ -64,46 +88,57 @@
                          <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
                       </svg>
                    </button>
-                </div>
-                <div class="answer-container">
-                    <button style="width: 100%; text-align: center; font-weight: bold; font-size: 12px; color: #8d8d8d;">Посмотреть ответы <span>(5)</span></button>
-                    <div class="answer">
-                       <div class="user-post-action-comment-box">
-                          <div class="user-profile-comment">
-                             <a href="#">
-                             <img src="" alt="">
-                             </a>
-                          </div>
-                          <div class="user-comment">
-                             <span class="user-name">
-                                <!-- {{ comment.user.username }} --> dcllns
-                             </span>
-                             <p>
-                                <!-- {{ comment.text }} --> Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima asperiores cum cupiditate voluptatem a adipisci accusamus at repellendus eos? Consequatur pariatur voluptas doloremque quod voluptate, autem praesentium ea, id eaque!
-                             </p>
-                             <div class="action-buttons">
-                                <a href="#" class="action-button data-comment">
-                                   <!-- {{ comment.created|naturaltime }} --> 8 month
-                                </a>
-                                <button class="action-button">Ответить</button><button class="action-button complaint">···</button>
-                             </div>
-                          </div>
-                          <button class="like-comment">
-                             <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14">
-                                <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-                             </svg>
-                          </button>
-                       </div>
-                    </div>
+                   
+                   {% if comment.replies.count > 0 %}
+                   <div class="reply-counter">
+                     <button class="show-replies" style="width: 100%; text-align: center; font-weight: bold; font-size: 12px; color: #8d8d8d;">{% trans 'Посмотреть ответы' %} <span>({{ comment.replies.count }})</span></button>
+                  </div>
+                   <div class="answer-container">
+                  {% for reply in comment.replies.all %}
+                     <div class="answer">
+                        <div class="user-post-action-comment-box">
+                           <div class="user-profile-comment">
+                              <a href="{{ reply.user.get_absolute_url }}">
+                              <img src="{{ reply.user|get_user_photo }}" alt="">
+                              </a>
+                           </div>
+                           <div class="user-comment">
+                              <span class="user-name">
+                                 <!-- {{ comment.user.username }} --> {{ reply.user.username }}
+                              </span>
+                              <p>
+                                 <!-- {{ comment.text }} --> {{ reply.text }}
+                              </p>
+                              <div class="action-buttons">
+                                 <a href="#" class="action-button data-comment">
+                                    {{ reply.created|naturaltime }} 
+                                 </a>
+                                 <!-- <button class="action-button">Ответить</button><button class="action-button complaint">···</button> -->
+                              </div>
+                           </div>
+                           <!-- <button class="like-comment">
+                              <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14">
+                                 <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
+                              </svg>
+                           </button> -->
+                        </div>
+                     </div>
+                 {% endfor %}
+                 </div>
+                {% endif %}
+                   
                 </div>
              </div>
-          </div>
+             {% endfor %}
+        
+            </div>
+
           <footer class="post-actions-footer" data-post-id="{{ bookmark.id }}">
              <div class="post__buttons">
                 <button class="post__button like_button">
                    <svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
-                      <path {% if request.user not in bookmark.likes.all %} fill="#fdfdfd" stroke="#000000" {% else %} fill="rgb(237, 73, 86);" stroke="rgb(237, 73, 86)" {% endif %} stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
-                      </path>
+                      {% comment %} <path {% if request.user not in bookmark.likes.all %} fill="#fdfdfd" stroke="#000000" {% else %} fill="rgb(237, 73, 86);" stroke="rgb(237, 73, 86)" {% endif %} stroke-width="3.6" d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"> {% endcomment %}
+                      {% comment %} </path> {% endcomment %}
                    </svg>
                 </button>
                 <button class="post__button comments_button">
@@ -135,26 +170,35 @@
                 <div class="RxpZH">
                    <form action="" class="X7cDz">
                       <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-                      <button data-post-id="{{ bookmark.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                      {% comment %} <button data-post-id="{{ bookmark.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button> {% endcomment %}
                    </form>
                 </div>
              </section>
           </footer>
        </div>
     </div>
+    {% if request.user != post.author and latest_posts %}
     <div class="z666a">
        <div class="more_pub_in_user">
-          Ещё больше публикации от <a href="#">dcllns</a>
+          {% trans 'Ещё публикации от' %}  <a href="#">{{ post.author.username }}</a>
        </div>
        <div class="grid-publications">
-          <div class="publication"></div>
-          <div class="publication"></div>
-          <div class="publication"></div>
-          <div class="publication"></div>
-          <div class="publication"></div>
-          <div class="publication"></div>
+          {% for post in latest_posts %}
+				{% with post.images.all|first as preview_image %}
+            <div class="publication">
+               <a href="{{ post.get_absolute_url }}" class="publication-link">
+                  <img src="{{ preview_image.image.url }}" alt="">
+                  <div class="likes-comments-hover">
+                     <div class="hover-likes"><span>{{ post.total_likes }}</span> {% trans 'likes'%}</div>
+                     <div class="hover-comments"><span>{{ post.comments.count }}</span> {% trans 'comments'%}</div>
+                  </div>
+               </a>
+            </div>
+            {% endwith %}
+          {% endfor %}
        </div>
     </div>
+    {% endif%}
  </main>
 {% endblock %}
 

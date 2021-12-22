@@ -47,7 +47,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .X7cDz{padding-left: 16px;}
 .add-comment{padding-top: 0;}
 
-.answer{width: 100%;padding-left: 70px;}
+.answer{width: 100%;padding-left: 38px;}
 
 .z666a{padding-top: 48px; border-top: solid 1px #dbdbdb;}
 
@@ -67,4 +67,31 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 	main{padding: 0; margin-bottom: 50px;}
 	.more_pub_in_user{padding-left: 16px; padding-right: 7px;}
 	.grid-publications{gap: 3px; }
+}
+.likes-comments-hover{
+	color: #fff;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hover-comments{
+	margin-left: 10px;
+}
+.user-post-action-comment-box{
+	flex-wrap: wrap;
+}
+.reply-counter{
+	width: 100%;
+    margin: 10px 0px 2px 0px;
+}
+.answer-container{
+	width: 100%;
 }

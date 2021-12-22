@@ -114,20 +114,32 @@ Instagram
 				{% with user_post.images.all|first as preview_image %}
 				<div class="publication">
 				<!-- The post Modal --> 
-				<div class="post-setting-container">
-					<div class="post-setting-outer">
-						<div class="post-setting-inner">
-							<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
-							<a href="#" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
-							<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
-							<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
-							<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
-						</div>
-					</div>
-				</div>
 					<div class="modal post-window">
 						<button class="postclose" style="border: unset;">✕</button>
 						<div class="modal-content-container">
+							{% if request.user == this_user %}
+							<div class="post-setting-container">
+								<div class="post-setting-outer">
+									<div class="post-setting-inner">
+										<a href="#" class="post-setting-button warning">{% trans 'Удалить' %}</a>
+										<a href="{{ user_post.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+										<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+									</div>
+								</div>
+							</div>
+							{% else %}
+						<div class="post-setting-container">
+							<div class="post-setting-outer">
+								<div class="post-setting-inner">
+									<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+									<a href="{{ user_post.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+									<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
+									<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
+									<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+								</div>
+							</div>
+						</div>
+						{% endif %}
 						<div class="post-modal-content">
 							<header class="post__header-mobile">
 											<div class="post__profile">
@@ -393,13 +405,36 @@ Instagram
 					<div class="modal post-window">
 						<button class="postclose" style="border: unset;">✕</button>
 						<div class="modal-content-container">
+							{% if request.user == bookmark.author %}
+							<div class="post-setting-container">
+								<div class="post-setting-outer">
+									<div class="post-setting-inner">
+										<a href="#" class="post-setting-button warning">{% trans 'Удалить' %}</a>
+										<a href="{{ bookmark.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+										<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+									</div>
+								</div>
+							</div>
+							{% else %}
+						<div class="post-setting-container">
+							<div class="post-setting-outer">
+								<div class="post-setting-inner">
+									<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+									<a href="{{ bookmark.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+									<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
+									<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
+									<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+								</div>
+							</div>
+						</div>
+						{% endif %}
 						<div class="post-modal-content">
 							<header class="post__header-mobile">
 											<div class="post__profile">
 												<a href="#" class="post__avatar">
-													<img src="{{ this_user|get_user_photo }}" alt="User Picture">
+													<img src="{{ bookmark.author|get_user_photo }}" alt="User Picture">
 												</a>
-												<a href="{{ this_user.get_absolute_url }}" class="post__user">{{ this_user.username }}</a>
+												<a href="{{ bookmark.author.get_absolute_url }}" class="post__user">{{ bookmark.author.username }}</a>
 											</div>
 
 											<button class="post__more-options">
@@ -422,9 +457,9 @@ Instagram
 									<header class="post__header">
 											<div class="post__profile">
 												<a href="#" class="post__avatar">
-													<img src="{{ this_user|get_user_photo }}" alt="User Picture">
+													<img src="{{ bookmark.author|get_user_photo }}" alt="User Picture">
 												</a>
-												<a href="{{ this_user.get_absolute.url }}" class="post__user">{{ this_user.username }}</a>
+												<a href="{{ bookmark.author.get_absolute.url }}" class="post__user">{{ bookmark.author.username }}</a>
 											</div>
 
 											<button class="post__more-options">
@@ -662,7 +697,6 @@ Instagram
 
 {% block scripts %}
 
-<script src="{% static 'js/post_setting.js' %}"> </script>
 <script src="{% static 'js/modals.js' %}"> </script>
 <script src="{% static 'js/profile_modals.js' %}"> </script>
 <script src="{% static 'js/modal_slider.js'%}"></script>

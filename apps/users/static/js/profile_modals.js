@@ -7,8 +7,13 @@ $(function() {
         var postModalContent;
         var postCloseButton;
         var postModalButton;
+
         var commentsDrop;
         var commentsButton;
+
+        var postSettingWindow;
+        var postSettingCloseButton;
+        var postSettingModal;
 
         let confWindow = document.getElementById("myModal");
         let confModalContent = document.getElementsByClassName("modal-content")[0];
@@ -30,16 +35,32 @@ $(function() {
             $( ".post-window" ).each(function( index ) {
                 // get opened modal 
                 if (this.style.display == 'block'){
+                        // current post modal
                         postWindow = this;
                         postModalContent = this.getElementsByClassName('post-modal-content')[0];
                         postCloseButton = this.getElementsByClassName('postclose')[0];
+
+                        // current post setting modal
+                        postSettingWindow = this.querySelector('.post-setting-container');
+                        postSettingModal = this.querySelector('.post-setting-inner');
+                        postSettingCloseButton = this.querySelector('.close');
+                        postSettingButton = this.getElementsByClassName('post__more-options');
                         
+                        // current comment dropup
                         commentsDrop = postWindow.nextElementSibling;
                         commentsButton = postWindow.getElementsByClassName('comments_button')[0];
 
                         if (commentsDrop.style.bottom == '0px'){
                             if (!commentsDrop.contains(click_target)){
                                 commentsDrop.style.bottom = '-60%'
+                            }
+                        }
+                        else if(postSettingWindow.style.display == 'flex'){
+                            if(!postSettingModal.contains(click_target)){
+                                postSettingWindow.style.display = ''
+                            }
+                            else if(postSettingCloseButton.contains(click_target)){
+                                postSettingWindow.style.display = ''
                             }
                         }
                         else if(!postModalContent.contains(click_target)){
@@ -50,6 +71,13 @@ $(function() {
                         }
                         else if (commentsButton.contains(click_target)){
                             commentsDrop.style.bottom = '0'
+                        }
+                        else{
+                            for(let postSettingButtonClass = 0; postSettingButtonClass < postSettingButton.length; postSettingButtonClass++){
+                                if (postSettingButton[postSettingButtonClass].contains(click_target)){
+                                    postSettingWindow.style.display = 'flex'
+                                }
+                            }
                         }
                        
                 }
