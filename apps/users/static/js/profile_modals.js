@@ -15,6 +15,8 @@ $(function() {
         let confButton = document.getElementById("myBtn");
         let confCloseButton = document.getElementsByClassName("close")[0];
         
+
+        // show post modals on profile
         try {
             postWindow = click_target.closest('.publication-link').closest('.publication').getElementsByClassName('post-window')[0];
             postModalButton = click_target.closest('.publication-link');
@@ -23,6 +25,7 @@ $(function() {
             }
               
         }
+        // work with opened post modal
         catch (TypeError) {
             $( ".post-window" ).each(function( index ) {
                 // get opened modal 

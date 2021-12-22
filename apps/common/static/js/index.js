@@ -49,29 +49,53 @@ $(document).ready(function(){
     });
 
     window.addEventListener('click', function(e) {
-        var sharePostCloseButton = document.getElementsByClassName('x-button')[0]
-        var sharePostWindow = document.getElementsByClassName('share-post')[0]
-        var sharePostModal = document.getElementsByClassName('inner-share-block')[0]
-        var shareButton = e.target.parentNode.parentNode.parentNode.getElementsByClassName('share-button')[0]
         let click_target = e.target
-    
-    
-        // hide modals
-        if(sharePostWindow.style.display == 'block'){
-            if(!sharePostModal.contains(click_target)){
-                sharePostWindow.style.display = 'none'
-            }
-            else if(sharePostCloseButton.contains(click_target)){
-                sharePostWindow.style.display = 'none'
-            }
-        }
 
-        // show modals
-        else if (shareButton.contains(click_target)){
-            sharePostWindow.style.display = 'block'
-        }
-    
-    
+        // hide share post modal
+        $( ".share-post" ).each(function( index ) {
+            if(this.style.display == 'block'){
+                let sharePostWindow = this;
+                let sharePostCloseButton = this.querySelector('.x-button')
+                let sharePostModal = this.querySelector('.inner-share-block')
+                if(!sharePostModal.contains(click_target)){
+                    sharePostWindow.style.display = ''
+                }
+                else if(sharePostCloseButton.contains(click_target)){
+                    sharePostWindow.style.display = ''
+                }
+            }
+        });
+        // show share post modal
+        $( ".share-button" ).each(function( index ) {
+            if (this.contains(click_target)){
+                let sharePostWindow = this.closest(".post").nextElementSibling
+                sharePostWindow.style.display = 'block'
+            }
+        });
+
+        // hide post setting modal
+        $( ".post-setting-container" ).each(function( index ) {
+            // get opened modal 
+            if (this.style.display == 'flex'){
+                let postSettingWindow = this;
+                let postSettingCloseButton = this.querySelector('.close')
+                let postSettingModal = this.querySelector('.post-setting-inner')
+                if(!postSettingModal.contains(click_target)){
+                    postSettingWindow.style.display = ''
+                }
+                else if(postSettingCloseButton.contains(click_target)){
+                    postSettingWindow.style.display = ''
+                }
+            }
+        });
+        // show post setting modal
+        $( ".post__more-options" ).each(function( index ) {
+            // get opened modal 
+            if (this.contains(click_target)){
+                let postSettingWindow = this.closest(".post").previousElementSibling
+                postSettingWindow.style.display = 'flex'
+            }
+        });
     
     });
 
