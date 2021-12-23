@@ -127,47 +127,60 @@
                     </div>
                 </button>
      
-
-           
-            <div aria-hidden="false" class="uo5MA   _2ciX tWgj8 XWrBI mention_drop">
-                <div class="AvhYw nLL4f" style="left: 427px;"></div>
-                <div class="_01UL2">
-                    <div class="f7Bj3">
-                        <div style="height: 362px; overflow: hidden auto;">
-                            <div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-                            <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm  mention_content">
-                                <hr class="W4P49">
-                                <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                      soMvl                                    DhRcB                      zQLcH            XTCZH                  ">
-                                    <div class="_7UhW9   xLCgt       qyrsm KV-D4          uL8Hv         ">{% trans 'Ранее'%}</div>
-                                </div>
-                                {% for action in actions %}
-                                    <div class="PUHRj  H_sJK" role="button" tabindex="-1">
-                                        <div class="cek9Q">
-                                            <div class="              AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              ">
-                                            <div class="RR-M- h5uC0" aria-disabled="false" role="button" tabindex="0">
-                                                <canvas class="CfWVH" height="108" width="108" style="position: absolute; top: -5px; left: -5px; width: 54px; height: 54px;"></canvas>
-                                                <span class="_2dbep " role="link" tabindex="-1" style="width: 44px; height: 44px;"><img alt="Фото профиля bauflex.bishkek" class="_6q-tv" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="{{ action.user|get_user_photo }}"></span>
-                                            </div>
-                                            </div>
+                <div aria-hidden="false" class="uo5MA   _2ciX tWgj8 XWrBI mention_drop">
+                    <div class="AvhYw nLL4f" style="left: 427px;"></div>
+                    <div class="_01UL2">
+                        <div class="f7Bj3">
+                            <div style="height: 362px; overflow: hidden auto;">
+                                <div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+                                <div class="mention_content">
+                                    {% for action in actions %}
+                                    <div class="trans">{% trans 'Ранее'%}</div>
+                                    <div class="user-subscribed notifications">
+                                        <a href="#" class="user-img-notification">
+                                            <img src="https://avatars.mds.yandex.net/i?id=b7a952cfdb7c37fb53961f9bcdc040eb-5559980-images-thumbs&n=13" alt="">
+                                        </a>
+                                        <div class="user-text-notification">
+                                            <span class="user-name-notification"><a href="#">dcllns</a></span>
+                                            <span>подписался(-ась) на ваши обновления.</span>
+                                            <span class="data-notification">4&nbsp;нед.</span>
                                         </div>
-                                        <div class="YFq-A"><span class="_7UhW9   xLCgt      MMzan  KV-D4           se6yk        "><a class="FPmhX notranslate  yrJyr" title="bauflex.bishkek" href="/bauflex.bishkek/" tabindex="0">{{ action.user.username }}</a><span> {{ action.verb }} <a class="notranslate" href="/near6778/" tabindex="0"><!--@near6778--> </a><!-- Спасибо Вам за обращение, подробную информацию отправим в директ--></span></span><time class="HsXaJ Nzb55" datetime="2021-06-24T03:28:24.641Z" title="24 июня 2021 г.">{{ action.created|naturaltime }}.</time></div>
-                                        <div class="iTMfC">
-                                            <a class="kIKUG H-dnq" href="/p/CQYZohxpZht/" tabindex="0">
-                                            <div class="eLAPa GzVn2">
-                                                <div class="KL4Bh"><img crossorigin="anonymous" class="FFVAD" src="{% static 'img/download.jpeg' %}" style="object-fit: cover;"></div>
-                                                <div class="_9AhH0"></div>
-                                            </div>
-                                            </a>
-                                        </div>
+                                        <button class="subscribed-notification">Подписаться</button>
                                     </div>
-                                {% endfor %}
-                            </div>
+                                    <div class="user-liked notifications">
+                                        <a href="#" class="user-img-notification">
+                                            <img src="https://avatars.mds.yandex.net/i?id=b7a952cfdb7c37fb53961f9bcdc040eb-5559980-images-thumbs&n=13" alt="">
+                                        </a>
+                                        <div class="user-text-notification">
+                                            <span class="user-name-notification"><a href="#">dcllns</a></span>
+                                            <span> нравится ваше фото.</span>
+                                            <span class="data-notification">4&nbsp;нед.</span>
+                                        </div>
+                                        <a href="#" class="post-notification">
+                                            <img src="https://avatars.mds.yandex.net/i?id=b7a952cfdb7c37fb53961f9bcdc040eb-5559980-images-thumbs&n=13" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="user-liked notifications">
+                                        <a href="#" class="user-img-notification">
+                                            <img src="https://avatars.mds.yandex.net/i?id=b7a952cfdb7c37fb53961f9bcdc040eb-5559980-images-thumbs&n=13" alt="">
+                                        </a>
+                                        <div class="user-text-notification">
+                                            <span class="user-name-notification"><a href="#">dcllns</a></span>
+                                            <span>понравился ваш комментарий: "🔥🔥🔥".</span>
+                                            <span class="data-notification">4&nbsp;нед.</span>
+                                        </div>
+                                        <a href="#" class="post-notification">
+                                            <img src="https://avatars.mds.yandex.net/i?id=b7a952cfdb7c37fb53961f9bcdc040eb-5559980-images-thumbs&n=13" alt="">
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="TOh1s"></div>
-                </div>
+                    <div class="TOh1s"></div>
+                    </div>
 
 
             <div id="profile-drop" aria-hidden="false" class="uo5MA   _2ciX tWgj8 XWrBI ">
