@@ -16,6 +16,7 @@ $(document).ready(function(){
     });
     $('.comment-input').on('input', function(){
         if (this.value == "") {
+            localStorage.removeItem('data');
             this.nextElementSibling.setAttribute('disabled', '');
         }
         else{
@@ -59,6 +60,7 @@ $(document).ready(function(){
                         $('.notification-text').html('Reply has been added');
                         $('#notify').fadeIn('slow');
                         $('#notify').delay(3000).fadeOut();
+                        localStorage.removeItem('data');
                         // return;
                     },
                     error: function(data){
