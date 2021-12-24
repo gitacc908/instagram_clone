@@ -34,6 +34,12 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"pk": self.pk})
     
+    def unfollow(self):
+        return reverse('unfollow', kwargs={'pk': self.author.pk})
+
+    def delete_post(self):
+        return reverse('delete_post', kwargs={'pk': self.pk})
+
 
     class Meta:
         ordering = ('-created', )

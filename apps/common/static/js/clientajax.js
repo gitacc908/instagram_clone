@@ -16,6 +16,7 @@ $(document).ready(function(){
     });
     $('.comment-input').on('input', function(){
         if (this.value == "") {
+            localStorage.removeItem('data');
             this.nextElementSibling.setAttribute('disabled', '');
         }
         else{
@@ -46,27 +47,30 @@ $(document).ready(function(){
         // add reply
         let data = JSON.parse(localStorage.getItem('data'))
         commentText = comment.split(" ")
-        if (commentText[0] == `@${data.username}`){
-            var replyUrl = $('#posts-id').attr('data-reply-url');
-        $.ajax({
-            type: 'POST',
-            url : replyUrl,
-            data: {'commentId': data.commentId, 'replyText': comment},
-            success: function(data){
-                commentInput.value = "";
-                commentButton.setAttribute('disabled', '');
-                $('.notification-text').html('Reply has been added');
-                $('#notify').fadeIn('slow');
-                $('#notify').delay(3000).fadeOut();
-                // return;
-            },
-            error: function(data){
-                $('.notification-text').html("Couldn't update reply");
-                $('#notify').fadeIn('slow');
-                $('#notify').delay(3000).fadeOut();
-                // return;
+        if (data){
+            if (commentText[0] == `@${data.username}`){
+                var replyUrl = $('#posts-id').attr('data-reply-url');
+                $.ajax({
+                    type: 'POST',
+                    url : replyUrl,
+                    data: {'commentId': data.commentId, 'replyText': comment},
+                    success: function(data){
+                        commentInput.value = "";
+                        commentButton.setAttribute('disabled', '');
+                        $('.notification-text').html('Reply has been added');
+                        $('#notify').fadeIn('slow');
+                        $('#notify').delay(3000).fadeOut();
+                        localStorage.removeItem('data');
+                        // return;
+                    },
+                    error: function(data){
+                        $('.notification-text').html("Couldn't update reply");
+                        $('#notify').fadeIn('slow');
+                        $('#notify').delay(3000).fadeOut();
+                        // return;
+                    }
+                })
             }
-        })
         }
         else{ // add comment 
             let username = this.getAttribute('data-author-of-comment');

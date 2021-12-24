@@ -121,7 +121,7 @@ Instagram
 							<div class="post-setting-container">
 								<div class="post-setting-outer">
 									<div class="post-setting-inner">
-										<a href="#" class="post-setting-button warning">{% trans 'Удалить' %}</a>
+										<a href="{{ user_post.delete_post }}" class="post-setting-button warning">{% trans 'Удалить' %}</a>
 										<a href="{{ user_post.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
 										<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
 									</div>
@@ -131,10 +131,12 @@ Instagram
 						<div class="post-setting-container">
 							<div class="post-setting-outer">
 								<div class="post-setting-inner">
-									<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
-									<a href="{{ user_post.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
+									{% if user_post.author != request.user and user_post.author not in request.user.following.all %}
+									<a href="{{ user_post.unfollow }}" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+									{% endif %}
+									<a href="{{ user_post.get_absolute_url }}" class="post-setting-button" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
 									<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
-									<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
+									<a href="#" class="post-setting-button copy-link">{% trans 'Копировать ссылку' %}</a>
 									<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
 								</div>
 							</div>
@@ -409,24 +411,26 @@ Instagram
 							<div class="post-setting-container">
 								<div class="post-setting-outer">
 									<div class="post-setting-inner">
-										<a href="#" class="post-setting-button warning">{% trans 'Удалить' %}</a>
+										<a href="{{ bookmark.delete_post }}" class="post-setting-button warning">{% trans 'Удалить' %}</a>
 										<a href="{{ bookmark.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
 										<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
 									</div>
 								</div>
 							</div>
 							{% else %}
-						<div class="post-setting-container">
-							<div class="post-setting-outer">
-								<div class="post-setting-inner">
-									<a href="#" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
-									<a href="{{ bookmark.get_absolute_url }}" class="post-setting-button">{% trans 'Перейти к публикации' %}</a>
-									<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
-									<a href="#" class="post-setting-button">{% trans 'Копировать ссылку' %}</a>
-									<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+							<div class="post-setting-container">
+								<div class="post-setting-outer">
+									<div class="post-setting-inner">
+									{% if bookmark.author != request.user and bookmark.author in request.user.following.all %}
+										<a href="{{ bookmark.unfollow }}" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+										{% endif %}
+										<a href="{{ bookmark.get_absolute_url }}" class="post-setting-button post-link" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
+										<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
+										<a href="#" class="post-setting-button copy-link">{% trans 'Копировать ссылку' %}</a>
+										<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+									</div>
 								</div>
 							</div>
-						</div>
 						{% endif %}
 						<div class="post-modal-content">
 							<header class="post__header-mobile">

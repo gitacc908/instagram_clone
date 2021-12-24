@@ -1,5 +1,5 @@
 from django.http.response import JsonResponse
-from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views import View
 from apps.common.forms import PostForm
 
@@ -20,16 +20,22 @@ from django.contrib.auth.decorators import login_required
 # r = redis.Redis(host=settings.REDIS_HOST, 
 #                 port=settings.REDIS_PORT, 
 #                 db=settings.REDIS_DB)
+from django.contrib import messages
+from django.utils.translation import ugettext, ugettext_lazy as _
+from django.http import HttpResponseRedirect
 
 
+@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     latest_six_posts = Post.objects.filter(author=post.author).exclude(id=post.id)[:6]
     return render(request, 'main/post_detail.html', {'post':post, 'latest_posts':latest_six_posts})
 
 
+@login_required
 def edit_profile(request):
     return render(request, 'main/edit_profile.html')
+
 
 @login_required
 def main(request):
@@ -54,7 +60,9 @@ def main(request):
     return render(request, 'main/index.html',{'posts': posts})
 
 
-class LikePostView(View):
+class LikePostView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         post = Post.objects.get(id=request.POST.get('post_id'))
         user = request.user
@@ -68,7 +76,9 @@ class LikePostView(View):
         return JsonResponse({'status': 'error'}, status=404)
 
 
-class LikeCommentView(View):
+class LikeCommentView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         comment = Comment.objects.get(id=request.POST.get('comment_id'))
         user = request.user
@@ -81,7 +91,9 @@ class LikeCommentView(View):
         return JsonResponse({'status': 'error'}, status=404)
 
 
-class SaveView(View):
+class SaveView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         user = request.user
         bookmark, _ = Bookmark.objects.get_or_create(user=user)
@@ -95,7 +107,9 @@ class SaveView(View):
         return JsonResponse({'status': 'error'}, status=404)
 
 
-class CommentView(View):
+class CommentView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         user = request.user
         post_id = request.POST.get('post_id')
@@ -105,14 +119,18 @@ class CommentView(View):
         return JsonResponse({'status': 'created', 'comment_id': comment.id})
 
 
-class CommentReplyView(View):
+class CommentReplyView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         comment = get_object_or_404(Comment, id=request.POST.get('commentId'))
         CommentReply.objects.create(user=request.user, comment=comment, text=request.POST.get('replyText'))
         return JsonResponse({'status': 'created'})
 
 
-class PostView(View):
+class PostView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         form = PostForm(request.POST, request=request)
         if form.is_valid():
@@ -130,7 +148,9 @@ class PostView(View):
         return HttpResponse(json.dumps(error_dict),content_type="application/json", status=400)
 
 
-class FollowView(View):
+class FollowView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
     def post(self, request, *args, **kwargs):
         follow_user = get_object_or_404(User, pk=request.POST.get('follow_user_id'))
         if follow_user not in request.user.following.all():
@@ -151,3 +171,22 @@ class UpdateAvatarView(LoginRequiredMixin, View):
             form.save()
             return JsonResponse({'status': 'avatar updated!'}, status=200)
         return JsonResponse({'status':'error'}, status=424)
+
+
+class UnfollowView(LoginRequiredMixin, View):
+    login_url = 'signin'
+
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, pk=kwargs['pk'])
+        Contact.objects.filter(user_from=request.user, user_to=user).delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+class DeletePost(LoginRequiredMixin, View):
+    login_url = 'signin'
+
+    def get(self, request, *args, **kwargs):
+        post = get_object_or_404(Post, pk=kwargs['pk'])
+        post.delete()
+        # messages.success(request, _('Your post has been deleted'))
+        return redirect(request.user.get_absolute_url())

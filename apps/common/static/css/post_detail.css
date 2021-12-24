@@ -94,4 +94,5 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 }
 .answer-container{
 	width: 100%;
+	display: none;
 }
