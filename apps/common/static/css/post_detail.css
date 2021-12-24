@@ -14,22 +14,23 @@ main
 
 button{background: unset; border: none; outline: unset; cursor: pointer;}
 .gotopost {max-width: 100%;min-width: 80%; max-height: 600px; min-height:500px; margin-left: auto; margin-right: auto;  margin-bottom: 50px; display: flex; position: relative; border: solid 1px #dbdbdb;} 
-.post-medias{display: flex;overflow-y: hidden;overflow-x: auto; background: #000; align-items: center; scroll-snap-type: x mandatory; width: 100%;min-height: 100%; scrollbar-width: none;}
-.post-medias img{object-fit: cover; flex: none; width: 100%; scroll-snap-align: start;}
+.post-medias{display: flex;overflow-y: hidden;overflow-x: auto; background: #000; align-items: center; scroll-snap-type: x mandatory; width: 100%;height: 100%; scrollbar-width: none;}
+.post-medias img{object-fit: cover; flex: none; width: 100%;scroll-snap-align: start;}
 
-
+.post__header-mobile{display: none;}
 .post__comments{min-width: 350px; max-width: 350px; position: relative; border-left: solid 1px #dbdbdb; }
 .post__header{width: 100%; height: 60px; background: white; border-bottom: solid 1px #dbdbdb;}
-.post-actions-comments{width: 100%; height: calc(100% - 220px);overflow: auto; padding-left: 16px; padding-right: 16px;}
+.post-actions-comments{width: 100%; height: calc(100% - 220px);overflow: auto;}
 .post-actions-footer{position: absolute; left: 0; right: 0; bottom: 0; border-top: solid 1px #dbdbdb; height: 160px; vertical-align: middle;}
+.post-actions-footer > .post__buttons{padding-left: 6px; padding-right: 6px;}
 
-
+.user-post-action-comment{display: flex; margin: 10px 0;}
 
 .user-post-action-comment-box{display: flex; margin: 20px 0 10px 0;}
 .user-profile-comment{width: 70px; justify-content: center; display: flex;}
 .user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
 .user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
-.user-comment{width: calc(100% - 120px);overflow: hidden;}
+.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
 .user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
 .like-comment{width: 50px; font-size: 22px;}
 
@@ -40,20 +41,27 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 
 .post-actions-footer-likes{font-size: 14px; margin-top: 9px; padding-left: 16px; padding-right: 16px;}
 .post-actions-footer-likes a{font-weight: bold;}
-.post__date-time{margin-bottom: 9px;}
+.post__date-time{margin-bottom: 9px; padding-left: 16px; padding-right: 16px;}
 
 .sH9wk{height: 55px;  margin-top: 20px;}
 .RxpZH, .X7cDz{height: 100%; }
-.X7cDz{padding-left: 16px;}
+.X7cDz{padding-left: 16px; padding-right: 16px;}
 .add-comment{padding-top: 0;}
 
 .answer{width: 100%;padding-left: 38px;}
 
 .z666a{padding-top: 48px; border-top: solid 1px #dbdbdb;}
 
-
+.post__indicators{ bottom: 20px; top: unset; }
 .more_pub_in_user{margin-bottom: 20px; color: #8e8e8e;}
 .more_pub_in_user a{color: #262626; font-weight: bold;}
+
+
+.likes-comments-hover{color: #fff; font-weight: bold; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; background: transparent; display: flex;align-items: center;justify-content: center;}
+.likes-comments-hover:hover {background: rgb(0,0,0,0.3); opacity: 1;}
+.hover-comments{margin-left: 10px;}
+
+
 
 .grid-publications{display: grid;grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
 .publication{display: block; background: #f5f5f5; position: relative;}
@@ -64,24 +72,41 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 @media (max-width: 768px){
 
 
-	main{padding: 0; margin-bottom: 50px;}
+	main{padding: 0; margin-bottom: 50px; margin-top: 45px;}
 	.more_pub_in_user{padding-left: 16px; padding-right: 7px;}
 	.grid-publications{gap: 3px; }
+
+
+	.gotopost { display: block; border: none; max-height: unset;min-height:unset;} 
+.post-medias{display: flex;overflow-y: hidden;overflow-x: auto; background: #000; align-items: center; scroll-snap-type: x mandatory; width: 100%;height: 100%; scrollbar-width: none;}
+.post-medias img{object-fit: cover; flex: none; width: 100%;scroll-snap-align: start;}
+
+.post__header-mobile{display: flex; align-items: center; justify-content: space-between; height: 69px; padding-left: 16px; padding-right: 16px;}
+.post__header-mobile > .post__user{font-size: 18px;}
+
+.post__comments{min-width: unset; max-width: 100%; position: relative; border-left: solid 1px #dbdbdb; }
+.post__header{width: 100%; height: 60px; background: white; border-bottom: solid 1px #dbdbdb; display: none;}
+.post-actions-comments{display: none;}
+.post-actions-footer{position: unset; border-top: solid 1px #dbdbdb; height: unset; }
+.post-actions-footer > .post__buttons{padding-left: 6px; padding-right: 6px; height: 54px;}
+	.publication-link:active{opacity: .8;}
+	.likes-comments-hover{display: none;}
+
+	
+	.post__indicators{ bottom: -30px; top: unset; }
+.user-post-action-comment{display: flex; margin: 10px 0;}
+.z666a{padding-top: 20px;}
+.user-post-action-comment-box{display: flex; margin: 20px 0 10px 0;}
+.user-profile-comment{width: 70px; justify-content: center; display: flex;}
+.user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
+.user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
+.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
+.user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
+.like-comment{width: 50px; font-size: 22px;}
+.action-buttons{display: inline-block; gap: 5px; margin-top: 14px; gap: 10px; }.action-buttons a{color: #8e8e8e;font-weight: 100; }
+.action-button{font-size: 12px; font-weight: 600; color: #8e8e8e;  white-space: nowrap; margin: 5px;}
 }
-.likes-comments-hover{
-	color: #fff;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .hover-comments{
 	margin-left: 10px;
 }
