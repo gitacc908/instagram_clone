@@ -19,6 +19,21 @@
 {% block content %}
 <main>
     <div class="gotopost post-modal-content">
+      <header class="post__header-mobile">
+             <div class="post__profile">
+                <a href="{{ post.author.get_absolute_url}}" class="post__avatar">
+                <img src="{{ post.author|get_user_photo }}" alt="User Picture">
+                </a>
+                <a href="{{ post.author.get_absolute_url}}" class="post__user">{{ post.author.username }}</a>
+             </div>
+             <button class="post__more-options">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <circle cx="6.5" cy="11.5" r="1.5" fill="var(--text-dark)"></circle>
+                   <circle cx="12" cy="11.5" r="1.5" fill="var(--text-dark)"></circle>
+                   <circle cx="17.5" cy="11.5" r="1.5" fill="var(--text-dark)"></circle>
+                </svg>
+             </button>
+          </header>
        <div class="post__content">
          <div class="post__medias post-medias">
             {% for image in post.images.all %}
@@ -169,14 +184,14 @@
              <span class="post__date-time">
                 <!-- {{ bookmark.created|naturaltime }} --> {{ post.created|naturaltime }}
              </span>
-             <section class="add-comment sH9wk _JgwE">
-                <div class="RxpZH">
-                   <form action="" class="X7cDz">
-                      <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-                      {% comment %} <button data-post-id="{{ bookmark.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button> {% endcomment %}
-                   </form>
-                </div>
-             </section>
+             <section class="add-comment sH9wk _JgwE">  
+                                       <div class="RxpZH">
+                                          <form action="" class="X7cDz">
+                                             <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
+                                             <button data-post-id="2" data-author-of-comment="adilet123" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                                          </form>
+                                       </div>
+                              </section>
           </footer>
        </div>
     </div>
