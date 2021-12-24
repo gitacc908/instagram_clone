@@ -7,7 +7,12 @@ urlpatterns = [
  
     path('', views.main, name='index'),
     path('post_detail/<int:pk>/', views.post_detail, name='post_detail'),
-    path('edit_profile', views.edit_profile, name='edit_profile'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+
+    # view with submit
+    path('unfollow/<pk>/', views.UnfollowView.as_view(), name='unfollow'),
+    path('delete/<pk>/', views.DeletePost.as_view(), name='delete_post'),
+
 
 
     # ajax requests
