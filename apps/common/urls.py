@@ -7,7 +7,7 @@ urlpatterns = [
  
     path('', views.main, name='index'),
     path('post_detail/<int:pk>/', views.post_detail, name='post_detail'),
-    path('edit_profile', views.edit_profile, name='edit_profile'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
 
 
     # ajax requests
