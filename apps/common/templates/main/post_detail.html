@@ -17,7 +17,33 @@
 
 
 {% block content %}
+<input hidden id="posts-id" data-comment-url="{% url 'comment' %}" data-reply-url="{% url 'reply' %}" data-like-url="{% url 'like' %}" data-save-url="{% url 'save' %}">
 <main>
+   {% if request.user == post.author %}
+   <div class="post-setting-container">
+      <div class="post-setting-outer">
+         <div class="post-setting-inner">
+            <a href="{{ post.delete_post }}" class="post-setting-button warning">{% trans 'Удалить' %}</a>
+            <a href="{{ post.get_absolute_url }}" class="post-setting-button ">{% trans 'Перейти к публикации' %}</a>
+            <a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+         </div>
+      </div>
+   </div>
+   {% else %}
+<div class="post-setting-container">
+   <div class="post-setting-outer">
+      <div class="post-setting-inner">
+         {% if post.author != request.user and post.author not in request.user.following.all %}
+         <a href="{{ post.unfollow }}" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
+         {% endif %}
+         <a href="{{ post.get_absolute_url }}" class="post-setting-button post-link" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
+         <a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
+         <a href="#" class="post-setting-button copy-link">{% trans 'Копировать ссылку' %}</a>
+         <a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>
+      </div>
+   </div>
+</div>
+{% endif %}
     <div class="gotopost post-modal-content">
       <header class="post__header-mobile">
              <div class="post__profile">
@@ -42,7 +68,7 @@
            </div>
             <div class="post__indicators"></div>
        </div>
-       <div class="post__comments">
+       <div class="post__comments post-actions">
           <header class="post__header">
              <div class="post__profile">
                 <a href="{{ post.author.get_absolute_url}}" class="post__avatar">
@@ -67,7 +93,7 @@
                      <img src="{{ post.author|get_user_photo }}" alt="">
                      </a>
                   </div>
-                  <div class="user-comment">
+                  <div class="user-comment user_comment">
                      <span class="user-name">{{ post.author.username }}</span>
                      <p>{{ post.body }}
                         {% for tag in post.tags.all %}
@@ -83,28 +109,22 @@
             {% endif %}
 
             {% for comment in post.comments.all %}
-             <div class="user-post-action-comment">
+             <div class="user-post-action-comment" data-comment-like-url="{% url 'like_comment' %}">
                 <div class="user-post-action-comment-box">
                    <div class="user-profile-comment">
                       <a href="#">
                       <img src="{{ comment.user|get_user_photo }}" alt="">
                       </a>
                    </div>
-                   <div class="user-comment">
-                      <span class="user-name">
-                         <!-- {{ comment.user.username }} --> {{ comment.user.username }}
-                      </span>
-                      <p>
-                         <!-- {{ comment.text }} -->{{ comment.text }}
-                      </p>
+                   <div class="user-comment user_comment">
+                      <span class="user-name">{{ comment.user.username }}</span>
+                      <p>{{ comment.text }}</p>
                       <div class="action-buttons">
-                          <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <span>{{ comment.total_likes }}</span></button><button class="action-button">Ответить</button><button class="action-button complaint">···</button>
+                          <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <a class="comment-like-counter">{{ comment.total_likes }}</a></button><button class="action-button reply-button" data-comment-id="{{ comment.id }}">Ответить</button><button class="action-button complaint">···</button>
                       </div>
                    </div>
-                   <button class="like-comment">
-                      <svg aria-label="Нравится" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="14" role="img" viewBox="0 0 48 48" width="14">
-                         <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-                      </svg>
+                   <button class="like-comment" data-comment-id="{{ comment.id }}">
+                     <svg {% if request.user in comment.likes.all %}stroke-width="2"; fill="#ed4956" {% else%} fill="white" stroke="black" {% endif %} aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
                    </button>
                    
                    {% if comment.replies.count > 0 %}
@@ -151,7 +171,7 @@
         
             </div>
 
-          <footer class="post-actions-footer" data-post-id="{{ bookmark.id }}">
+          <footer class="post-actions-footer" data-post-id="{{ post.id }}">
              <div class="post__buttons">
                 <button class="post__button like_button">
                    <svg aria-label="Не нравится" class="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 52" width="24">
@@ -159,7 +179,7 @@
                       </path> 
                    </svg>
                 </button>
-                <button class="post__button comments_button" onclick="openNav()">
+                <button class="post__button comments_button">
                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M21.2959 20.8165L20.2351 16.8602C20.1743 16.6385 20.2047 16.3994 20.309 16.1907C21.2351 14.3342 21.5438 12.117 20.9742 9.80402C20.2003 6.67374 17.757 4.16081 14.6354 3.33042C13.7833 3.10869 12.9442 3 12.1312 3C6.29665 3 1.74035 8.47365 3.31418 14.5647C4.04458 17.3819 7.05314 20.2992 9.88344 20.9861C10.6486 21.173 11.4008 21.26 12.1312 21.26C13.7006 21.26 15.1701 20.8557 16.4614 20.1601C16.6049 20.0818 16.7657 20.0383 16.9222 20.0383C17.0005 20.0383 17.0787 20.047 17.157 20.0688L21.009 21.0991C21.0307 21.1035 21.0525 21.1078 21.0699 21.1078C21.2177 21.1078 21.3351 20.9687 21.2959 20.8165ZM19.0178 17.1863L19.6178 19.4253L17.4831 18.8558C17.3005 18.8079 17.1135 18.7819 16.9222 18.7819C16.557 18.7819 16.1875 18.8775 15.8571 19.0558C14.6963 19.6818 13.4441 19.9992 12.1312 19.9992C11.4834 19.9992 10.8269 19.9166 10.1791 19.7601C7.78354 19.1775 5.14453 16.6037 4.53586 14.2473C3.90111 11.7865 4.40109 9.26057 5.90536 7.31719C7.40964 5.3738 9.6791 4.26081 12.1312 4.26081C12.8529 4.26081 13.5876 4.35646 14.3137 4.5521C16.9961 5.26511 19.0786 7.39544 19.7525 10.1084C20.2264 12.0213 20.0308 13.9299 19.183 15.6298C18.9395 16.1168 18.8787 16.6689 19.0178 17.1863Z" fill="var(--text-dark)" stroke="var(--text-dark)" stroke-width="0.7"></path>
                    </svg>
@@ -170,8 +190,8 @@
                    </svg>
                 </button>
                 <button class="post__button post__button--align-right save-button">
-                   <svg aria-label="Сохранить" height="24" role="img" viewBox="0 0 24 24" width="24" fill="var(--text-dark)" stroke="var(--text-dark)" stroke-width="0.7">
-                      <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+                  <svg aria-label="Удалить" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 48 48" width="24">
+                     <path stroke-width="3" {% if post in request.user.bookmarked.posts.all %} fill="#262626" {% else %} fill="#ffffff" {% endif %} stroke="#262626" d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z"></path>
                    </svg>
                 </button>
              </div>
@@ -189,7 +209,7 @@
                                        <div class="RxpZH">
                                           <form action="" class="X7cDz">
                                              <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-                                             <button data-post-id="2" data-author-of-comment="adilet123" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
+                                             <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
                                           </form>
                                        </div>
                               </section>
@@ -197,20 +217,87 @@
        </div>
     </div>
     <div class="comments"  id="sidebar">
-                  <div class="title-comments">Комментарии</div><button class="closebtn"  onclick="closeNav(), document.getElementById('id01').style.display='none'"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> 
-                  <div class="post-actions-comments-mobile" data-comment-like-url="/ru/like_comment/">
-                     
-                     
-                  </div>
-                  <section class="add-comment sH9wk _JgwE">  
-                     <div class="RxpZH">
-                        <form action="" class="X7cDz">
-                           <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-                           <button data-post-id="11" data-author-of-comment="adilet123" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Ответить</button>
-                        </form>
-                     </div>
-                  </section>
+         <div class="title-comments">{% trans 'Комментарии' %}</div><button class="closebtn"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> 
+         <div class="post-actions-comments-mobile" data-comment-like-url="{% url 'like_comment' %}">
+            {% if post.body %}
+            <div class="user-post-action-comment">
+               <div class="user-profile-comment">
+                  <a href="#">
+                  <img src="{{ post.author|get_user_photo }}" alt="">
+                  </a>
                </div>
+               <div class="user-comment">
+                  <span class="user-name">{{ post.author.username }}</span>
+                  <p>{{ post.body }}
+                     {% for tag in post.tags.all %}
+                     <a class="tag" href="/">{{ tag }} </a>
+                     {% endfor %}
+                  </p>
+                  <div class="action-buttons">
+                  <a href="#" class="action-button data-comment">{{ post.created|naturaltime }}</a>
+                  </div>
+               </div>
+            </div>
+         {% endif %}
+         {% for comment in post.comments.all %}
+            <div class="user-post-action-comment">
+               <div class="user-profile-comment">
+                  <a href="#">
+                  <img src="{{ comment.user|get_user_photo }}" alt="">
+                  </a>
+               </div>
+               <div class="user-comment">
+                  <span class="user-name">{{ comment.user.username }}</span>
+                  <p>{{ comment.text }}</p>
+                  <div class="action-buttons">
+                  <a href="#" class="action-button data-comment">{{ comment.created|naturaltime }}</a><button class="action-button">Нравится: <a  href="#" class="comment-like-counter">{{ comment.total_likes }}</a></button><button class="action-button reply-button" data-comment-id="{{ comment.id }}">{% trans 'Ответить'%}</button><button class="action-button complaint">···</button>
+                  </div>
+               </div>
+               <button class="like-comment" data-comment-id="{{ comment.id }}">
+                  <svg {% if request.user in comment.likes.all %}stroke-width="2"; fill="#ed4956" {% else%} fill="white" stroke="black" {% endif %} aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+               </button>
+               {% if comment.replies.count > 0 %}
+                  <div class="reply-counter">
+                     <button class="show-replies" style="width: 100%; text-align: center; font-weight: bold; font-size: 12px; color: #8d8d8d;">{% trans 'Посмотреть ответы' %} <span>({{ comment.replies.count }})</span></button>
+                  </div>
+                  <div class="answer-container">
+                  {% for reply in comment.replies.all %}
+                     <div class="answer">
+                        <div class="user-post-action-comment-box">
+                           <div class="user-profile-comment">
+                              <a href="#">
+                              <img src="{{ reply.user|get_user_photo}}" alt="">
+                              </a>
+                           </div>
+                           <div class="user-comment">
+                              <span class="user-name">
+                              <!--  --> {{ reply.user.username }}
+                              </span>
+                              <p>
+                              <!--  --> {{ reply.text }}
+                              </p>
+                              <div class="action-buttons">
+                              <a href="#" class="action-button data-comment">{{ reply.created|naturaltime }}</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            {% endfor %}
+            
+         </div>
+         <section class="add-comment sH9wk _JgwE">  
+            <div class="RxpZH">
+               <form action="" class="X7cDz">
+                  <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
+                  <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Ответить</button>
+               </form>
+            </div>
+         </section>
+         </div>
     {% if request.user != post.author and latest_posts %}
     <div class="z666a">
        <div class="more_pub_in_user">
@@ -241,6 +328,9 @@
 {% block scripts %}
 <script src="{% static 'js/modal_slider.js'%}"></script>
 <script src="{% static 'js/modals.js' %}"> </script>
+<script src="{% static 'js/post_detail.js' %}"></script>
+<script src="{% static 'js/profile_ajax.js' %}"></script>
+
 
 {% endblock %}
 

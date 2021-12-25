@@ -135,3 +135,18 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 	width: 100%;
 	display: none;
 }
+.user_comment{
+	margin: revert;
+}
+@media (max-width: 768px){
+	.post-actions-comments-mobile {
+		width: 100%;
+		height: calc(100% - 50px);
+		overflow: auto;
+	}
+}
+.user-post-action-comment {
+    display: flex;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
