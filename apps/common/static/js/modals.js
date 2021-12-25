@@ -46,3 +46,15 @@ $(function() {
     });
 
 });
+
+function openNav() {document.getElementById("sidebar").style.bottom = "0";}
+function closeNav() {document.getElementById("sidebar").style.bottom = "-60%";}
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    document.getElementById("sidebar").style.bottom = "60%";
+  }
+}

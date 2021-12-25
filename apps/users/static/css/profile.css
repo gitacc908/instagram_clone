@@ -152,7 +152,7 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 .post-actions-footer{ position: absolute;left: 0; bottom: 0; right: 0; width: 100%; padding-top: 10px;  border-top: solid 1px #dbdbdb;}
 
 .post-actions-footer-likes{font-weight: bold; margin-top: 5px; padding-left: 16px; padding-right: 16px;}
-.add-comment{margin-top: 14px;height: 60px; padding-left: 16px; padding-right: 16px;}
+.add-comment{height: 60px; padding-left: 16px; padding-right: 16px; }
 .X7cDz{height: 100%;padding: 0;}
 .RxpZH{height: 100%;}._JgwE{padding-top: 0;}
 
@@ -181,7 +181,7 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 		padding-right: 16px;
 		padding-bottom: 20px;
 	}
-	.add-comment{height: 50px;}
+	.add-comment{height: 50px; }
 	.publications-subscribers-subscriptions{margin: 0; height: 60px; border-top: solid 1px #dbdbdb; justify-content: space-around;align-items: center;font-size: 14px;}
 	.publications-subscribers-subscriptions li{margin: 0; color: #8e8e8e;}
 	.publications-subscribers-subscriptions li span{font-weight: 500;display: block; text-align: center; color: #262626;}
@@ -232,11 +232,11 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 
 .post__indicators{bottom: -14px;}
 
-.comments{display: block; height: 60%; z-index: 200; border-top-left-radius: 24px;border: solid 1px #dbdbdb; border-top-right-radius: 24px;  position: fixed; left: 0;  bottom: -60%; right: 0; padding-top: 60px;transition: .2s bottom; background-color: white;}
+.comments{display: block; height: 60%; z-index: 200; border-top-left-radius: 24px;border: solid 1px #dbdbdb; border-top-right-radius: 24px;  position: fixed; left: 0;  bottom: -60%; right: 0; padding-top: 51px;transition: .2s bottom; background-color: white;}
 .openbtn:hover,.closebtn:hover{ background: var(--bg-hover);}
 .title-comments{position: absolute; line-height: 50px; left: 0; right: 0; top: 0; padding-left: 15px; padding-right: 15px;border-bottom: solid 1px #dbdbdb; text-align: center; font-weight: 500;}
 
-.post-actions-comments-mobile{width: 100%; height: calc(100% - 76px); overflow: auto;padding-left: 16px; padding-right: 16px;}
+.post-actions-comments-mobile{width: 100%; height: calc(100% - 50px); overflow: auto;}
 
 	
 }

@@ -69,6 +69,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .publication-link{position: absolute; left: 0; top: 0; right: 0; bottom: 0;}
 .publication-link img{width: 100%; height: 100%; object-fit: cover;}
 
+.comments{display: none;}
 @media (max-width: 768px){
 
 
@@ -92,7 +93,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 	.publication-link:active{opacity: .8;}
 	.likes-comments-hover{display: none;}
 
-	
+
 	.post__indicators{ bottom: -30px; top: unset; }
 .user-post-action-comment{display: flex; margin: 10px 0;}
 .z666a{padding-top: 20px;}
@@ -105,6 +106,19 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .like-comment{width: 50px; font-size: 22px;}
 .action-buttons{display: inline-block; gap: 5px; margin-top: 14px; gap: 10px; }.action-buttons a{color: #8e8e8e;font-weight: 100; }
 .action-button{font-size: 12px; font-weight: 600; color: #8e8e8e;  white-space: nowrap; margin: 5px;}
+
+
+
+
+.comments{display: block; height: 60%; z-index: 200; border-top-left-radius: 24px;border: solid 1px #dbdbdb; border-top-right-radius: 24px;  position: fixed; left: 0;  bottom: -60%; right: 0; padding-top: 51px;transition: .2s bottom; background-color: white;}
+.closebtn{position: absolute; right: 14px; top: 14px; width: 24px; height: 24px;}
+.title-comments{position: absolute; line-height: 50px; left: 0; right: 0; top: 0; padding-left: 15px; padding-right: 15px;border-bottom: solid 1px #dbdbdb; text-align: center; font-weight: 500;}
+
+.modal{display: none;position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #00000022;}
+.post-actions-comments-mobile{width: 100%; height: calc(100% - 55px); overflow: auto;}
+.add-comment{margin:  0px;}
+
+
 }
 
 .hover-comments{
