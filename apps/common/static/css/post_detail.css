@@ -118,6 +118,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .post-actions-comments-mobile{width: 100%; height: calc(100% - 55px); overflow: auto;}
 .add-comment{margin:  0px;}
 
+
 }
 
 .hover-comments{
