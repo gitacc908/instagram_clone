@@ -134,7 +134,7 @@ Instagram
 									{% if user_post.author != request.user and user_post.author not in request.user.following.all %}
 									<a href="{{ user_post.unfollow }}" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
 									{% endif %}
-									<a href="{{ user_post.get_absolute_url }}" class="post-setting-button" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
+									<a href="{{ user_post.get_absolute_url }}" class="post-setting-button post-link" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
 									<a href="#" class="post-setting-button">{% trans 'Поделиться' %}...</a>
 									<a href="#" class="post-setting-button copy-link">{% trans 'Копировать ссылку' %}</a>
 									<a href="#" class="post-setting-button close">{% trans 'Отмена' %}</a>

@@ -30,7 +30,8 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .user-profile-comment{width: 70px; justify-content: center; display: flex;}
 .user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
 .user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
-.user-comment{width: calc(100% - 120px);overflow: hidden; }
+.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
+>>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
 .user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
 .like-comment{width: 50px; font-size: 22px;}
 
@@ -101,7 +102,11 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .user-profile-comment{width: 70px; justify-content: center; display: flex;}
 .user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
 .user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
+<<<<<<< HEAD
 .user-comment{width: calc(100% - 120px);overflow: hidden;}
+=======
+.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
+>>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
 .user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
 .like-comment{width: 50px; font-size: 22px;}
 .action-buttons{display: inline-block; gap: 5px; margin-top: 14px; gap: 10px; }.action-buttons a{color: #8e8e8e;font-weight: 100; }
@@ -118,6 +123,10 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .post-actions-comments-mobile{width: 100%; height: calc(100% - 55px); overflow: auto;}
 .add-comment{margin:  0px;}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
 }
 
 .hover-comments{
@@ -133,4 +142,19 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .answer-container{
 	width: 100%;
 	display: none;
+}
+.user_comment{
+	margin: revert;
+}
+@media (max-width: 768px){
+	.post-actions-comments-mobile {
+		width: 100%;
+		height: calc(100% - 50px);
+		overflow: auto;
+	}
+}
+.user-post-action-comment {
+    display: flex;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }

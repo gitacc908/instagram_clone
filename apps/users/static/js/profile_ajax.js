@@ -6,12 +6,7 @@ $(document).ready(function(){
 		let totalLikes = parseInt(commentLikesTag.text);
 		let comment_id = this.getAttribute('data-comment-id');
 		let url = this.parentNode.parentNode.getAttribute('data-comment-like-url');
-        // if (commentLikesTag.text == '0'){
-        //     commentLikesTag.text = totalLikes += 1;
-        // }
-        // else{
-        //     commentLikesTag.text = totalLikes -= 1;
-        // }
+
 		$.ajax({
 			url : url,
 			type : 'POST',
@@ -128,7 +123,6 @@ $(document).ready(function(){
         document.body.appendChild(dummy);
         dummy.value = link;
         dummy.select();
-        console.log(link)
         document.execCommand('copy');
         document.body.removeChild(dummy);
         $('.notification-text').html('Link has been copied!');
@@ -136,11 +130,11 @@ $(document).ready(function(){
         $('#notify').delay(3000).fadeOut();
         
         // close current modal
-        $( ".post-setting-container" ).each(function( index ) {
-            if (this.style.display == 'flex'){
-                this.style.display = ''
-            }
-        });
+        // $( ".post-setting-container" ).each(function( index ) {
+        //     if (this.style.display == 'flex'){
+        //         this.style.display = ''
+        //     }
+        // });
     });
     
 

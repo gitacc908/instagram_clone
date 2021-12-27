@@ -47,7 +47,8 @@ $(document).ready(function(){
         // add reply
         let data = JSON.parse(localStorage.getItem('data'))
         commentText = comment.split(" ")
-        if (data){
+
+        try{
             if (commentText[0] == `@${data.username}`){
                 var replyUrl = $('#posts-id').attr('data-reply-url');
                 $.ajax({
@@ -72,7 +73,8 @@ $(document).ready(function(){
                 })
             }
         }
-        else{ // add comment 
+        catch(TypeError){
+            // add comment 
             let username = this.getAttribute('data-author-of-comment');
             $.ajax({
                 url : $('#posts-id').attr('data-comment-url'),
@@ -94,16 +96,16 @@ $(document).ready(function(){
                     else if(mobileCommentSection){
                         $(`<div class="user-post-action-comment">
                         <div class="user-profile-comment">
-                         <a href="#">
-                          <img src="${profImage.src}" alt="">
-                         </a>
+                        <a href="#">
+                        <img src="${profImage.src}" alt="">
+                        </a>
                         </div>
                         <div class="user-comment">
-                         <span class="user-name">${username}</span>
-                         <p>${comment}</p>
-                         <div class="action-buttons">
-                          <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button reply-button" data-comment-id=${data.comment_id}>Ответить</button><button class="action-button complaint">···</button>
-                         </div>
+                        <span class="user-name">${username}</span>
+                        <p>${comment}</p>
+                        <div class="action-buttons">
+                        <a href="#" class="action-button data-comment">Сейчас</a><button class="action-button">Нравится: <a href="#" class="comment-like-counter">0</a></button><button class="action-button reply-button" data-comment-id=${data.comment_id}>Ответить</button><button class="action-button complaint">···</button>
+                        </div>
                         </div>
                         <button class="like-comment" data-comment-id=${data.comment_id}>
                             <svg fill="white" stroke="black" aria-label="Не нравится" class="_8-yf5 " color="#ed4956" height="12" role="img" viewBox="0 0 48 48" width="12"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>

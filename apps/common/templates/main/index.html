@@ -65,7 +65,7 @@
 
             <section class="side-menu">
                 <div class="side-menu__user-profile">
-                    <a href="" target="_blank" class="side-menu__user-avatar">
+                    <a href="{{ request.user.get_absolute_url }}" target="_blank" class="side-menu__user-avatar">
                         <img class="prof-image" src="{{ request.user|get_user_photo }}" alt="User Picture">
                     </a>
                     <div class="side-menu__user-info">
@@ -76,7 +76,7 @@
                         <span>{{ request.user.username }}</span>
                         {% endif %}
                     </div>
-                    <button class="side-menu__user-button">{% trans 'Переключить'%}</button>
+                    <a style="color: var(--link);" href="{% url 'logout' %}" class="side-menu__user-button">{% trans 'Переключить'%}</a>
                 </div>
 
                 <div class="side-menu__suggestions-section">
@@ -88,7 +88,7 @@
                         {% for suggestion in request.user|follow_suggestion %}
                             <div class="side-menu__suggestion">
                                 <a href="#" class="side-menu__suggestion-avatar">
-                                    <img src="{{ suggestion|get_user_photo }}" alt="User Picture">
+                                    <img class="sidemenusuggestion" src="{{ suggestion|get_user_photo }}" alt="User Picture">
                                 </a>
                                 <div class="side-menu__suggestion-info">
                                     <a href="{{ suggestion.get_absolute_url }}">{{ suggestion.username }}</a>
