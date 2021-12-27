@@ -19,9 +19,156 @@
 
 
 <main>
-    
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Редактировать профиль</button>
+      <button class="tablinks" onclick="openCity(event, 'Paris')">Сменить пароль</button>
+      <button class="tablinks" onclick="openCity(event, 'Tokyo')">Push-уведомления</button>
+      <button class="tablinks" onclick="openCity(event, 'Paris')">Входы в аккаунты</button>
+    </div>
+
+<div id="London" class="tabcontent">
+
+<div class="blocks">
+        <div class="block-one">
+            <button class="edit_user_img">
+                <img src="https://avatars.mds.yandex.net/i?id=7f9b165d44a4cc79604da06428243408-5331459-images-thumbs&n=13" alt="">
+            </button>
+        </div>
+        <div class="block-two">
+            <div class="edit_profile_user_name">dcllns</div>
+            <button class="edit_user_img_text">Изменить фото профиля</button>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Имя</div>
+        <div class="block-two">
+            <input aria-required="false" id="pepName" placeholder="Имя" type="text" class="JLJ-B zyHYP" value="mmm💬">
+            <div class="text-p">
+                Чтобы людям было проще находить ваш аккаунт, используйте имя, под которым вас знают: ваше имя и фамилию, никнейм или название компании.
+                Изменить имя можно не более двух раз в течение 14 дней.
+            </div>
+            <div class="text-p">
+                Изменить имя можно не более двух раз в течение 14 дней.
+            </div>  
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Имя пользователя</div>
+        <div class="block-two">
+            <input aria-required="true" id="pepUsername" placeholder="Имя пользователя" type="text" class="JLJ-B zyHYP" value="dcllns">
+            <div class="text-p">
+                В большинстве случаев у вас будет ещё 14 дней, чтобы снова поменять имя пользователя на <span>dcllns</span>.
+            </div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Веб-сайт</div>
+        <div class="block-two">
+            <input aria-required="false" id="pepWebsite" placeholder="Веб-сайт" type="text" class="JLJ-B zyHYP" value="">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">О себе</div>
+        <div class="block-two">
+            <textarea class="p7vTm" id="pepBio"></textarea>
+                
+
+            <div class="text-p">
+                <h3>Личная информация</h3>
+                Укажите личную информацию, даже если аккаунт будет использоваться для компании, домашнего животного или в других целях. Эти сведения не будут показываться в вашем общедоступном профиле.
+            </div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Эл.адрес</div>
+        <div class="block-two">
+            <input aria-required="false" id="pepEmail" placeholder="Эл. адрес" type="text" class="JLJ-B zyHYP" value="chikabaiysbekov45@gmail.com">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Номер телефона</div>
+        <div class="block-two">
+            <input aria-required="false" id="pepPhone Number" placeholder="Номер телефона" type="text" class="JLJ-B zyHYP" value="+7 926 678-17-76">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Рекомендации похожих аккаунтов</div>
+        <div class="block-two">
+            <div class="Np4RR" id="pepChainingEnabled">
+                <label class="U17kh PLphk " for="f41e6f7a4359aa">
+                    <input class="tlZCJ" id="f41e6f7a4359aa" type="checkbox" value="" checked=""><div class="mwD2G"></div>
+                    <div class="               AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              " style="width: 50%;">Рекомендовать ваш аккаунт возможным подписчикам.  <a aria-label="Узнайте больше о рекомендациях похожих аккаунтов" class="cRH0J" href="https://help.instagram.com/530450580417848" target="_blank" rel="nofollow noopener noreferrer">[?]</a></div></label></div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one"></div>
+        <div class="block-two">
+            <button class="sqdOP  L3NKy   y3zKF     " type="button">Отправить</button>
+        </div>
+  </div>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <div class="blocks">
+        <div class="block-one">
+            <button class="edit_user_img">
+                <img src="https://avatars.mds.yandex.net/i?id=7f9b165d44a4cc79604da06428243408-5331459-images-thumbs&n=13" alt="">
+            </button>
+        </div>
+        <div class="block-two">
+            <div class="edit_password_user_name">dcllns</div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Старый пароль</div>
+        <div class="block-two">
+           <input autocomplete="current-password" class="j_2Hd    RO68f  M5V28" id="cppOldPassword" name="cppOldPassword" required="" spellcheck="true" type="password" value="">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Новый пароль</div>
+        <div class="block-two">
+            <input autocomplete="new-password" class="j_2Hd    RO68f  M5V28" id="cppNewPassword" name="cppNewPassword" required="" spellcheck="true" type="password" value="">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Подтвердите новый пароль</div>
+        <div class="block-two">
+            <input autocomplete="new-password" class="j_2Hd    RO68f  M5V28" id="cppConfirmPassword" name="cppConfirmPassword" required="" spellcheck="true" type="password" value="">
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one"></div>
+        <div class="block-two">
+            <button class="sqdOP  L3NKy   y3zKF     " disabled="" type="button">Сменить пароль</button>
+        </div>
+  </div>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
 </main>
 
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 
 {% endblock %}
 

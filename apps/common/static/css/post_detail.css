@@ -30,7 +30,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .user-profile-comment{width: 70px; justify-content: center; display: flex;}
 .user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
 .user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
-.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
+.user-comment{width: calc(100% - 120px);overflow: hidden; }
 .user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
 .like-comment{width: 50px; font-size: 22px;}
 
@@ -101,7 +101,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .user-profile-comment{width: 70px; justify-content: center; display: flex;}
 .user-profile-comment a {width: 35px; height: 35px;min-width: 35px; min-height: 35px;overflow: hidden; border-radius: 50%; display: block; position: sticky; top: 10px;}
 .user-profile-comment a img{width: 100%; height: 100%; object-fit: cover;}
-.user-comment{width: calc(100% - 120px);overflow: hidden; margin-top: 10px;}
+.user-comment{width: calc(100% - 120px);overflow: hidden;}
 .user-comment p{font-size: 14px; font-weight: 100; line-height: 18px; margin-top: 7px; }
 .like-comment{width: 50px; font-size: 22px;}
 .action-buttons{display: inline-block; gap: 5px; margin-top: 14px; gap: 10px; }.action-buttons a{color: #8e8e8e;font-weight: 100; }
