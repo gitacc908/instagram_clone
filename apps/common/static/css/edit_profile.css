@@ -111,7 +111,7 @@ button
 	align-items: center;
 }
 
-.block-two .text-p
+.text-p
 {
 	font-size: 12px;
 	line-height: 16px;
@@ -119,9 +119,11 @@ button
 	margin-top: 16px;
 	margin-bottom: 8px;
 	color: #959494;
+  font-weight: normal;
 }
-.block-two .text-p h3
+.text-p h3
 {
+  font-weight: normal;
 	font-size: 14px;
 }
 .JLJ-B {
@@ -191,4 +193,73 @@ input{outline: none;}
     overflow: visible;
     padding: 4px 12px;
     min-width: 100%;
+}
+
+.tabcontent h2{
+  margin-bottom: 24px;
+  color: #333;
+  font-weight: normal;
+  font-size: 22px;
+}
+.tabcontent section{
+  padding-right: 24px; 
+  padding-left: 24px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: bold;
+}
+
+.radio_value{
+  margin-top: 4px;
+  color: #333;
+  cursor: pointer;
+}
+.radio_value input{margin-right: 10px; }
+fieldset{border: none;}
+
+
+
+.login__active{
+  /*background: orange;*/
+  margin-left: 64px; 
+  margin-right: 64px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.login__active_block{
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border: solid 1px #dbdbdb;
+}
+.login__active_map{
+  height: 200px;
+  background: #eee;
+}
+.login__active_btn{
+  display: flex;
+  align-items: center;
+}
+
+hr{height: 20px; border: solid 1px #dbdbdb; }
+.login__active_btn button{
+  width: 100%;
+  padding: 20px 0;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+.login__active_btn button:active{color: #777;}
+
+
+.info__active__seanse{display: flex; font-size: 14px;margin: 6px 0;}
+.activity_time{color: #58c322;}
+.activity_device{color: #888;}
+
+@media (max-width: 768px){
+  .tab{display: none;}
+  .tabcontent{width: 100%;}
+  .blocks{display:block; padding-left: 16px; padding-right: 16px;}
+  .block-one{text-align: left; padding: 0; margin-bottom: 10px; width: 100%;}
+  .block-two{padding: 0;}
 }

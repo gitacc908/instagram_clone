@@ -204,19 +204,13 @@
              <div class="post__date-time">
                 <!-- {{ bookmark.created|naturaltime }} --> {{ post.created|naturaltime }}
              </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
              <section class="add-comment sH9wk _JgwE">  
                                        <div class="RxpZH">
                                           <form action="" class="X7cDz">
                                              <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-<<<<<<< HEAD
                                              <button data-post-id="2" data-author-of-comment="adilet123" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
-=======
                                              <button data-post-id="{{ post.id }}" data-author-of-comment="{{ request.user.username }}" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Опубликовать</button>
->>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
                                           </form>
                                        </div>
                               </section>
@@ -224,22 +218,6 @@
        </div>
     </div>
     <div class="comments"  id="sidebar">
-<<<<<<< HEAD
-                  <div class="title-comments">Комментарии</div><button class="closebtn"  onclick="closeNav(), document.getElementById('id01').style.display='none'"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> 
-                  <div class="post-actions-comments-mobile" data-comment-like-url="/ru/like_comment/">
-                     
-                     
-                  </div>
-                  <section class="add-comment sH9wk _JgwE">  
-                     <div class="RxpZH">
-                        <form action="" class="X7cDz">
-                           <textarea data-testid="post-comment-text-area" id="tstid" placeholder="Добавьте комментарий..." class="Ypffh comment-input"></textarea>
-                           <button data-post-id="11" data-author-of-comment="adilet123" class="sqdOP yWX7d    y3zKF     send-comment" disabled="" data-testid="post-comment-input-button" type="button">Ответить</button>
-                        </form>
-                     </div>
-                  </section>
-               </div>
-=======
          <div class="title-comments">{% trans 'Комментарии' %}</div><button class="closebtn"><svg viewBox="0 0 48 48"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></button> 
          <div class="post-actions-comments-mobile" data-comment-like-url="{% url 'like_comment' %}">
             {% if post.body %}
@@ -321,7 +299,6 @@
             </div>
          </section>
          </div>
->>>>>>> 1ba3b74514d17d6b7c756c2b4a13db8235e8c145
     {% if request.user != post.author and latest_posts %}
     <div class="z666a">
        <div class="more_pub_in_user">
