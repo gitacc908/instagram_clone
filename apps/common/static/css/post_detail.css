@@ -121,9 +121,18 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .post-actions-comments-mobile{width: 100%; height: calc(100% - 55px); overflow: auto;}
 .add-comment{margin:  0px;}
 
+
+
+	.post-actions-comments-mobile {
+		width: 100%;
+		height: calc(100% - 50px);
+		overflow: auto;
+	}
+}
 .hover-comments{
 	margin-left: 10px;
 }
+
 .user-post-action-comment-box{
 	flex-wrap: wrap;
 }
@@ -138,14 +147,7 @@ button{background: unset; border: none; outline: unset; cursor: pointer;}
 .user_comment{
 	margin: revert;
 }
-}
-@media (max-width: 768px){
-	.post-actions-comments-mobile {
-		width: 100%;
-		height: calc(100% - 50px);
-		overflow: auto;
-	}
-}
+
 .user-post-action-comment {
     display: flex;
     margin: 20px 0;
