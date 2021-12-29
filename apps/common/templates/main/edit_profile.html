@@ -19,11 +19,20 @@
 
 
 <main>
-    <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Редактировать профиль</button>
-      <button class="tablinks" onclick="openCity(event, 'Paris')">Сменить пароль</button>
-      <button class="tablinks" onclick="openCity(event, 'Tokyo')" >Push-уведомления</button>
-      <button class="tablinks" onclick="openCity(event, 'login_activity')">Входы в аккаунты</button>
+
+    <div class="dropdown">
+        <div class="mobile-dropdown">
+            <button onclick="myFunction()" class="dropbtn"><svg aria-label="Параметры" fill="#262626" height="24" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+            <h1 style="font-size: 16px;line-height: 44px;">Редактировать профиль</h1>
+        </div>
+        
+        <div class="tab" id="myDropdown">
+          <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Редактировать профиль</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">Сменить пароль</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')" >Push-уведомления</button>
+          <button class="tablinks" onclick="openCity(event, 'login_activity')">Входы в аккаунты</button>
+        </div>
+
     </div>
 
 <div id="London" class="tabcontent">
@@ -444,6 +453,32 @@ function openCity(evt, cityName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+
+
+
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("tab");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 </script>
 
 {% endblock %}
