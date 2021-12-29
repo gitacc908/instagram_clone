@@ -42,8 +42,7 @@ main{ margin: 90px auto 0; max-width: 935px; margin-bottom: 100px; width: 100%; 
   border-left: solid 1px #dbdbdb;
   min-height: 500px;
 }
-
-
+.tablinks svg{display: none;}
 
 
 
@@ -303,14 +302,19 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
   font-size: 16px;
   border: none;
   cursor: pointer;
-  position: absolute; left: 16px; top: 10px;
-  padding-right: 20px;
+  position: absolute; left: 0; top: 0;
+  padding: 22.5px;
+  z-index: 2;
 
 }
+.dropbtn svg{position: absolute; top: 10.5px; right: 0; left: 10.5px; bottom: 0;z-index: 1;}
 
 .dropdown {
   position: relative;
   display: inline-block;
 }
 .show {display: block;}
+.tablinks{position: relative;}
+.tablinks svg{position: absolute; right: 16px; top: 12px; stroke: #666; display: block;}
+
 }
