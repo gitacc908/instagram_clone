@@ -257,6 +257,7 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
 .activity_device{color: #888;}
 
 
+
 .mobile-dropdown{display: none;}
 @media (max-width: 768px){
 
@@ -273,10 +274,12 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
     z-index: 1000;
   }
 
+
   .tabcontent{width: 100%;}
   .blocks{display:block; padding-left: 16px; padding-right: 16px;}
   .block-one{text-align: left; padding: 0; margin-bottom: 10px; width: 100%;}
   .block-two{padding: 0;}
+
 
   .mobile-tab{position: relative;
   display: inline-block;}
@@ -313,4 +316,5 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
   display: inline-block;
 }
 .show {display: block;}
+
 }
