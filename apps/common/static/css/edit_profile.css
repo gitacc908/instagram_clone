@@ -44,8 +44,6 @@ main{ margin: 90px auto 0; max-width: 935px; margin-bottom: 100px; width: 100%; 
 }
 .tablinks svg{display: none;}
 
-
-
 .blocks
 {
 	display: flex;
@@ -255,7 +253,6 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
 .activity_time{color: #58c322;}
 .activity_device{color: #888;}
 
-
 .mobile-dropdown{display: none;}
 @media (max-width: 768px){
 
@@ -276,6 +273,7 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
   .blocks{display:block; padding-left: 16px; padding-right: 16px;}
   .block-one{text-align: left; padding: 0; margin-bottom: 10px; width: 100%;}
   .block-two{padding: 0;}
+
 
   .mobile-tab{position: relative;
   display: inline-block;}
@@ -302,12 +300,10 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
   font-size: 16px;
   border: none;
   cursor: pointer;
-  position: absolute; left: 0; top: 0;
-  padding: 22.5px;
-  z-index: 2;
+  position: absolute; left: 16px; top: 10px;
+  padding-right: 20px;
 
 }
-.dropbtn svg{position: absolute; top: 10.5px; right: 0; left: 10.5px; bottom: 0;z-index: 1;}
 
 .dropdown {
   position: relative;
@@ -316,5 +312,4 @@ hr{height: 20px; border: solid 1px #dbdbdb; }
 .show {display: block;}
 .tablinks{position: relative;}
 .tablinks svg{position: absolute; right: 16px; top: 12px; stroke: #666; display: block;}
-
 }
