@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.main, name='index'),
     path('post_detail/<int:pk>/', views.post_detail, name='post_detail'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('search/', views.search, name='search'),
 
     # view with submit
     path('unfollow/<pk>/', views.UnfollowView.as_view(), name='unfollow'),
