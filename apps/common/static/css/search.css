@@ -1,5 +1,5 @@
 *{box-sizing: border-box; padding: 0; margin: 0;}
-
+body{background-color: #fafafa;}
 
 main{ margin: 64px auto 0; max-width: 975px; width: 100%; padding: 28px 20px;}
 
@@ -36,7 +36,7 @@ main{ margin: 64px auto 0; max-width: 975px; width: 100%; padding: 28px 20px;}
 .grid-link{display:flex; background: orange; position: relative; overflow: hidden;}
 .grid-link:before{content: ' ';display: block;padding-top: 100% ; }
 .BcNgP {
-    position: absolute; right: 10px; top: 10px;
+    position: absolute; right: 15px; top: 15px;
 }
 
 
@@ -54,7 +54,7 @@ main{ margin: 64px auto 0; max-width: 975px; width: 100%; padding: 28px 20px;}
 }
 
 @media (max-width: 768px){
-	main{padding: 0;margin-bottom: 48px;}
+	main{padding: 0;margin-bottom: 48px; margin-top: 46px;}
 	.block-one-grid{margin-bottom: 2px;}
 	.block-one-grid, .block-two-grid{
 		gap: 2px;
