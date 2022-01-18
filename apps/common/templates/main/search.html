@@ -17,6 +17,13 @@
 
 {% block content %}
 
+<div class="fixed-search">
+    <label class="NcCcD"><input autocapitalize="none" onfocus="myFunctionSearch(this)" id="input-btn" class="notactive"  autocomplete="off" placeholder="Поиск" spellcheck="true" type="search" value=""></label>
+</div>
+        <div id="myDropdownSearch" class="dropdown-content-search">
+            <button class="close-search" onclick="myFunctionSearchClose()">Отмена</button>
+        </div>
+
 <main>
     <div class="search-grid">
         <div class="block-one-grid">
@@ -309,9 +316,31 @@
     </div>
 </main>
 
+
+<script>
+function myFunctionSearch() {
+    var myDropdownSearch = document.getElementById("myDropdownSearch");
+    var activeSearch = document.querySelector("#input-btn");
+    if(!myDropdownSearch.classList.contains("showSearch")){
+        myDropdownSearch.classList.toggle("showSearch")
+        activeSearch.classList.toggle("activeSearch")
+        activeSearch.classList.remove("notactive")
+    }
+}
+function myFunctionSearchClose(){
+    var myDropdownSearch = document.getElementById("myDropdownSearch");
+    myDropdownSearch.classList.remove("showSearch")
+    var activeSearch = document.querySelector("#input-btn");
+    activeSearch.classList.remove("activeSearch")
+    activeSearch.classList.toggle("notactive")
+}
+
+</script>
+
 {% endblock %}
 
 {% block scripts %}
+
 {% endblock %}
 
 
