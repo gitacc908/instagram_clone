@@ -34,11 +34,16 @@ def post_detail(request, pk):
 
 @login_required
 def edit_profile(request):
-    return render(request, 'main/edit_profile.html')
+    return render(request, 'profile/edit_profile.html')
 
 @login_required
 def search(request):
     return render(request, 'main/search.html')
+
+
+@login_required
+def direct(request):
+    return render(request, 'main/direct.html')
 
 
 @login_required
