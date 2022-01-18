@@ -339,10 +339,11 @@
                 </div>
             </label>
             <label>
-            <div class="radio_value">
-                <input id="igCoreRadioButtonfirst_post2" name="first_post" type="radio" value="1">
-                От людей, на которых вы подписаны
-            </div>
+                <div class="radio_value">
+                    <input id="igCoreRadioButtonfirst_post2" name="first_post" type="radio" value="1">
+                    От людей, на которых вы подписаны
+                </div>
+            </label>
             <label>
                 <div class="radio_value">
                     <input id="igCoreRadioButtonfirst_post3" name="first_post" type="radio" value="1">
@@ -482,11 +483,8 @@ document.getElementById("defaultOpen").click();
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
+function myFunction(cityName) {
   document.getElementById("myDropdown").classList.toggle("show");
-  
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
 }
 
 // Close the dropdown menu if the user clicks outside of it
