@@ -1,0 +1,175 @@
+body{background: #fafafa; padding: 0; margin: 0; box-sizing: border-box;}
+
+
+main{height: calc(100vh - 86px); border-radius: 4px; background: #fff;max-width: 935px;margin-top: 66px; margin-left: auto; margin-right: auto; width: 100%; position: relative;border: solid 1px #dbdbdb;}
+
+
+
+ /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  max-width: 400px; width: 100%;
+  height: 500px;
+  animation-name: animatetop;
+  animation-duration: 0.2s;
+  border-radius: 18px;
+  margin-top: 135px;
+}
+
+@keyframes animatetop {
+  from {bottom: -10px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+/* The Close Button */
+.close {
+  color: #000;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  left: 16px;
+}
+.header-modal{display: flex; justify-content: center; height: 42px; position: relative; border-bottom: solid 1px #dbdbdb; align-items: center; padding-left: 16px; padding-right: 16px;}
+.header-modal h1{font-size: 16px;}
+button{background: unset; border: unset; outline: unset; cursor: pointer;}
+button:active{opacity: .5;}
+
+.inputbox-modal{display: flex;padding-top: 14px; padding-bottom: 14px; border-bottom: solid 1px #dbdbdb;}
+.inputbox-modal input{width: calc(100% - 100px); border: unset; font-size: 16px; outline: unset;}
+h2{font-size: 14px; padding-left: 16px;padding-top: 7px;}
+
+.modal-result{
+  margin-top: 10px;
+}
+
+
+
+/* Style the tab */
+.tab_box{height: 100%; border-right: solid 1px #dbdbdb;float: left;
+  width: 350px;}
+.header_tab{
+	height: 60px; position: relative; border-bottom: solid 1px #dbdbdb;display: flex; align-items: center; justify-content: center;
+}
+.switching{
+	padding: 7px 60px;
+	font-size: 16px; font-weight: bold; display: flex; gap:  10px;
+	background-color: unset; border: none; outline: unset; cursor: pointer;
+}
+.switching:active, .write-btn:active{opacity: .6;}
+.switching > ._8-yf5{transform: rotate(180deg);}
+
+.write-btn{background: unset; border: unset; outline: unset; cursor: pointer; position: absolute; right: 16px;}
+
+
+.tab {
+  overflow: auto;height: calc(100% - 70px);
+  padding-top: 10px;display: block;
+}
+
+/* Style the buttons inside the tab */
+.tablinks{
+  background-color: inherit;
+  color: black;
+  padding-left: 16px; padding-right: 16px;
+  width: 100%;
+  height: 72px;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Change background color of buttons on hover */
+.tablinks:hover {
+  background-color: #fafafa;
+}
+
+/* Create an active/current "tab button" class */
+.tablinks.active {
+  background-color: #eee;
+}
+.tab_user_img{width: 56px;min-width: 56px; max-width: 56px; height: 56px;min-height: 56px; max-height: 56px; overflow: hidden; border-radius: 50%;}
+.tab_user_img img{width: 100%; height: 100%; object-fit: cover;}
+.tab_user_name{font-size: 16px;}
+.tab_user_date{display: flex; gap: 7px;font-size: 14px; margin-top: 4px;color: #8e8e8e;}
+.tab_user_name, .tab_user_date span{white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 200px;}
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  width: calc(100% - 350px);
+  border-left: none;
+  height: 100%;
+  position: relative;
+}
+.messages{
+	width: 100%; height:calc(100% - 144px); 
+	padding-left: 16px;
+	padding-right: 16px;
+	overflow: auto;
+	position: relative;
+  /*flex-direction: column-reverse;
+  display: flex;*/
+}
+.date-messages{text-align: center; display: block; margin-top: 14px;padding-top: 7px;position: sticky; top: 3px; }
+.date-messages span{padding: 7px 14px; border-radius: 22px; background: #f1f1f1; color: #8e8e8e; font-size: 12px;}
+.message_box{margin-top: 18px;}
+.message_box p{ max-width: 250px; font-size: 15px; display: inline-block;  border-radius: 22px; padding: 16px;}
+.interlocutor{display: flex; gap: 10px; justify-content: flex-start;}
+.interlocutor_img_box{
+	align-items: flex-end; display: flex;padding-bottom: 7px;
+}
+.interlocutor_img{
+	width: 28px; height: 28px; border-radius: 50%;
+	overflow: hidden;
+	
+}
+.interlocutor_img img{width: 100%; height: 100%; object-fit: cover;}
+
+.interlocutor_message p{border: solid 1px #f1f1f1;}
+
+.my_message{
+	display: flex;
+	justify-content: flex-end;
+}
+.my_message_right{float: right;}
+.my_message p{background: #efefef; }
+.message{
+	display: flex;gap: 10px;
+	margin-bottom: 7px;
+}
+.message:hover .edit_delete_box{opacity: 1; transition: .2s;}
+.edit_delete_box{display: flex; gap:  10px; opacity: 0;align-items: center;}
+.edit_delete_box button{cursor: pointer; background-color: unset; outline: unset; border: none; color: #646464; transition: .2s;}
+.edit_delete_box button:hover{color: #000;}
+.header_tabcontent{height: 60px;display: flex; align-items: center;padding-left: 24px; padding-right: 24px;border-bottom: solid 1px #dbdbdb;}
+.header_tabcontent a{display: flex; align-items: center; gap: 14px;}
+.header_tabcontent a:active{opacity: .6;}
+.message_user_img{width: 38px;min-width: 38px; max-width: 38px; height: 38px; min-height: 38px; max-height: 38px; overflow: hidden; border-radius: 22px;}
+.message_user_img img{width: 100%; height: 100%; object-fit: cover;}
+.message_user_name{font-size: 18px; font-weight: bold;}
+
+
+.chat-form{display: flex; justify-content: space-between;height: 84px;position: relative;}
+.chat-form-input{width: calc(100% - 40px); font-size: 16px; outline: none; border: solid 1px #dbdbdb; height: 44px;position: absolute;padding-left: 16px; padding-right: 93px; left: 20px;right: 20px; top: 10px; border-radius: 44px;}
+.chat-form-button{position: absolute; color: #05adff; font-size: 16px; font-weight: bold; right: 25px; top: 10px; height: 44px;width: 88px; background: unset; border: unset; outline: none; cursor: pointer;}
