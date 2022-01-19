@@ -68,6 +68,7 @@
                 </button>
             </header>
             <div class="tab">
+                <div onclick="openCity(event, 'default')" id="defaultOpen"></div>
                   <button class="tablinks" onclick="openCity(event, 'dcllns')" id="defaultOpen">
                         <div class="tab_user_img">
                             <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
@@ -97,6 +98,15 @@
             </div>
         </div>
 
+        <div id="default" class="tabcontent">
+            <div class="defaultOpen">
+                <div class="box-default">
+                    <h3 class="mr18">Ваши сообщения</h3>
+                    <p class="mr18">Отправляйте личные сообщения другу.</p>
+                    <button class="mr18" id="myBtn">Отправить сообщение</button>
+                </div>
+            </div>
+        </div>
         <div id="dcllns" class="tabcontent">
           <header class="header_tabcontent">
               <a href="#">
