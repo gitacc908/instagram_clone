@@ -1,6 +1,7 @@
 from django import forms
 from apps.catalog.models import Post, Tag
 from apps.catalog.validators import validate_tag
+from apps.users.models import User
 
 
 class PostForm(forms.ModelForm):
@@ -36,3 +37,18 @@ class PostForm(forms.ModelForm):
         post.body = " ".join(filter(lambda x:x[0]!='#', body.split()))
         post.save()
         return post
+
+
+class UserForm(forms.ModelForm):
+    web_site = forms.CharField(required=False)
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = User
+        fields = [
+            'full_name', 'username', 'web_site', 'image',
+            'biography', 'email', 'phone'
+        ]
+    # def __init__(self, *args, **kwargs):
+    #     super(UserForm, self).__init__(*args, **kwargs)
+    #     self.fields['image'].required = False

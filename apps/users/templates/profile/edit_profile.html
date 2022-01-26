@@ -1,5 +1,6 @@
 {% extends 'main/base/__base__.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% load user_tags %}
 <!-- {% load humanize %} -->
 <!-- {% load custom_tags %} -->
@@ -7,7 +8,7 @@
 
 
     {% block title %}
-    edit profile
+    {{ request.user.username}}'s profile 
     {% endblock %}
     
     {%  block styles %}
@@ -57,23 +58,24 @@
         </div>
     </div>
 
-<div id="London" class="tabcontent">
-
+<form id="London" class="tabcontent" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 <div class="blocks">
         <div class="block-one">
             <button class="edit_user_img">
-                <img src="https://avatars.mds.yandex.net/i?id=7f9b165d44a4cc79604da06428243408-5331459-images-thumbs&n=13" alt="">
+                <img src="{{ request.user|get_user_photo }}" alt="">
             </button>
         </div>
-        <div class="block-two">
-            <div class="edit_profile_user_name">dcllns</div>
-            <button class="edit_user_img_text">Изменить фото профиля</button>
+        <div class="block-two header-profile-user-img" id="avatar_form" data-avatar-url="{% url 'avatar' %}" method="post" enctype="multipart/form-data" novalidate="">
+            <div class="edit_profile_user_name">{{ request.user.username }}</div>
+            {% render_field form.image|add_class:'edit_user_img_text' required="false" %}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">Имя</div>
         <div class="block-two">
-            <input aria-required="false" id="pepName" placeholder="Имя" type="text" class="JLJ-B zyHYP" value="mmm💬">
+            {% render_field form.full_name|add_class:'JLJ-B zyHYP' %}
+            
             <div class="text-p">
                 Чтобы людям было проще находить ваш аккаунт, используйте имя, под которым вас знают: ваше имя и фамилию, никнейм или название компании.
                 Изменить имя можно не более двух раз в течение 14 дней.
@@ -86,7 +88,8 @@
   <div class="blocks">
         <div class="block-one">Имя пользователя</div>
         <div class="block-two">
-            <input aria-required="true" id="pepUsername" placeholder="Имя пользователя" type="text" class="JLJ-B zyHYP" value="dcllns">
+            {% render_field form.username|add_class:'JLJ-B zyHYP' placeholder="Имя пользователя"%}
+            
             <div class="text-p">
                 В большинстве случаев у вас будет ещё 14 дней, чтобы снова поменять имя пользователя на <span>dcllns</span>.
             </div>
@@ -95,13 +98,13 @@
   <div class="blocks">
         <div class="block-one">Веб-сайт</div>
         <div class="block-two">
-            <input aria-required="false" id="pepWebsite" placeholder="Веб-сайт" type="text" class="JLJ-B zyHYP" value="">
+            {% render_field form.web_site|add_class:'JLJ-B zyHYP' placeholder="Веб-сайт"%}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">О себе</div>
         <div class="block-two">
-            <textarea class="p7vTm" id="pepBio"></textarea>
+            {% render_field form.biography|add_class:'p7vTm'%}
                 
 
             <div class="text-p">
@@ -113,68 +116,61 @@
   <div class="blocks">
         <div class="block-one">Эл.адрес</div>
         <div class="block-two">
-            <input aria-required="false" id="pepEmail" placeholder="Эл. адрес" type="text" class="JLJ-B zyHYP" value="chikabaiysbekov45@gmail.com">
+            {% render_field form.email|add_class:'JLJ-B zyHYP' placeholder="Эл. адрес"%}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">Номер телефона</div>
         <div class="block-two">
-            <input aria-required="false" id="pepPhone Number" placeholder="Номер телефона" type="text" class="JLJ-B zyHYP" value="+7 926 678-17-76">
-        </div>
-  </div>
-  <div class="blocks">
-        <div class="block-one">Рекомендации похожих аккаунтов</div>
-        <div class="block-two">
-            <div class="Np4RR" id="pepChainingEnabled">
-                <label class="U17kh PLphk " for="f41e6f7a4359aa">
-                    <input class="tlZCJ" id="f41e6f7a4359aa" type="checkbox" value="" checked=""><div class="mwD2G"></div>
-                    <div class="               AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              " style="width: 50%;">Рекомендовать ваш аккаунт возможным подписчикам.  <a aria-label="Узнайте больше о рекомендациях похожих аккаунтов" class="cRH0J" href="https://help.instagram.com/530450580417848" target="_blank" rel="nofollow noopener noreferrer">[?]</a></div></label></div>
+            {% render_field form.phone|add_class:'JLJ-B zyHYP' placeholder="Номер телефона"%}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one"></div>
         <div class="block-two">
-            <button class="sqdOP  L3NKy   y3zKF     " type="button">Отправить</button>
+            <button class="sqdOP  L3NKy   y3zKF" type="submit">Отправить</button>
         </div>
   </div>
-</div>
+</form>
 
-<div id="Paris" class="tabcontent">
+<form id="Paris" class="tabcontent" method="POST" action="{% url 'edit_password' %}">
+    {% csrf_token %}
   <div class="blocks">
         <div class="block-one">
             <button class="edit_user_img">
-                <img src="https://avatars.mds.yandex.net/i?id=7f9b165d44a4cc79604da06428243408-5331459-images-thumbs&n=13" alt="">
+                <img src="{{ request.user|get_user_photo }}" alt="">
             </button>
         </div>
         <div class="block-two">
-            <div class="edit_password_user_name">dcllns</div>
+            <div class="edit_password_user_name">{{ request.user.username }}</div>
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">Старый пароль</div>
         <div class="block-two">
-           <input autocomplete="current-password" class="j_2Hd    RO68f  M5V28" id="cppOldPassword" name="cppOldPassword" required="" spellcheck="true" type="password" value="">
+           {% render_field password_form.old_password|add_class:'JLJ-B zyHYP' placeholder="Старый пароль"%}
+
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">Новый пароль</div>
         <div class="block-two">
-            <input autocomplete="new-password" class="j_2Hd    RO68f  M5V28" id="cppNewPassword" name="cppNewPassword" required="" spellcheck="true" type="password" value="">
+            {% render_field password_form.new_password1|add_class:'j_2Hd    RO68f  M5V28' placeholder="Новый пароль" type="password"%}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one">Подтвердите новый пароль</div>
         <div class="block-two">
-            <input autocomplete="new-password" class="j_2Hd    RO68f  M5V28" id="cppConfirmPassword" name="cppConfirmPassword" required="" spellcheck="true" type="password" value="">
+            {% render_field password_form.new_password2|add_class:'j_2Hd    RO68f  M5V28' placeholder="Повторите пароль" type="password"%}
         </div>
   </div>
   <div class="blocks">
         <div class="block-one"></div>
         <div class="block-two">
-            <button class="sqdOP  L3NKy   y3zKF     " disabled="" type="button">Сменить пароль</button>
+            <button class="sqdOP  L3NKy   y3zKF     " type="submit">Сменить пароль</button>
         </div>
   </div>
-</div>
+</form>
 
 <div id="Tokyo" class="tabcontent" style="padding-bottom: 0;">
     <div>
@@ -338,10 +334,12 @@
                     Выкл.
                 </div>
             </label>
-            <div class="radio_value">
-                <input id="igCoreRadioButtonfirst_post2" name="first_post" type="radio" value="1">
-                От людей, на которых вы подписаны
-            </div>
+            <label>
+                <div class="radio_value">
+                    <input id="igCoreRadioButtonfirst_post2" name="first_post" type="radio" value="1">
+                    От людей, на которых вы подписаны
+                </div>
+            </label>
             <label>
                 <div class="radio_value">
                     <input id="igCoreRadioButtonfirst_post3" name="first_post" type="radio" value="1">
@@ -412,35 +410,10 @@
 
 <div id="login_activity" class="tabcontent">
     <div class="login__active">
-        <h2 style="padding-top: 16px;">Входы в аккунт</h2>
-        <h3 style="font-size: 16px; color: #333; margin-bottom: 20px;">Это были вы?</h3>
-
-        <div class="login__active_block">
-            <div class="login__active_map">
-                
-            </div>
-            <div class="login__active_btn">
-                <button>Это я</button>
-                <hr>
-                <button>Это не я</button>
-            </div>
-        </div>
-
-        <div class="login__active_block">
-            <div class="login__active_map">
-                
-            </div>
-            <div class="login__active_btn">
-                <button>Это я</button>
-                <hr>
-                <button>Это не я</button>
-            </div>
-        </div>
-
         <h3 style="font-size: 16px; color: #333; margin-bottom: 20px; margin-top: 40px;">Активные сеансы</h3>
 
         <div class="active__seanse">
-            <div class="country">Москва, Россия</div>
+            <div class="country">{{ country }}</div>
             <div class="info__active__seanse">
                 <span class="activity_time">Сейчас в сети</span><span>&nbsp;·&nbsp;</span><span class="activity_device">Это устройство Ubuntu</span>
             </div>
@@ -481,7 +454,7 @@ document.getElementById("defaultOpen").click();
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
+function myFunction(cityName) {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
@@ -505,6 +478,8 @@ window.onclick = function(event) {
  
 
 {% block scripts %}
+<script src="{% static 'js/avatar_update.js' %}"> </script>
+
 {% endblock %}
 
 

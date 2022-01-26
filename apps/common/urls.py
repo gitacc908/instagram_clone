@@ -7,7 +7,9 @@ urlpatterns = [
  
     path('', views.main, name='index'),
     path('post_detail/<int:pk>/', views.post_detail, name='post_detail'),
-    path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('edit_profile/<pk>/', views.EditProfileView.as_view(), name='edit_profile'),
+    path('edit_password/', views.edit_password_view, name='edit_password'),
+
     path('search/', views.search, name='search'),
     path('direct/', views.direct, name='direct'),
 

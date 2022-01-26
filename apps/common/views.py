@@ -1,7 +1,8 @@
+from aiohttp import request
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views import View
-from apps.common.forms import PostForm
+from apps.common.forms import PostForm, UserForm
 
 from apps.catalog.models import (
     Post, Bookmark, Comment, Image, Tag, CommentReply
@@ -23,6 +24,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.http import HttpResponseRedirect
+import pycountry
+from apps.users.get_country import get_country
+from django.views.generic import UpdateView
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 @login_required
@@ -32,9 +38,40 @@ def post_detail(request, pk):
     return render(request, 'main/post_detail.html', {'post':post, 'latest_posts':latest_six_posts})
 
 
+class EditProfileView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserForm
+    template_name = 'profile/edit_profile.html'
+    success_url = reverse_lazy('edit_profile')
+
+    def get_success_url(self):
+        return reverse('edit_profile',  kwargs={'pk':
+                                                     self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super(EditProfileView, self).get_context_data(**kwargs)
+        context['password_form'] = PasswordChangeForm(self.request.user)
+        import urllib.request
+        from requests import get
+
+        external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+        my_country = get_country(external_ip)
+        c = pycountry.countries.get(alpha_2=my_country)
+        context['country'] = c.name
+        return context
+
+
 @login_required
-def edit_profile(request):
-    return render(request, 'profile/edit_profile.html')
+def edit_password_view(request):
+    form = UserForm()
+    password_form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if password_form.is_valid():
+            password_form.save()
+            return redirect('edit_profile', request.user.pk)
+    return render(request, 'profile/edit_profile.html', {'form':form, 'password_form': password_form})
+
 
 @login_required
 def search(request):
@@ -57,7 +94,6 @@ def main(request):
         # If page is not an integer deliver the first page
         posts = paginator.page(1)
     except EmptyPage:
-        print('empty page')
         if request.is_ajax():
         # If the request is AJAX and the page is out of range
         # return an empty page

@@ -22,7 +22,7 @@ class User(PermissionsMixin, AbstractBaseUser):
         _('username'), unique=True, max_length=255
     )
     image = models.ImageField(
-        _('image'), upload_to='profile_images/'
+        _('image'), upload_to='profile_images/', null=True, blank=True
     )
     full_name = models.CharField(
         _('full name'), max_length=255, null=True, blank=True

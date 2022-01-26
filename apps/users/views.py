@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from django.urls import reverse_lazy
 from django.views import View
 
 from django.views.generic.edit import FormView, DeleteView, UpdateView, CreateView
@@ -9,7 +8,6 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import FormView
 from django.contrib import messages
 
-from django.urls import reverse_lazy
 from .models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -20,6 +18,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import render_to_string
 import weasyprint
 from django.conf import settings
+from django.urls import reverse, reverse_lazy
 
 
 @staff_member_required
@@ -62,6 +61,7 @@ class UserSignInView(FormView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
+
         username = form.cleaned_data.get('username_email_phone')
         password = form.cleaned_data.get('password')
         user = authenticate(

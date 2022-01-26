@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'emoji',
     'emoji_picker',
     'rosetta',
+    'widget_tweaks',
 
     # custom apps
     'apps.users',
