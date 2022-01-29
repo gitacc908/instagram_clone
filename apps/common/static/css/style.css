@@ -123,18 +123,7 @@ img { max-width: 100%; }
     display: none;
     align-items: center;
     position: relative;
-<<<<<<< HEAD
-}
-.header__search form {
-    position: relative;
-}
-.header__search form svg {
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    left: 8px;
-    top: 7.5px;
-=======
+
 
 }
 .header__search form {
@@ -148,7 +137,6 @@ img { max-width: 100%; }
     position: absolute;
     left: 17px;
     top: 10px;
->>>>>>> 6caa337240336a94c01309e2ec64dae3bb0ade75
 }
 .header__search form input {
     width: 100%;
