@@ -19,20 +19,6 @@ function setInitialTheme(themeKey) {
     }
 }
 
-// Toggle theme button
-toggleThemeBtn.addEventListener('click', () => {
-    // Toggle root class
-    document.documentElement.classList.toggle('darkTheme');
-
-    // Saving current theme on LocalStorage
-    if(document.documentElement.classList.contains('darkTheme')) {
-        localStorage.setItem('theme', 'dark');
-    }
-    else {
-        localStorage.setItem('theme', 'light');
-    }
-});
-
 // ===================================
 // STORIES SCROLL BUTTONS
 // Scrolling stories content
