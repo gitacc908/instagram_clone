@@ -193,11 +193,8 @@ img { max-width: 100%; }
   overflow-y: auto;
 }
 
-<<<<<<< HEAD
-.dropdown.active > .search + .dropdown-menu {
-=======
+
 .dropdown.activeSearch > .search + .dropdown-menu {
->>>>>>> 6caa337240336a94c01309e2ec64dae3bb0ade75
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
