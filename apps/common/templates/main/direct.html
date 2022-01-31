@@ -89,9 +89,12 @@
 </div> 
 
 
-    <main>
-        <div class="tab_box">
+    <main class="container">
+        <section class="tab_box tabs">
             <header class="header_tab">
+                <a href="#" class="back-main">
+                    <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
+                </a>
                 <button class="switching">
                     <span>dcllns</span><svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                 </button>
@@ -101,7 +104,7 @@
             </header>
             <div class="tab">
                 <div onclick="openCity(event, 'default')" id="defaultOpen"></div>
-                  <button class="tablinks" onclick="openCity(event, 'dcllns')" id="defaultOpen">
+                  <button class="tablinks privacy" onclick="openCity(event, 'dcllns')" id="defaultOpen">
                         <div class="tab_user_img">
                             <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
                         </div>
@@ -114,7 +117,7 @@
                             </div>
                         </div>
                   </button>
-                  <button class="tablinks" onclick="openCity(event, 'adilet123')">
+                  <button class="tablinks privacy" onclick="openCity(event, 'adilet123')">
                         <div class="tab_user_img">
                           <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
                         </div>
@@ -128,257 +131,182 @@
                         </div>
                   </button>
             </div>
-        </div>
+        </section>
 
-        <div id="default" class="tabcontent">
-            <div class="defaultOpen">
-                <div class="box-default">
-                    <h3 class="mr18">Ваши сообщения</h3>
-                    <p class="mr18">Отправляйте личные сообщения другу.</p>
-                    <button class="mr18" id="myBtn">Отправить сообщение</button>
+        <section class="tabcontent_box audience">
+            <div id="default" class="tabcontent">
+                <div class="defaultOpen">
+                    <div class="box-default">
+                        <h3 class="mr18">Ваши сообщения</h3>
+                        <p class="mr18">Отправляйте личные сообщения другу.</p>
+                        <button class="mr18" id="myBtn">Отправить сообщение</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="dcllns" class="tabcontent">
-          <header class="header_tabcontent">
-              <a href="#">
-                <div class="message_user_img">
-                    <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+            <div id="dcllns" class="tabcontent">
+              <header class="header_tabcontent">
+                <div class="arrow-back">
+                    <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                 </div>
-                <div class="message_user_name">Chyngyz Esembekov</div>
-              </a>
-          </header>
+                  <a href="#">
+                    <div class="message_user_img">
+                        <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                    </div>
+                    <div class="message_user_name">Chyngyz Esembekov</div>
+                  </a>
+              </header>
 
-            <div class="messages" id="messages">
-                <div class="date-messages"><span>22 январь 2022г.</span></div>
-                <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                        </a>
-                    </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk
-                            Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
+                <div class="messages" id="messages">
+                    <div class="date-messages"><span>22 январь 2022г.</span></div>
+                    <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                            </a>
                         </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                            loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk
+                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
+                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="date-messages"><span>24 январь 2022г.</span></div>
-                <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                        </a>
-                    </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk
-                            Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                            loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="date-messages"><span>18 январь 2022г.</span></div>
-                <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                        </a>
-                    </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk
-                            Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
+                    <div class="date-messages"><span>24 январь 2022г.</span></div>
+                    <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                            </a>
                         </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                            loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk
+                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
+                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="date-messages"><span>1 январь 2022г.</span></div>
-                <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                        </a>
-                    </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk
-                            Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                            loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="my_message message_box">
-                    <div class="my_message_right">
-                        <div class="message">
-                            <div class="edit_delete_box">
-                                <button>Отменить</button>
-                                <button>Редактировать</button>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae cupiditate et fugiat quasi sit similique ab, nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
+                    <div class="date-messages"><span>18 январь 2022г.</span></div>
+                    <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                            </a>
                         </div>
-                        <div class="message">
-                            <div class="edit_delete_box">
-                                <button>Отменить</button>
-                                <button>Редактировать</button>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk
+                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                            <p>nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
-                        </div>
-                        <div class="message">
-                            <div class="edit_delete_box">
-                                <button>Отменить</button>
-                                <button>Редактировать</button>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
+                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
                             </div>
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-          </div>
-            <form class="chat-form" action="" method="post">
-                    <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
-                    <button class="chat-form-button" type="submit">Отправить</button>
-            </form>
-        </div>
-
-        <div id="adilet123" class="tabcontent">
-          <header class="header_tabcontent">
-              <a href="#">
-                <div class="message_user_img">
-                    <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
-                </div>
-                <div class="message_user_name">Adilet Malikov</div>
-              </a>
-          </header>
-          <div class="messages" id="messages">
-
-            <div class="date-messages"><span>24 январь 2022г.</span></div>
-              <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
-                        </a>
+                    <div class="date-messages"><span>1 январь 2022г.</span></div>
+                    <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                            </a>
+                        </div>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk
+                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
+                                loreas dasdas dlasld ;ka;s dlk asd asdasdas qwe qweqwe</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk
-                            Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                            loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
-                            </div>
-                        </div>
-
-                    </div>
-              </div>
 
                     <div class="my_message message_box">
                         <div class="my_message_right">
-                            <div class="message">
+                            <div class="message message_right">
                                 <div class="edit_delete_box">
                                     <button>Отменить</button>
                                     <button>Редактировать</button>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae cupiditate et fugiat quasi sit similique ab, nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
                             </div>
-                            <div class="message">
+                            <div class="message message_right">
                                 <div class="edit_delete_box">
                                     <button>Отменить</button>
                                     <button>Редактировать</button>
                                 </div>
                                 <p>nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
                             </div>
-                            <div class="message">
+                            <div class="message message_right">
                                 <div class="edit_delete_box">
                                     <button>Отменить</button>
                                     <button>Редактировать</button>
@@ -388,32 +316,114 @@
                         </div>
                     </div>
 
-              <div class="interlocutor message_box" >
-                    <div class="interlocutor_img_box">
-                        <a href="" class="interlocutor_img">
-                            <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
-                        </a>
+              </div>
+                <form class="chat-form" action="" method="post">
+                        <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
+                        <button class="chat-form-button" type="submit">Отправить</button>
+                </form>
+            </div>
+
+            <div id="adilet123" class="tabcontent">
+              <header class="header_tabcontent">
+                <div class="arrow-back">
+                    <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
+                </div>
+                  <a href="#">
+                    <div class="message_user_img">
+                        <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
                     </div>
-                    <div class="interlocutor_message">
-                        <div class="message">
-                            <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            <div class="edit_delete_box">
-                                <button>Нравится</button>
-                                <button>Бесишь</button>
+                    <div class="message_user_name">Adilet Malikov</div>
+                  </a>
+              </header>
+              <div class="messages" id="messages">
+
+                <div class="date-messages"><span>24 январь 2022г.</span></div>
+                  <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
+                            </a>
+                        </div>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk
+                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
+                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+
+                        </div>
+                  </div>
+
+                        <div class="my_message message_box">
+                            <div class="my_message_right">
+                                <div class="message message_right">
+                                    <div class="edit_delete_box">
+                                        <button>Отменить</button>
+                                        <button>Редактировать</button>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae cupiditate et fugiat quasi sit similique ab, nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
+                                </div>
+                                <div class="message message_right">
+                                    <div class="edit_delete_box">
+                                        <button>Отменить</button>
+                                        <button>Редактировать</button>
+                                    </div>
+                                    <p>nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
+                                </div>
+                                <div class="message message_right">
+                                    <div class="edit_delete_box">
+                                        <button>Отменить</button>
+                                        <button>Редактировать</button>
+                                    </div>
+                                    <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
+                  <div class="interlocutor message_box" >
+                        <div class="interlocutor_img_box">
+                            <a href="" class="interlocutor_img">
+                                <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
+                            </a>
+                        </div>
+                        <div class="interlocutor_message">
+                            <div class="message">
+                                <p>loreas dasdas dlasld ;ka;s dlk</p>
+                                <div class="edit_delete_box">
+                                    <button>Нравится</button>
+                                    <button>Бесишь</button>
+                                </div>
+                            </div>
+
+                        </div>
+                  </div>
+
+
               </div>
-
-
-          </div>
-            <form class="chat-form" action="" method="post">
-                    <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
-                    <button class="chat-form-button" type="submit">Отправить</button>
-            </form>
-        </div>
-
+                <form class="chat-form" action="" method="post">
+                        <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
+                        <button class="chat-form-button" type="submit">Отправить</button>
+                </form>
+            </div>
+        </section>
     </main>
 
 <script>
@@ -436,33 +446,6 @@ document.getElementById("defaultOpen").click();
 
 
 
-
-const messages = document.getElementById('messages');
-
-function appendMessage() {
-    const message = document.getElementsByClassName('message')[0];
-  const newMessage = message.cloneNode(true);
-  messages.appendChild(newMessage);
-}
-
-function getMessages() {
-    // Prior to getting your messages.
-  shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-  /*
-   * Get your messages, we'll just simulate it by appending a new one syncronously.
-   */
-  appendMessage();
-  // After getting your messages.
-  if (!shouldScroll) {
-    scrollToBottom();
-  }
-}
-
-function scrollToBottom() {
-  messages.scrollTop = messages.scrollHeight;
-}
-
-scrollToBottom();
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -489,6 +472,18 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 } 
+
+
+
+      const container = document.querySelector(".container"),
+      privacy = container.querySelector(".tabs .privacy"),
+      arrowBack = container.querySelector(".audience .arrow-back");
+      privacy.addEventListener("click", () => {
+        container.classList.add("active");
+      });
+      arrowBack.addEventListener("click", () => {
+        container.classList.remove("active");
+      });
 </script>
 
 {% endblock %}
