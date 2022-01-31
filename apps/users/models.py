@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -9,6 +10,11 @@ from .managers import CustomUserManager
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from multiselectfield import MultiSelectField
+from .choices import (
+    LIKE, COMMENT_LIKE, COMMENT, FOLLOW_REQUEST, OFF, FROM_ALL, FROM_FOLLOWING
+)
+
 
 class User(PermissionsMixin, AbstractBaseUser):
     class Gender(models.TextChoices):
@@ -45,6 +51,20 @@ class User(PermissionsMixin, AbstractBaseUser):
     )
     following = models.ManyToManyField(
         'self', through='Contact', related_name='followers', symmetrical=False
+    )
+
+    # checkbox fields
+    like_notification = models.CharField(
+        choices=LIKE, default=FROM_ALL, blank=True, max_length=50,
+    )
+    comment_notification = models.CharField(
+        choices=COMMENT, default=FROM_ALL, blank=True, max_length=50,
+    )
+    comment_like_notification = models.CharField(
+        choices=COMMENT_LIKE, default=FROM_ALL, blank=True, max_length=50,
+    )
+    follow_request_notification = models.CharField(
+        choices=FOLLOW_REQUEST, default=FROM_ALL, blank=True, max_length=50,
     )
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)

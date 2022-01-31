@@ -68,7 +68,6 @@
         </div>
         <div class="block-two header-profile-user-img" id="avatar_form" data-avatar-url="{% url 'avatar' %}" method="post" enctype="multipart/form-data" novalidate="">
             <div class="edit_profile_user_name">{{ request.user.username }}</div>
-            {% render_field form.image|add_class:'edit_user_img_text' required="false" %}
         </div>
   </div>
   <div class="blocks">
@@ -105,8 +104,6 @@
         <div class="block-one">О себе</div>
         <div class="block-two">
             {% render_field form.biography|add_class:'p7vTm'%}
-                
-
             <div class="text-p">
                 <h3>Личная информация</h3>
                 Укажите личную информацию, даже если аккаунт будет использоваться для компании, домашнего животного или в других целях. Эти сведения не будут показываться в вашем общедоступном профиле.
@@ -172,26 +169,14 @@
   </div>
 </form>
 
-<div id="Tokyo" class="tabcontent" style="padding-bottom: 0;">
+<form id="Tokyo" class="tabcontent" method="post" style="padding-bottom: 0;" action="{% url 'edit_notification' %}">
+    {% csrf_token %}
     <div>
         <section>
             <h2>Отметки "Нравится"</h2>
             <label>
                 <div class="radio_value">
-                    <input id="igCoreRadioButtonlikes1" name="likes" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonlikes2" name="likes" type="radio" value="1">
-                    От людей, на которых вы подписаны
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonlikes3" name="likes" type="radio" value="1">
-                    От всех
+                    {% render_field notification_form.like_notification %}
                 </div>
             </label>
             <div class="text-p">johnappleseed нравится ваше фото.</div>
@@ -203,20 +188,7 @@
             <h2>Комментарии</h2>
             <label>
                 <div class="radio_value">
-                    <input id="igCoreRadioButtoncomments1" name="comments" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtoncomments2" name="comments" type="radio" value="1">
-                    От людей, на которых вы подписаны
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtoncomments3" name="comments" type="radio" value="1">
-                    От всех
+                    {% render_field notification_form.comment_notification %}
                 </div>
             </label>
             <div class="text-p">johnappleseed прокомментировал(-а): "Хороший снимок!"</div>
@@ -226,187 +198,27 @@
     <div>
         <section>
             <h2>Отметки "Нравится" к комментариям</h2>
-                <label>
-                    <div class="radio_value">
-                        <input id="igCoreRadioButtoncomment_likes1" name="comment_likes" type="radio" value="1">
-                        От людей, на которых вы подписаны
-                    </div>
-                </label>
-                <label>
-                    <div class="radio_value">
-                        <input id="igCoreRadioButtoncomment_likes2" name="comment_likes" type="radio" value="1">
-                        От всех
-                    </div>
-                </label>
+            <label>
+                <div class="radio_value">
+                    {% render_field notification_form.comment_like_notification %}
+                </div>
+            </label>
                 <div class="text-p">johnappleseed нравится ваш комментарий: "Хороший снимок!"</div>
         </section>
     </div>
-
-    <div>
-        <section>
-            <h2>Отметки "Нравится" и комментарии к фото с вами</h2>
-                <label>
-                    <div class="radio_value">
-                        <input id="igCoreRadioButtonlike_and_comment_on_photo_user_tagged1" name="like_and_comment_on_photo_user_tagged" type="radio" value="1">
-                        Выкл.
-                    </div>
-
-                </label>
-                <label>
-                    <div class="radio_value">
-                        <input id="igCoreRadioButtonlike_and_comment_on_photo_user_tagged2" name="like_and_comment_on_photo_user_tagged" type="radio" value="2">
-                        От людей, на которых вы подписаны
-                    </div>
-                </label>
-                <label>
-                    <div class="radio_value">
-                        <input id="igCoreRadioButtonlike_and_comment_on_photo_user_tagged3" name="like_and_comment_on_photo_user_tagged" type="radio" value="3">
-                        От всех
-                    </div>
-                </label>
-                <div class="text-p">johnappleseed прокомментировал(-а) публикацию, в которой вы отмечены.</div>
-        </section>
-    </div>
-
     <div>
         <section>
             <h2>Принятые запросы на подписку</h2>
             <label>
                 <div class="radio_value">
-                    <input id="igCoreRadioButtonfollow_request_accepted1" name="follow_request_accepted" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonfollow_request_accepted2" name="follow_request_accepted" type="radio" value="2">
-                    От всех
+                    {% render_field notification_form.follow_request_notification %}
                 </div>
             </label>
             <div class="text-p">John Appleseed (johnappleseed) принял(-а) ваш запрос на подписку.</div>
         </section>
     </div>
-  
-    <div>
-        <section>
-            <h2>Запросы Instagram Direct</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonpending_direct_share1" name="pending_direct_share" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonpending_direct_share2" name="pending_direct_share" type="radio" value="2">
-                    От всех
-                </div>
-            </label>
-            <div class="text-p">johnappleseed хочет отправить вам сообщение.</div>
-        </section>
-    </div>
-
-    <div>
-        <section>
-            <h2>Напоминания</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonnotification_reminders1" name="notification_reminders" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonnotification_reminders2" name="notification_reminders" type="radio" value="1">
-                    От всех
-                </div>
-            </label>
-            <div class="text-p">У вас есть непросмотренные уведомления и другие похожие уведомления.</div>
-        </section>
-    </div>
-
-    <div>
-        <section>
-            <h2>Первые публикации и истории</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonfirst_post1" name="first_post" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonfirst_post2" name="first_post" type="radio" value="1">
-                    От людей, на которых вы подписаны
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonfirst_post3" name="first_post" type="radio" value="1">
-                    От всех
-                </div>
-            </label>
-            <div class="text-p">Вы увидите первую историю johnappleseed в Instagram, а также другие похожие уведомления.</div>
-        </section>
-    </div>
-
-    <div>
-        <section>
-            <h2>Число просмотров видео</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonview_count1" name="view_count" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonview_count2" name="view_count" type="radio" value="1">
-                    От всех
-                </div>
-            </label>
-            <div class="text-p">У вашего видео более 100 тыс. просмотров.</div>
-        </section>
-    </div>
-
-    <div>
-        <section>
-            <h2>Запросы поддержки</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonreport_updated1" name="report_updated" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonreport_updated2" name="report_updated" type="radio" value="1">
-                    Вкл.
-                </div>
-            </label>
-            <div class="text-p">Ваш запрос на поддержку (дата: июля 10) только что был обновлен.</div>
-        </section>
-    </div>
-
-    <div>
-        <section style="border-bottom: unset;">
-            <h2>Прямые эфиры</h2>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonlive_broadcast1" name="live_broadcast" type="radio" value="1">
-                    Выкл.
-                </div>
-            </label>
-            <label>
-                <div class="radio_value">
-                    <input id="igCoreRadioButtonlive_broadcast2" name="live_broadcast" type="radio" value="1">
-                    От всех
-                </div>
-            </label>
-            <div class="text-p">johnappleseed запустил(-а) прямой эфир. Посмотрите его, пока он не закончился!</div>
-        </section>
-    </div>
-</div>
+    <button class="sqdOP  L3NKy   y3zKF" type="submit">Сохранить</button>
+</form>
 
 <div id="login_activity" class="tabcontent">
     <div class="login__active">
@@ -415,18 +227,15 @@
         <div class="active__seanse">
             <div class="country">{{ country }}</div>
             <div class="info__active__seanse">
-                <span class="activity_time">Сейчас в сети</span><span>&nbsp;·&nbsp;</span><span class="activity_device">Это устройство Ubuntu</span>
+                <span class="activity_time">Сейчас в сети</span><span>&nbsp;·&nbsp;</span><span class="activity_device">Это устройство {{ device }}</span>
             </div>
-
+            <div>
+                {{ device_full }}
+            </div>
         </div>
-        <div class="login__active_block">
-            <div class="login__active_map">
-                
-            </div>
             <div class="login__active_btn">
-                <button>Выйти</button>
+                <a href="{% url 'logout' %}" style="margin-top: 10px; color: #bb3838;">Выйти</a>
             </div>
-        </div>
     </div>
 </div>
 </main>
@@ -478,7 +287,8 @@ window.onclick = function(event) {
  
 
 {% block scripts %}
-<script src="{% static 'js/avatar_update.js' %}"> </script>
+<!-- <script src="{% static 'js/avatar_update.js' %}"> </script> -->
+<script src="{% static 'js/modals.js' %}"> </script>
 
 {% endblock %}
 

@@ -2,7 +2,7 @@ from aiohttp import request
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views import View
-from apps.common.forms import PostForm, UserForm
+from apps.common.forms import PostForm, UserForm, UserNotificationForm
 
 from apps.catalog.models import (
     Post, Bookmark, Comment, Image, Tag, CommentReply
@@ -24,8 +24,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.http import HttpResponseRedirect
-import pycountry
-from apps.users.get_country import get_country
+from apps.users.get_country import get_location
 from django.views.generic import UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import PasswordChangeForm
@@ -51,26 +50,48 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EditProfileView, self).get_context_data(**kwargs)
         context['password_form'] = PasswordChangeForm(self.request.user)
-        import urllib.request
-        from requests import get
-
-        external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
-        my_country = get_country(external_ip)
-        c = pycountry.countries.get(alpha_2=my_country)
+        context['notification_form'] = UserNotificationForm(instance=self.request.user)
+        device, device_full, c = get_location(self.request)
         context['country'] = c.name
+        context['device'] = device
+        context['device_full'] = device_full
         return context
 
 
 @login_required
 def edit_password_view(request):
-    form = UserForm()
+    form = UserForm(instance=request.user)
+    notification_form = UserNotificationForm(instance=request.user)
     password_form = PasswordChangeForm(request.user)
+    device, device_full, c = get_location(request)
+
     if request.method == 'POST':
         password_form = PasswordChangeForm(request.user, request.POST)
         if password_form.is_valid():
             password_form.save()
             return redirect('edit_profile', request.user.pk)
-    return render(request, 'profile/edit_profile.html', {'form':form, 'password_form': password_form})
+    return render(request, 'profile/edit_profile.html', {'form':form, 'password_form': password_form, 
+                                                        'notification_form': notification_form,
+                                                        'device': device, 'device_full': device_full,
+                                                        'country': c.name})
+
+
+@login_required
+def edit_notification_view(request):
+    form = UserForm(instance=request.user)
+    notification_form = UserNotificationForm(instance=request.user)
+    password_form = PasswordChangeForm(request.user)
+    device, device_full, c = get_location(request)
+
+    if request.method == 'POST':
+        notification_form = UserNotificationForm(request.POST)
+        if notification_form.is_valid():
+            notification_form.save()
+            return redirect('edit_profile', request.user.pk)
+    return render(request, 'profile/edit_profile.html', {'form':form, 'password_form': password_form, 
+                                                        'notification_form': notification_form,
+                                                        'device': device, 'device_full': device_full,
+                                                        'country': c.name})
 
 
 @login_required
