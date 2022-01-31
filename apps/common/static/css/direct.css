@@ -1,7 +1,7 @@
 body{background: #fafafa; padding: 0; margin: 0; box-sizing: border-box;}
 
 
-main{height: calc(100vh - 86px); border-radius: 4px; background: #fff;max-width: 935px;margin-top: 66px; margin-left: auto; margin-right: auto; width: 100%; position: relative;border: solid 1px #dbdbdb;}
+main{height: calc(100vh - 86px); display: flex; border-radius: 4px; background: #fff;max-width: 935px;margin-top: 66px; margin-left: auto; margin-right: auto; width: 100%; position: relative;border: solid 1px #dbdbdb;}
 
 
 
@@ -66,7 +66,7 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
 
 
 /* Style the tab */
-.tab_box{height: 100%; border-right: solid 1px #dbdbdb;float: left;
+.tab_box{height: 100%; border-right: solid 1px #dbdbdb;
   width: 350px;}
 .header_tab{
 	height: 60px; position: relative; border-bottom: solid 1px #dbdbdb;display: flex; align-items: center; justify-content: center;
@@ -119,13 +119,13 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
 .tab_user_date{display: flex; gap: 7px;font-size: 14px; margin-top: 4px;color: #8e8e8e;}
 .tab_user_name, .tab_user_date span{white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 200px;}
 /* Style the tab content */
-.tabcontent {
-  float: left;
+.tabcontent_box {
   width: calc(100% - 350px);
   border-left: none;
   height: 100%;
   position: relative;
 }
+.tabcontent{height: 100%; width: 100%;}
 .defaultOpen{display: flex; align-items: center; height: 100%; justify-content: center;}
 .box-default{text-align: center;}
 .box-default h3{font-size: 24px; font-weight: normal;}
@@ -162,7 +162,6 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
 	display: flex;
 	justify-content: flex-end;
 }
-.my_message_right{float: right;}
 .my_message p{background: #efefef; }
 .message{
 	display: flex;gap: 10px;
@@ -183,3 +182,59 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
 .chat-form{display: flex; justify-content: space-between;height: 84px;position: relative;}
 .chat-form-input{width: calc(100% - 40px); font-size: 16px; outline: none; border: solid 1px #dbdbdb; height: 44px;position: absolute;padding-left: 16px; padding-right: 93px; left: 20px;right: 20px; top: 10px; border-radius: 44px;}
 .chat-form-button{position: absolute; color: #05adff; font-size: 16px; font-weight: bold; right: 25px; top: 10px; height: 44px;width: 88px; background: unset; border: unset; outline: none; cursor: pointer;}
+.arrow-back{display: none;}
+.back-main{display: none;}
+@media (max-width:  768px){
+  main{overflow: hidden; display: flex; position: fixed; left: 0; top: 0; right: 0; bottom: 0;z-index: 1000; height:100%; margin-top: 0;transition: height 0.2s ease;}
+  .tab_box{width: 100%;}
+  .tabcontent_box{width: 100%; min-width: 300px;}
+.container .audience{
+  opacity: 0;
+  transition: opacity 0.12s ease;
+   display: none;
+}
+.container.active .audience{
+  opacity: 1;
+  display: block;
+}
+.container.active .tabs{
+  margin-left: -100%;transition: margin-left 0.18s ease;
+}
+.container .tabs{transition: margin-left 0.18s ease;
+
+}
+.arrow-back{display: flex; margin-right: 16px;}
+.arrow-back svg{transform: rotate(-90deg); cursor: pointer; padding: 5px; width: 32px; height: 32px;}
+
+.header_tabcontent{padding-left: 16px; padding-right: 16px;}
+.back-main{position: absolute; left: 16px; display: block;}
+.back-main svg{transform: rotate(-90deg); width: 32px; height: 32px; padding: 5px;}
+
+.edit_delete_box button {display: none;}
+.chat-form{border-top: solid 1px #dbdbdb; height: 64px;position: unset; height: 100%; padding-top: 7px; padding-right: 7px;}
+.chat-form-input {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    border: unset;
+    position: unset;
+}
+.chat-form-button {
+  position: unset;
+    height: 44px;
+    width: 100px;
+    background: unset;
+    border: unset;
+    outline: none;
+    cursor: pointer;
+}
+.messages {
+    width: 100%;
+    height: calc(100% - 124px);
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: auto;
+    position: relative;
+    flex-direction: column-reverse;
+}
+}
