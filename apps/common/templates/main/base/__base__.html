@@ -47,128 +47,14 @@
             <div class="header__search">
                 <div class="dropdown" data-dropdown>
                 <form>
-                    <input type="text" placeholder="Search" class="search" data-dropdown-button="">
+                    <input type="text" placeholder="Search" class="search" id="input-btn-desktop" data-dropdown-button="" data-search-url="{% url 'search' %}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M21.669 21.6543C21.8625 21.4622 21.863 21.1494 21.6703 20.9566L17.3049 16.5913C18.7912 14.9327 19.7017 12.7525 19.7017 10.3508C19.7017 5.18819 15.5135 1 10.3508 1C5.18819 1 1 5.18819 1 10.3508C1 15.5135 5.18819 19.7017 10.3508 19.7017C12.7624 19.7017 14.9475 18.7813 16.606 17.2852L20.9739 21.653C21.1657 21.8449 21.4765 21.8454 21.669 21.6543ZM1.9843 10.3508C1.9843 5.7394 5.7394 1.9843 10.3508 1.9843C14.9623 1.9843 18.7174 5.7394 18.7174 10.3508C18.7174 14.9623 14.9623 18.7174 10.3508 18.7174C5.7394 18.7174 1.9843 14.9623 1.9843 10.3508Z" fill="#A5A5A5" stroke="#A5A5A5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </form>
                   <button class="search search-btn" data-dropdown-button></button>
-                    <div class="dropdown-menu information-grid">
-                        <div>
-                          <div class="searches">
-                                <div class="result-search">
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search hashtag">
-                                        <div class="img-user-result-search">
-                                            <svg aria-label="Хэштег" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="4.728" x2="20.635" y1="7.915" y2="7.915"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3.364" x2="19.272" y1="15.186" y2="15.186"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="17.009" x2="13.368" y1="2" y2="22"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="10.64" x2="7" y1="2" y2="22"></line></svg>
-                                        </div>
-                                        <div class="hashtag-result-search">
-                                            <div class="name-hashtag-result-search nowrap">#instagram</div>
-                                            <div class="quantity-hashtag-result-search nowrap">2 публикации</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search">
-                                        <div class="img-user-result-search">
-                                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                                        </div>
-                                        <div class="name-user-result-search">
-                                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="user-result-search hashtag">
-                                        <div class="img-user-result-search">
-                                            <svg aria-label="Хэштег" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="4.728" x2="20.635" y1="7.915" y2="7.915"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3.364" x2="19.272" y1="15.186" y2="15.186"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="17.009" x2="13.368" y1="2" y2="22"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="10.64" x2="7" y1="2" y2="22"></line></svg>
-                                        </div>
-                                        <div class="hashtag-result-search">
-                                            <div class="name-hashtag-result-search nowrap">#instagram</div>
-                                            <div class="quantity-hashtag-result-search nowrap">2 публикации</div>
-                                        </div>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
+                    <div class="dropdown-menu information-grid" id="search-res-desktop">
+                    {% include 'search/result_desktop.html' %}
                     </div>
                 </div>
             </div>
@@ -546,7 +432,9 @@
 })
 </script>
 
-<script src="{% static 'js/clientajax.js'%}"> </script>
+
+<script src="{% static 'js/ajax_search_desktop.js'%}"></script>
+<script src="{% static 'js/clientajax.js'%}"></script>
 {% block csrf_ready %}
 {% endblock %}
 
