@@ -13,6 +13,7 @@
                 </div>
             </a>
             {% endfor %}
+            
             {% for tag in tags %}
             <a href="{% url 'search' %}?tag={{ tag.name | urlencode }}" class="user-result-search hashtag">
                 <div class="img-user-result-search">
