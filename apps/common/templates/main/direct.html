@@ -445,19 +445,18 @@ function openCity(evt, cityName) {
     evt.currentTarget.classList.add("active");
 }
 
-document.getElementById("defaultOpen").click();
 
-// function defaultTabContent(x) {
-//   if (x.matches) { // If media query matches
-//     document.getElementById("default").style.display = "none";
-//   } else {
-//     document.getElementById("defaultOpen").click();
-//   }
-// }
+function defaultTabContent(x) {
+  if (x.matches) { // If media query matches
+    document.getElementById("default").style.display = "none";
+  } else {
+    document.getElementById("defaultOpen").click();
+  }
+}
 
-// var x = window.matchMedia("(max-width: 768px)")
-// defaultTabContent(x) // Call listener function at run time
-// x.addListener(defaultTabContent) // Attach listener function on state changes
+var x = window.matchMedia("(max-width: 768px)")
+defaultTabContent(x) // Call listener function at run time
+x.addListener(defaultTabContent) // Attach listener function on state changes
 
 
 // Get the modal
