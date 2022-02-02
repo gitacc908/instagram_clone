@@ -28,6 +28,9 @@ from apps.users.get_country import get_location
 from django.views.generic import UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import PasswordChangeForm
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.db.models import Q
 
 
 @login_required
@@ -96,6 +99,47 @@ def edit_notification_view(request):
 
 @login_required
 def search(request):
+    query = request.GET.get('q')
+    mobile = request.GET.get('mobile')
+    desktop = request.GET.get('desktop')
+    hashtag = request.GET.get('hashtag')
+    tag = request.GET.get('tag')
+    
+    if tag:
+        tag = get_object_or_404(Tag, name=tag)
+        posts = Post.objects.filter(tags__in=[tag,])
+        return render(request, 'main/search.html', {'posts': posts})
+
+    if query and request.is_ajax():
+        if hashtag:
+            tags = Tag.objects.filter(name__icontains=query)
+            if mobile:
+                html = render_to_string(
+                template_name="search/result_mobile.html", 
+                context={"tags": tags}
+            )
+            elif desktop:
+                html = render_to_string(
+                template_name="search/result_desktop.html", 
+                context={"tags": tags}
+            )
+        else:
+            users = User.objects.filter(
+                Q(username__icontains=query)
+                | Q(full_name__icontains=query)
+            )
+            if mobile:
+                html = render_to_string(
+                template_name="search/result_mobile.html", 
+                context={"users": users}
+            )
+            elif desktop:
+                html = render_to_string(
+                template_name="search/result_desktop.html", 
+                context={"users": users}
+            )
+        data_dict = {"html_from_view": html}
+        return JsonResponse(data=data_dict, safe=False)
     following_ids = list(request.user.following.values_list('id', flat=True))
     following_ids.append(request.user.id)
     posts = Post.objects.exclude(author_id__in=following_ids)

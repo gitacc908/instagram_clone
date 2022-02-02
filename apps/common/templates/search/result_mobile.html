@@ -1,0 +1,28 @@
+
+{% load user_tags %}
+   <div class="searches">
+        <div class="result-search">
+            {% for user in users %}
+            <a href="{{ user.get_absolute_url }}" class="user-result-search">
+                <div class="img-user-result-search">
+                    <img src="{{ user|get_user_photo }}" alt="">
+                </div>
+                <div class="name-user-result-search">
+                    <div class="nick-name-user-result-search nowrap">{{user.username}}</div>
+                    <div class="name-name-user-result-search nowrap">{% if user.full_name %} {{user.full_name}} {% endif %}</div>
+                </div>
+            </a>
+            {% endfor %}
+            {% for tag in tags %}
+            <a href="{% url 'search' %}?tag={{ tag.name | urlencode }}" class="user-result-search hashtag">
+                <div class="img-user-result-search">
+                    <svg aria-label="Хэштег" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="4.728" x2="20.635" y1="7.915" y2="7.915"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3.364" x2="19.272" y1="15.186" y2="15.186"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="17.009" x2="13.368" y1="2" y2="22"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="10.64" x2="7" y1="2" y2="22"></line></svg>
+                </div>
+                <div class="hashtag-result-search">
+                    <div class="name-hashtag-result-search nowrap">{{ tag.name }}</div>
+                    <div class="quantity-hashtag-result-search nowrap">{{ tag.posts.count }} публикации</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>

@@ -18,123 +18,12 @@
 {% block content %}
 
 <div class="fixed-search">
-    <label class="NcCcD"><input autocapitalize="none" onfocus="myFunctionSearch(this)" id="input-btn" class="notactive"  autocomplete="off" placeholder="Поиск" spellcheck="true" type="search" value=""></label>
+    <label class="NcCcD"><input autocapitalize="none" data-search-url="{% url 'search' %}" onfocus="myFunctionSearch(this)" id="input-btn-mobile" class="notactive"  autocomplete="off" placeholder="Поиск" spellcheck="true" type="search" value=""></label>
 </div>
-        <div id="myDropdownSearch" class="dropdown-content-search">
+        <div id="myDropdownSearch" class="dropdown-content-search" style="overflow:scroll;">
             <button class="close-search" onclick="myFunctionSearchClose()">Отмена</button>
-
-            <div class="searches">
-                <div class="result-search">
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search hashtag">
-                        <div class="img-user-result-search">
-                            <svg aria-label="Хэштег" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="4.728" x2="20.635" y1="7.915" y2="7.915"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3.364" x2="19.272" y1="15.186" y2="15.186"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="17.009" x2="13.368" y1="2" y2="22"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="10.64" x2="7" y1="2" y2="22"></line></svg>
-                        </div>
-                        <div class="hashtag-result-search">
-                            <div class="name-hashtag-result-search nowrap">#instagram</div>
-                            <div class="quantity-hashtag-result-search nowrap">2 публикации</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search">
-                        <div class="img-user-result-search">
-                            <img src="https://pic.rutube.ru/video/74/07/74076167f0cb475ad98e646f7dd907d5.jpg" alt="">
-                        </div>
-                        <div class="name-user-result-search">
-                            <div class="nick-name-user-result-search nowrap">asdasd</div>
-                            <div class="name-name-user-result-search nowrap">asdasdas</div>
-                        </div>
-                    </a>
-                    <a href="#" class="user-result-search hashtag">
-                        <div class="img-user-result-search">
-                            <svg aria-label="Хэштег" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="4.728" x2="20.635" y1="7.915" y2="7.915"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3.364" x2="19.272" y1="15.186" y2="15.186"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="17.009" x2="13.368" y1="2" y2="22"></line><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="10.64" x2="7" y1="2" y2="22"></line></svg>
-                        </div>
-                        <div class="hashtag-result-search">
-                            <div class="name-hashtag-result-search nowrap">#instagram</div>
-                            <div class="quantity-hashtag-result-search nowrap">2 публикации</div>
-                        </div>
-                    </a>
-
-                </div>
+            <div id="search_res_mobile">
+            {% include 'search/result_mobile.html' %}
             </div>
         </div>
 
@@ -165,531 +54,16 @@
                 {% endwith %}
             </a>
             {% endfor %}
-            
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a><a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
-            <a href="" class="grid-link">
-                <div class="hover-box">
-                    <div class="hover-likes hover-btns">
-                        <svg fill="#fff" height="19" role="img" viewBox="0 0 48 48" width="19"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                        <span class="number-of-likes hover-btns">1 123</span>
-                    </div>
-                    <div class="hover-comments hover-btns">
-                        <svg fill="#fff" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z"></path></svg>
-                        <span class="number-of-comments hover-btns">1 213</span>
-                    </div>
-                </div>
-                <div class="search-img">
-                    <img src="https://avatars.mds.yandex.net/i?id=bec136f5cc5545c242707298719c3717-4373855-images-thumbs&n=13" alt="">
-                </div>
-            </a>
         </div>
     </div>
 </main>
+{% endblock %}
 
-
+{% block scripts %}
 <script>
 function myFunctionSearch() {
     var myDropdownSearch = document.getElementById("myDropdownSearch");
-    var activeSearch = document.querySelector("#input-btn");
+    var activeSearch = document.querySelector("#input-btn-mobile");
     if(!myDropdownSearch.classList.contains("showSearch")){
         myDropdownSearch.classList.toggle("showSearch")
         activeSearch.classList.toggle("activeSearch")
@@ -699,16 +73,57 @@ function myFunctionSearch() {
 function myFunctionSearchClose(){
     var myDropdownSearch = document.getElementById("myDropdownSearch");
     myDropdownSearch.classList.remove("showSearch")
-    var activeSearch = document.querySelector("#input-btn");
+    var activeSearch = document.querySelector("#input-btn-mobile");
     activeSearch.classList.remove("activeSearch")
     activeSearch.classList.toggle("notactive")
 }
 
+const user_input = $("#input-btn-mobile")
+const users_div = $('#search_res_mobile')
+const endpoint_mob = $("#input-btn-mobile").attr('data-search-url')
+const delay_by_in_ms_mob = 700
+let scheduled_function_mob = false
+
+
+let ajax_call_mob = function (endpoint_mob, request_parameters_mob) {
+    $.getJSON(endpoint_mob, request_parameters_mob)
+        .done(response => {
+            // check which event is that
+            // fade out the users_div, then:
+                users_div.fadeTo('slow', 0).promise().then(() => {
+                    // replace the HTML contents
+                    users_div.html(response['html_from_view'])
+                    // fade-in the div with new contents
+                    users_div.fadeTo('slow', 1)
+                })
+        })
+}
+
+// mobile search event
+user_input.on('keyup', function (event) {
+    if (user_input.val().charAt(0)=='#'){
+        var request_parameters_mob = {
+            q: $(this).val(), // value of user_input: the HTML element with ID user-input
+            mobile: true,
+            hashtag: true
+        }
+    }
+    else{
+        var request_parameters_mob = {
+            q: $(this).val(), // value of user_input: the HTML element with ID user-input
+            mobile: true
+        }
+    }
+
+    // if scheduled_function is NOT false, cancel the execution of the function
+    if (scheduled_function_mob) {
+        clearTimeout(scheduled_function_mob)
+    }
+
+    // setTimeout returns the ID of the function to be executed
+    scheduled_function_mob = setTimeout(ajax_call_mob, delay_by_in_ms_mob, endpoint_mob, request_parameters_mob)
+})
 </script>
-
-{% endblock %}
-
-{% block scripts %}
 
 {% endblock %}
 
