@@ -104,7 +104,7 @@
             </header>
             <div class="tab">
                 <div onclick="openCity(event, 'default')" id="defaultOpen"></div>
-                  <button class="tablinks privacy" onclick="openCity(event, 'dcllns')" id="defaultOpen">
+                  <button class="tablinks privacy" onclick="openCity(event, 'dcllns')">
                         <div class="tab_user_img">
                             <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
                         </div>
@@ -427,24 +427,37 @@
     </main>
 
 <script>
+
 function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
+    var container = document.querySelector(".container");
+    container.classList.add("active");
+
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.classList.add("active");
 }
 
-// Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
+// function defaultTabContent(x) {
+//   if (x.matches) { // If media query matches
+//     document.getElementById("default").style.display = "none";
+//   } else {
+//     document.getElementById("defaultOpen").click();
+//   }
+// }
 
+// var x = window.matchMedia("(max-width: 768px)")
+// defaultTabContent(x) // Call listener function at run time
+// x.addListener(defaultTabContent) // Attach listener function on state changes
 
 
 // Get the modal
@@ -475,15 +488,14 @@ window.onclick = function(event) {
 
 
 
-      const container = document.querySelector(".container"),
-      privacy = container.querySelector(".tabs .privacy"),
-      arrowBack = container.querySelector(".audience .arrow-back");
-      privacy.addEventListener("click", () => {
-        container.classList.add("active");
-      });
-      arrowBack.addEventListener("click", () => {
+// mobile version close tab contents
+const container = document.querySelector(".container");
+arrowBack = container.querySelectorAll(".audience .arrow-back");
+for (i = 0; i < arrowBack.length; i++) {
+    arrowBack[i].onclick = function(){
         container.classList.remove("active");
-      });
+    };
+}
 </script>
 
 {% endblock %}

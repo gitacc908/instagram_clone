@@ -240,7 +240,6 @@ fieldset{border: none;}
   align-items: center;
 }
 
-hr{height: 20px; border: solid 1px #dbdbdb; }
 .login__active_btn button{
   width: 100%;
   padding: 20px 0;

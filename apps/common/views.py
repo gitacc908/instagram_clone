@@ -96,7 +96,10 @@ def edit_notification_view(request):
 
 @login_required
 def search(request):
-    return render(request, 'main/search.html')
+    following_ids = list(request.user.following.values_list('id', flat=True))
+    following_ids.append(request.user.id)
+    posts = Post.objects.exclude(author_id__in=following_ids)
+    return render(request, 'main/search.html', {'posts': posts})
 
 
 @login_required
