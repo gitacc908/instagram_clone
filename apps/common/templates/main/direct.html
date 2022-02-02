@@ -459,7 +459,6 @@ defaultTabContent(x) // Call listener function at run time
 x.addListener(defaultTabContent) // Attach listener function on state changes
 
 
-
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -487,16 +486,15 @@ window.onclick = function(event) {
 } 
 
 
+
 // mobile version close tab contents
 const container = document.querySelector(".container");
 arrowBack = container.querySelectorAll(".audience .arrow-back");
-
 for (i = 0; i < arrowBack.length; i++) {
     arrowBack[i].onclick = function(){
         container.classList.remove("active");
     };
 }
-
 </script>
 
 {% endblock %}

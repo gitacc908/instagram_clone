@@ -6,7 +6,7 @@ main{ margin: 90px auto 0; max-width: 935px; margin-bottom: 100px; width: 100%; 
   float: left;
   width: 25%;
 }
-
+li{list-style: none;}
 /* Style the buttons inside the tab */
 .tab button {
   display: block;
@@ -240,7 +240,6 @@ fieldset{border: none;}
   align-items: center;
 }
 
-hr{height: 20px; border: solid 1px #dbdbdb; }
 .login__active_btn button{
   width: 100%;
   padding: 20px 0;

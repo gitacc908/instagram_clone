@@ -16,7 +16,13 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 .username-editprofile{display: flex; height: 40px; align-items: center; margin-bottom: 20px;}
 .header-profile-username{font-size: 28px;margin: -5px 0 -6px; font-weight: 100;}
 .btn-edit-profile{padding: 5px 9px;font-weight: 500;font-size: 13px; margin-left: 20px; margin-right: 20px; border: solid 1px #dbdbdb; border-radius: 4px;background-color: transparent;color: #262626;}
-.username-editprofile button{padding: 5px;}
+.edit-settings{display: flex; height: 100%; align-items: center;}
+.edit-settings button {padding: 5px;}
+.subscribe-un{display: flex; height: 100%; align-items: center;}
+.subs, .unsubs, .subs-to-you{ border-radius: 4px; padding: 5px 14px; font-weight: bold; white-space: nowrap;}
+.subs{background: #0095f6;color: #fff;}
+.unsubs{background: #ff7474;color: #fff;}
+.subs-to-you{border: solid 1px #dbdbdb;}
 
 .publications-subscribers-subscriptions{display: flex; margin-bottom: 20px;}
 .publications-subscribers-subscriptions li{margin-right: 30px;}
@@ -168,7 +174,7 @@ main{max-width: 975px; width: 100%; margin-top: 54px; margin-left: auto; margin-
 
 	.header-profile-user-info{flex-grow: 5; position: relative;}
 	.username-editprofile{display: flex; height: 40px; align-items: center; margin:0;}
-	.header-profile-username{font-size: 28px;margin: -5px 0 -6px; font-weight: 100;}
+	.header-profile-username{font-size: 22px;margin: -5px 0 -6px; font-weight: 100;}
 	.btn-edit-profile{font-size: 13px; margin: 0; text-align: center; min-height: 30px; max-width: 250px; position: absolute;bottom: 0;left: 0; right: 0; transition: .3s;}
 	.username-editprofile button{padding: 5px; margin-left: 10px;}
 
