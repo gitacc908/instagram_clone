@@ -26,6 +26,7 @@ urlpatterns = i18n_patterns(
     # path('account/', include('django.contrib.auth.urls')), 
     path('account/', include('apps.users.urls')),
     path('catalog/', include('apps.catalog.urls')),
+    path('chat/', include('apps.chat.urls')),
     path('emoji/', include('emoji.urls')),
 
     path('', include('apps.common.urls')),

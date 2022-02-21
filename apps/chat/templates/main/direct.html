@@ -1,7 +1,8 @@
 {% extends 'main/base/__base__.html' %}
 {% load static %}
 {% load user_tags %}
-<!-- {% load humanize %} -->
+{% load chat_tags %}
+{% load humanize %}
 <!-- {% load custom_tags %} -->
 <!-- {% load emoji_tags %} -->
 
@@ -103,21 +104,27 @@
                 </button>
             </header>
             <div class="tab">
-                <div onclick="openCity(event, 'default')" id="defaultOpen"></div>
-                  <button class="tablinks privacy" onclick="openCity(event, 'dcllns')">
+                <div onclick="openDirect(event, 'default')" id="defaultOpen"></div>
+                {% for dm_user in user|get_dm_users %}
+                  <button class="tablinks privacy" onclick="openDirect(event, '{{ dm_user.username }}')">
                         <div class="tab_user_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
+                            <img src="{{ dm_user|get_user_photo }}" alt="">
                         </div>
                         <div class="tab_user_name-date">
                             <div class="tab_user_name">
-                                Chyngyz Esembekov
+                                {% if dm_user.full_name %}
+                                {{ dm_user.full_name }}
+                                {% else %}
+                                {{ dm_user.username }}
+                                {% endif %}
                             </div>
                             <div class="tab_user_date">
                                 <span>Последнее сообщение asd asdk asdkla sdkasjd laksdlkj</span><span>1дн.</span>
                             </div>
                         </div>
                   </button>
-                  <button class="tablinks privacy" onclick="openCity(event, 'adilet123')">
+                  {% endfor %}
+                  <!-- <button class="tablinks privacy" onclick="openDirect(event, 'adilet123')">
                         <div class="tab_user_img">
                           <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
                         </div>
@@ -129,7 +136,20 @@
                                 <span>Последнее сообщение asd asdk asdkla sdkasjd laksdlkj</span><span>1дн.</span>
                             </div>
                         </div>
-                  </button>
+                  </button> -->
+                  <button class="tablinks privacy" onclick="openDirect(event, 'common')">
+                    <div class="tab_user_img">
+                      <img src="{% static 'img/6127863-1591506100354-ac44747b14d85.jpg' %}" alt="">
+                    </div>
+                    <div class="tab_user_name-date">
+                        <div class="tab_user_name">
+                            Chatty
+                        </div>
+                        <div class="tab_user_date">
+                            <span>Members online <span class="members-count">{{ common_room.online.count }}</span></span>
+                        </div>
+                    </div>
+              </button>
             </div>
         </section>
 
@@ -143,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div id="dcllns" class="tabcontent">
+            <!-- <div id="dcllns" class="tabcontent">
               <header class="header_tabcontent">
                 <div class="arrow-back">
                     <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
@@ -318,117 +338,139 @@
 
               </div>
                 <form class="chat-form" action="" method="post">
-                        <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
-                        <button class="chat-form-button" type="submit">Отправить</button>
+                        <input class="chat-form-input" id="chat-message-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
+                        <button class="chat-form-button" id="chat-message-submit" type="button">Отправить</button>
                 </form>
-            </div>
-
-            <div id="adilet123" class="tabcontent">
+            </div> -->
+            {% for dm_user in user|get_dm_users %}
+            <div id="{{ dm_user.username }}" class="tabcontent">
               <header class="header_tabcontent">
                 <div class="arrow-back">
                     <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                 </div>
                   <a href="#">
                     <div class="message_user_img">
-                        <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
+                        <img src="{{ dm_user|get_user_photo }}" alt="">
                     </div>
-                    <div class="message_user_name">Adilet Malikov</div>
+                    <div class="message_user_name"> 
+                        {% if dm_user.full_name %}
+                        {{ dm_user.full_name }}
+                        {% else %}
+                        {{ dm_user.username }}
+                        {% endif %}
+                    </div>
                   </a>
               </header>
               <div class="messages" id="messages">
-
                 <div class="date-messages"><span>24 январь 2022г.</span></div>
+                {% with user as me %}
+                {% for message in dm_user|get_dm_messages:me %}
+                {% if message.user != me %}
                   <div class="interlocutor message_box" >
                         <div class="interlocutor_img_box">
                             <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
+                                <img src="{{ dm_user|get_user_photo }}" alt="">
                             </a>
                         </div>
                         <div class="interlocutor_message">
                             <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk
-                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
+                                <p>{{ message.content }}</p>
                                 <div class="edit_delete_box">
                                     <button>Нравится</button>
                                     <button>Бесишь</button>
                                 </div>
                             </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-
-                        </div>
-                  </div>
-
-                        <div class="my_message message_box">
-                            <div class="my_message_right">
-                                <div class="message message_right">
-                                    <div class="edit_delete_box">
-                                        <button>Отменить</button>
-                                        <button>Редактировать</button>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae cupiditate et fugiat quasi sit similique ab, nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
-                                </div>
-                                <div class="message message_right">
-                                    <div class="edit_delete_box">
-                                        <button>Отменить</button>
-                                        <button>Редактировать</button>
-                                    </div>
-                                    <p>nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
-                                </div>
-                                <div class="message message_right">
-                                    <div class="edit_delete_box">
-                                        <button>Отменить</button>
-                                        <button>Редактировать</button>
-                                    </div>
-                                    <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                </div>
-                            </div>
-                        </div>
-
-                  <div class="interlocutor message_box" >
-                        <div class="interlocutor_img_box">
-                            <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
-                            </a>
-                        </div>
-                        <div class="interlocutor_message">
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-
                         </div>
                   </div>
-
-
+                  {% else %}
+                    <div class="my_message message_box">
+                        <div class="my_message_right">
+                            <div class="message message_right">
+                                <div class="edit_delete_box">
+                                    <button>Отменить</button>
+                                    <button>Редактировать</button>
+                                </div>
+                                <p>{{ message.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                {% endwith %}
               </div>
-                <form class="chat-form" action="" method="post">
+                <form class="chat-form">
                         <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
-                        <button class="chat-form-button" type="submit">Отправить</button>
+                        <button class="chat-form-button pm-message-send-button" type="button">Отправить</button>
                 </form>
             </div>
+            {% endfor %}
+            <!-- start of common chat room -->
+            <div id="common" class="tabcontent">
+                <div class="chat-members">
+                   
+                </div>
+                <header class="header_tabcontent">
+                  <div class="arrow-back">
+                      <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
+                  </div>
+                    <a href="#">
+                      <div class="message_user_img">
+                          <img src="{% static 'img/6127863-1591506100354-ac44747b14d85.jpg' %}">
+                      </div>
+                      <div class="message_user_name">Chatty</div>
+                    </a>
+                </header>
+                <div class="messages" id="messages">
+                  <div class="date-messages"><span>24 январь 2022г.</span></div>
+                    {% with user as me %}
+                    {% for message in common_room.room_messages.all %}
+                    {% if message.user != me %}
+                    <div class="interlocutor message_box" >
+                          <div class="interlocutor_img_box">
+                              <a href="{{ message.user.get_absolute_url }}" class="interlocutor_img">
+                                <img src="{{ message.user|get_user_photo }}">
+                              </a>
+                          </div>
+                          <div class="interlocutor_message">
+                              <div class="message">
+                                  <p>{{ message.content }}</p>
+                                  <div class="edit_delete_box">
+                                      <button>Нравится</button>
+                                      <button>Бесишь</button>
+                                  </div>
+                              </div>
+                          </div>
+                    </div>
+                    {% else %}
+                          <div class="my_message message_box">
+                              <div class="my_message_right">
+                                  <div class="message message_right">
+                                      <div class="edit_delete_box">
+                                          <button>Отменить</button>
+                                          <button>Редактировать</button>
+                                      </div>
+                                      <p> {{ message.content }}</p>
+                                  </div>
+                              </div>
+                          </div>
+                          {% endif %}
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+                  <form class="chat-form">
+                          <input class="chat-form-input" id="common_chat_input" type="text" aria-label="Your message" placeholder="Написать сообщение">
+                          <button class="chat-form-button" id="common_chat_submit" type="button">Отправить</button>
+                  </form>
+              </div>
+              <!-- end of common room tab content -->
         </section>
     </main>
+{% endblock %}
+ 
 
+{% block scripts %}
 <script>
-
-function openCity(evt, cityName) {
+function openDirect(evt, directName) {
     var container = document.querySelector(".container");
     container.classList.add("active");
 
@@ -439,19 +481,160 @@ function openCity(evt, cityName) {
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    tablinks[i].className = tablinks[i].className.replace("active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(directName).style.display = "block";
     evt.currentTarget.classList.add("active");
+
+
+    {% with user as me %}
+    // connect to common chat room 
+    // {% comment %} if (directName == 'common'){
+    //     var url = 'ws://' + window.location.host +
+    //     '/ws/chat/room/' + 'common/';
+    //     var chatSocket = new WebSocket(url);
+    //     chatSocket.onmessage = function(e) {
+    //         var data = JSON.parse(e.data);
+    //         var $chat = $('#common > #messages')
+    //         switch (data.type) {
+    //             case "chat_message":
+    //                 if(data.user.username != '{{me.username}}'){
+    //                     var message_div = `<div class="interlocutor message_box">
+    //                             <div class="interlocutor_img_box">
+    //                                 <a href="" class="interlocutor_img">
+    //                                     <img src="${data.user.image}">
+    //                                 </a>
+    //                             </div>
+    //                             <div class="interlocutor_message">
+    //                                 <div class="message">
+    //                                     <p>${data.message}</p>
+    //                                     <div class="edit_delete_box">
+    //                                         <button>Нравится</button>
+    //                                         <button>Бесишь</button>
+    //                                     </div>
+    //                                 </div>
+    //                             </div>
+    //                         </div>`
+    //                 }
+    //                 else{
+    //                     var message_div = `<div class="my_message message_box">
+    //                         <div class="my_message_right">
+    //                             <div class="message message_right">
+    //                                 <div class="edit_delete_box">
+    //                                     <button>Отменить</button>
+    //                                     <button>Редактировать</button>
+    //                                 </div>
+    //                                 <p> ${data.message}</p>
+    //                             </div>
+    //                         </div>
+    //                     </div>`
+    //                 }
+    //                 $chat.append(message_div);
+    //                 $chat.scrollTop($chat[0].scrollHeight);
+    //                 break;
+    //             case "user_list":
+    //                 for (let i = 0; i < data.users.length; i++) {
+    //                     $('#common > .chat-members').append(`<p>${data.users[i]}</p>`)
+    //                 }
+    //                 break;
+    //             case "user_join":
+    //                 $chat.append(
+    //                     `<div class="my_message message_box">
+    //                     <div class="my_message_right">
+    //                         <div class="message message_right">
+    //                             <div class="edit_delete_box">
+    //                                 <button></button>
+    //                                 <button></button>
+    //                             </div>
+    //                             <p> ${data.user} joined the room.</p>
+    //                         </div>
+    //                     </div>
+    //                 </div>`
+    //                 )
+    //                 // $('#common > .chat-members').append(`<p>${data.user}</p>`)
+    //                 // $('.members-count').text( parseInt($('.members-count').text())++)
+    //                 break;
+    //             case "user_leave":
+    //                 $chat.append(
+    //                         `<div class="my_message message_box">
+    //                         <div class="my_message_right">
+    //                             <div class="message message_right">
+    //                                 <div class="edit_delete_box">
+    //                                     <button></button>
+    //                                     <button></button>
+    //                                 </div>
+    //                                 <p> ${data.user} left the room.</p>
+    //                             </div>
+    //                         </div>
+    //                     </div>`
+    //                 )
+    //                 // $('.members-count').text( parseInt($('.members-count').text())--)
+    //                 // onlineUsersSelectorRemove(data.user);
+    //                 break;
+    //             default:
+    //                 console.error("Unknown message type!");
+    //                 break;
+    //         }
+            
+    //     };
+    //         chatSocket.onclose = function(e) {
+    //         console.error('Chat socket closed unexpectedly');
+    //         };
+    //         chatSocket.onopen = function(e) {
+    //             console.log("Successfully connected to the WebSocket common room.");
+    //         }
+    //         chatSocket.onerror = function(err) {
+    //         console.log("WebSocket encountered an error: " + err.message);
+    //         console.log("Closing the socket.");
+    //         chatSocket.close();
+    //         }
+    //         // send message
+    //         var $input = $('#common_chat_input');
+    //         var $submit = $('#common_chat_submit');
+    //         $submit.click(function() {
+    //         var message = $input.val();
+    //         if(message) {
+    //         // send message in JSON format
+    //         chatSocket.send(JSON.stringify({'message': message}));
+    //         // clear input
+    //         $input.val('');
+    //         // return focus
+    //         $input.focus();
+    //         }
+    //         });
+
+    //         $input.focus();
+    //         $input.keyup(function(e) {
+    //         e.preventDefault();
+    //         if (e.which === 13) {
+    //         // submit with enter / return key
+    //         $submit.click();
+    //         }
+    //         });
+
+    // } {% endcomment %}
+    //  else{ 
+       
+
+            // $input.focus();
+            // $input.keyup(function(e) {
+            // e.preventDefault();
+            // if (e.which === 13) {
+            // // submit with enter / return key
+            // $submit.click();
+            // }
+            // });
+        {% endwith %}
+    // }
 }
 
 
 function defaultTabContent(x) {
-  if (x.matches) { // If media query matches
+    if (x.matches) { // If media query matches
     document.getElementById("default").style.display = "none";
-  } else {
+    } else {
     document.getElementById("defaultOpen").click();
-  }
+    }
 }
 
 var x = window.matchMedia("(max-width: 768px)")
@@ -459,32 +642,22 @@ defaultTabContent(x) // Call listener function at run time
 x.addListener(defaultTabContent) // Attach listener function on state changes
 
 
-// Get the modal
+//  modal 
 var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
 var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
 btn.onclick = function() {
-  modal.style.display = "block";
+    modal.style.display = "block";
 }
-
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
     modal.style.display = "none";
-  }
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
 } 
-
+//////////////////
 
 
 // mobile version close tab contents
@@ -497,11 +670,89 @@ for (i = 0; i < arrowBack.length; i++) {
 }
 </script>
 
-{% endblock %}
+<script>
 
- 
+    $(function(){
 
-{% block scripts %}
+        var url = 'ws://' + window.location.host +
+        '/ws/chat/room/private/' + '{{user.username}}/';
+        var chatSocket = new WebSocket(url);
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+
+            switch (data.type) {
+                case "private_message":
+                    let send_user = $(`#${data.user.username}`)
+                    let my_messages_container = send_user.children('#messages')
+                    let incoming_message = 
+                    `<div class="interlocutor message_box">
+                            <div class="interlocutor_img_box">
+                                <a href="" class="interlocutor_img">
+                                    <img src="${data.user.image}" alt="">
+                                </a>
+                            </div>
+                            <div class="interlocutor_message">
+                                <div class="message">
+                                    <p>${data.message}</p>
+                                    <div class="edit_delete_box">
+                                        <button>Нравится</button>
+                                        <button>Бесишь</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>`
+                    my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
+                    my_messages_container.append(incoming_message)
+                    // chatLog.value += "PM from " + data.user + ": " + data.message + "\n";
+                    break;
+                case "private_message_delivered":
+                    let dm_user = $(`#${data.target}`)
+                    let messages = dm_user.children('#messages')
+                    let my_message = 
+                    `<div class="my_message message_box">
+                        <div class="my_message_right">
+                            <div class="message message_right">
+                                <div class="edit_delete_box">
+                                    <button>Отменить</button>
+                                    <button>Редактировать</button>
+                                </div>
+                                <p>${data.message}</p>
+                            </div>
+                        </div>
+                    </div>`
+                    messages.scrollTop(messages[0].scrollHeight)
+                    messages.append(my_message)
+                    break;
+                default:
+                    console.error("Unknown message type!");
+                    break;
+            }
+            
+        };
+            chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+            };
+            chatSocket.onopen = function(e) {
+                console.log("Successfully connected to the WebSocket Private messages.");
+            }
+
+            // send pm
+            var $input = document.querySelectorAll('.pm-message-send-button')
+            for (let i = 0; $input.length > i; i++){
+                $input[i].onclick = function(){
+                    message = $input[i].previousElementSibling.value;
+                    if (message){
+                        let username = $input[i].closest('.tabcontent').id;
+                        message = '/pm ' + username + ' ' + message
+                        chatSocket.send(JSON.stringify({'message': message}));
+                        $input[i].previousElementSibling.value = '';
+                        $input[i].previousElementSibling.focus();
+                    }
+                }
+            }
+        });
+
+</script>
 {% endblock %}
 
 

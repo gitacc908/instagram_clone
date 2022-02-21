@@ -147,11 +147,6 @@ def search(request):
 
 
 @login_required
-def direct(request):
-    return render(request, 'main/direct.html')
-
-
-@login_required
 def main(request):
     posts = Post.objects.filter(author__in=request.user.following.all())
     paginator = Paginator(posts, 3)
