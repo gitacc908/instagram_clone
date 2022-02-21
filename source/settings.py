@@ -46,12 +46,14 @@ INSTALLED_APPS = [
     'emoji_picker',
     'rosetta',
     'widget_tweaks',
+    'channels',
 
     # custom apps
     'apps.users',
     'apps.catalog',
     'apps.common',
     'apps.actions',
+    'apps.chat'
 ]
 
 MIDDLEWARE = [
@@ -186,3 +188,13 @@ REDIS_DB = 0
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'sign-in'
 LOGIN_URL = 'sign-in'
+ASGI_APPLICATION = 'source.routing.application'
+
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)], 
+        },
+    },
+}

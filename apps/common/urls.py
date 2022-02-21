@@ -12,7 +12,6 @@ urlpatterns = [
     path('edit_notification/', views.edit_notification_view, name='edit_notification'),
 
     path('search/', views.search, name='search'),
-    path('direct/', views.direct, name='direct'),
 
     # view with submit
     path('unfollow/<pk>/', views.UnfollowView.as_view(), name='unfollow'),

@@ -61,7 +61,6 @@ class UserSignInView(FormView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
-
         username = form.cleaned_data.get('username_email_phone')
         password = form.cleaned_data.get('password')
         user = authenticate(
