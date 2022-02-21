@@ -294,9 +294,11 @@ function openDirect(evt, directName) {
     tablinks[i].className = tablinks[i].className.replace("active", "");
     }
     document.getElementById(directName).style.display = "block";
-    let this_tab = $(`#${directName}`).children('#messages')
-    this_tab.scrollTop(this_tab[0].scrollHeight)
-
+    if (directName != 'default'){
+        let this_tab = $(`#${directName}`).children('#messages')
+        this_tab.scrollTop(this_tab[0].scrollHeight)
+    }
+  
     // evt.currentTarget.classList.add("active");
 }
 
@@ -498,8 +500,8 @@ $(function(){
                         </div>
                     </div>
             </div>`
-            my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
             my_messages_container.append(incoming_message)
+            my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
             // chatLog.value += "PM from " + data.user + ": " + data.message + "\n";
             break;
         case "private_message_delivered":
@@ -517,8 +519,8 @@ $(function(){
                     </div>
                 </div>
             </div>`
-            messages.scrollTop(messages[0].scrollHeight)
             messages.append(my_message)
+            messages.scrollTop(messages[0].scrollHeight)
             break;
         default:
             console.error("Unknown message type!");
