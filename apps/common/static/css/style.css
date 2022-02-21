@@ -71,7 +71,7 @@ img { max-width: 100%; }
 
     position: fixed;
     top: 0; left: 0;
-    z-index: 2;
+    z-index: 100;
 }
 .header::after {
     content: '';
@@ -289,6 +289,120 @@ background-color: #fff;
     flex-direction: column;
 }
 
+.story_modal{position: fixed; transform: scale(0.9); padding: 16px;  transition: visibility 200ms, opacity 200ms, transform 200ms; z-index: 1000; left: 0; top: 0; right: 0; bottom: 0; background-color: #111; opacity: 0; visibility: hidden;}
+.story_modal:target{
+    visibility: visible;
+    transform: scale(1.0);
+    opacity: 1;
+
+}
+.close_story{position: absolute; width: 50px; height: 50px;right: 10px; top: 10px; padding:  7px;fill: #fff;}
+.stories_box{
+    max-width: 500px;width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /*mozilla*/
+    background-color: #fff;
+
+}
+.stories_box::-webkit-scrollbar {
+  display: none; /*chrome*/
+}
+
+@keyframes my-animation {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.progressbar {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  transform-origin: 0 50%;
+  transform: scaleX(0); /* To prevent FOUC */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: my-animation 16s linear forwards infinite;
+  z-index: 100;
+}
+.story_content{
+    scroll-snap-align: start;
+    min-width:100%;
+    z-index: 99;
+    position: relative;
+}
+.story_content_media{
+    width: 100%; height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+.story_content_media img{
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+
+.story_content_profile{
+    display: flex; align-items: center;
+    gap: 16px;
+    padding-left: 16px; padding-right: 16px;
+    padding-top: 22px; padding-bottom: 60px;
+    background: linear-gradient(180deg,rgba(38,38,38,.8) 0%,rgba(38,38,38,0) 100%);
+    z-index: 10;
+    position: absolute;left: 0; right: 0;
+}
+.story_content_profile_img{
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.story_content_profile_img img{
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+.story_content_profile_name:active{
+    opacity: .7;
+}
+.story_content_time{color: #ffffff88; font-size: 14px;}
+
+.story_content_direct{
+    position: absolute;
+    display: flex; align-items: center; justify-content: space-between;
+    bottom: 0; left: 0;right: 0;
+    padding-bottom: 16px; padding-top: 80px; padding-left: 16px; padding-right: 16px; gap: 16px;
+    background: linear-gradient(180deg,rgba(38,38,38,0) 0%,rgba(38,38,38,.6) 100%);
+    z-index: 10;
+}
+.story_content_direct input{
+    width: 100%;height: 50px; 
+    border-radius: 32px;
+    outline: none; border: solid 1px #fff;
+    padding-left: 16px; padding-right: 16px;
+    color: #fff; font-size: 16px;
+    background-color: unset;
+}
+.story_content_direct input::placeholder{
+    color: #fff;
+}
+.story_content_direct button{
+    background-color: unset;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 7px;
+}
+
+
+
+
 .stories {
     width: 100%;
     background-color: var(--primary);
@@ -346,7 +460,7 @@ background-color: #fff;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index:10;
 }
 .stories__left-button {
     left: 10px;
@@ -416,7 +530,6 @@ background-color: #fff;
     font-size: 12px;
     font-weight: 400;
     color: var(--text-light);
-    text-transform: lowercase;
 
     max-width: 72px;
     text-overflow: ellipsis;
@@ -426,6 +539,7 @@ background-color: #fff;
 .story--has-story .story__user {
     color: var(--text-dark);
 }
+
 
 /* Post */
 .post {
