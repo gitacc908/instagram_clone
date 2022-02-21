@@ -129,14 +129,14 @@ $(document).ready(function(){
         $('#notify').fadeIn('slow');
         $('#notify').delay(3000).fadeOut();
         
-        // close current modal
-        // $( ".post-setting-container" ).each(function( index ) {
-        //     if (this.style.display == 'flex'){
-        //         this.style.display = ''
-        //     }
-        // });
     });
     
-
+    var send_dm_button = document.querySelector('.send-message')
+    if (send_dm_button){
+        send_dm_button.onclick = function(){
+            dm_username = document.querySelector('.header-profile-username')
+            localStorage.setItem('dm_username', dm_username.textContent)
+        }
+    }
 
 });

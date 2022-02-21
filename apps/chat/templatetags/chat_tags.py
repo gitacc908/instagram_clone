@@ -9,7 +9,7 @@ from itertools import chain
 register = template.Library()
 
 
-def get_dm_users(user):
+def get_dm_users(user, dm_user=None):
     me = user
     users = User.objects.exclude(id=me.pk)
     dm_users = []
@@ -22,8 +22,10 @@ def get_dm_users(user):
             if user == message.user:
                 dm_users.append(user)
                 break
-    print(dm_users)
-    return set(dm_users)
+    dm_users = set(dm_users)
+    if dm_user:
+        dm_users.add(dm_user)
+    return dm_users
 
 # @register.simple_tag
 # def format_current_url_with_lang_code(request, language_code, curren_lang_code):
@@ -31,16 +33,17 @@ def get_dm_users(user):
 
 
 def get_dm_messages(dm_user, me):
-    my_messages_sent_to_dm_user = dm_user.user_room.room_messages.filter(
-        user=me)
-    dm_user_messages_sent_to_me = me.user_room.room_messages.filter(
-        user=dm_user)
+    result_list = None
+    if dm_user is not None:
+        my_messages_sent_to_dm_user = dm_user.user_room.room_messages.filter(
+            user=me)
+        dm_user_messages_sent_to_me = me.user_room.room_messages.filter(
+            user=dm_user)
 
-    result_list = sorted(
-        chain(my_messages_sent_to_dm_user, dm_user_messages_sent_to_me),
-        key=lambda instance: instance.timestamp
-    )
-    print(result_list)
+        result_list = sorted(
+            chain(my_messages_sent_to_dm_user, dm_user_messages_sent_to_me),
+            key=lambda instance: instance.timestamp
+        )
     return result_list
 
 

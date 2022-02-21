@@ -105,7 +105,7 @@
             </header>
             <div class="tab">
                 <div onclick="openDirect(event, 'default')" id="defaultOpen"></div>
-                {% for dm_user in user|get_dm_users %}
+                {% for dm_user in user|get_dm_users:send_pm_user %}
                   <button class="tablinks privacy" onclick="openDirect(event, '{{ dm_user.username }}')">
                         <div class="tab_user_img">
                             <img src="{{ dm_user|get_user_photo }}" alt="">
@@ -124,19 +124,7 @@
                         </div>
                   </button>
                   {% endfor %}
-                  <!-- <button class="tablinks privacy" onclick="openDirect(event, 'adilet123')">
-                        <div class="tab_user_img">
-                          <img src="https://avatars.mds.yandex.net/i?id=359e83506eec6d66c0e28809a3d012f1-4076581-images-thumbs&n=13" alt="">
-                        </div>
-                        <div class="tab_user_name-date">
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                            <div class="tab_user_date">
-                                <span>Последнее сообщение asd asdk asdkla sdkasjd laksdlkj</span><span>1дн.</span>
-                            </div>
-                        </div>
-                  </button> -->
+
                   <button class="tablinks privacy" onclick="openDirect(event, 'common')">
                     <div class="tab_user_img">
                       <img src="{% static 'img/6127863-1591506100354-ac44747b14d85.jpg' %}" alt="">
@@ -163,186 +151,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div id="dcllns" class="tabcontent">
-              <header class="header_tabcontent">
-                <div class="arrow-back">
-                    <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
-                </div>
-                  <a href="#">
-                    <div class="message_user_img">
-                        <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                    </div>
-                    <div class="message_user_name">Chyngyz Esembekov</div>
-                  </a>
-              </header>
-
-                <div class="messages" id="messages">
-                    <div class="date-messages"><span>22 январь 2022г.</span></div>
-                    <div class="interlocutor message_box" >
-                        <div class="interlocutor_img_box">
-                            <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </a>
-                        </div>
-                        <div class="interlocutor_message">
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk
-                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="date-messages"><span>24 январь 2022г.</span></div>
-                    <div class="interlocutor message_box" >
-                        <div class="interlocutor_img_box">
-                            <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </a>
-                        </div>
-                        <div class="interlocutor_message">
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk
-                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="date-messages"><span>18 январь 2022г.</span></div>
-                    <div class="interlocutor message_box" >
-                        <div class="interlocutor_img_box">
-                            <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </a>
-                        </div>
-                        <div class="interlocutor_message">
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk
-                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                                loreas dasdas dlasld ;ka;s dlk asd asdasdas</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="date-messages"><span>1 январь 2022г.</span></div>
-                    <div class="interlocutor message_box" >
-                        <div class="interlocutor_img_box">
-                            <a href="" class="interlocutor_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </a>
-                        </div>
-                        <div class="interlocutor_message">
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk
-                                Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Molestiae nisi, debitis ipsum commodi quis, officiis. Voluptatem quidem illo saepe distinctio, deleniti voluptas tenetur non aliquam neque architecto fugiat repellendus similique.</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk asd asdasdas
-                                loreas dasdas dlasld ;ka;s dlk asd asdasdas qwe qweqwe</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                                <div class="edit_delete_box">
-                                    <button>Нравится</button>
-                                    <button>Бесишь</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="my_message message_box">
-                        <div class="my_message_right">
-                            <div class="message message_right">
-                                <div class="edit_delete_box">
-                                    <button>Отменить</button>
-                                    <button>Редактировать</button>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi beatae cupiditate et fugiat quasi sit similique ab, nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
-                            </div>
-                            <div class="message message_right">
-                                <div class="edit_delete_box">
-                                    <button>Отменить</button>
-                                    <button>Редактировать</button>
-                                </div>
-                                <p>nesciunt facilis assumenda rem reprehenderit accusantium at voluptatem nobis fugit, nemo, aspernatur. Neque.</p>
-                            </div>
-                            <div class="message message_right">
-                                <div class="edit_delete_box">
-                                    <button>Отменить</button>
-                                    <button>Редактировать</button>
-                                </div>
-                                <p>loreas dasdas dlasld ;ka;s dlk</p>
-                            </div>
-                        </div>
-                    </div>
-
-              </div>
-                <form class="chat-form" action="" method="post">
-                        <input class="chat-form-input" id="chat-message-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
-                        <button class="chat-form-button" id="chat-message-submit" type="button">Отправить</button>
-                </form>
-            </div> -->
-            {% for dm_user in user|get_dm_users %}
+            {% for dm_user in user|get_dm_users:send_pm_user %}
             <div id="{{ dm_user.username }}" class="tabcontent">
               <header class="header_tabcontent">
                 <div class="arrow-back">
@@ -398,17 +207,18 @@
                 {% endfor %}
                 {% endwith %}
               </div>
-                <form class="chat-form">
+                <div class="chat-form">
                         <input class="chat-form-input" type="text" aria-label="Your message" placeholder="Написать сообщение" required>
                         <button class="chat-form-button pm-message-send-button" type="button">Отправить</button>
-                </form>
+                </div>
             </div>
             {% endfor %}
+           
             <!-- start of common chat room -->
             <div id="common" class="tabcontent">
-                <div class="chat-members">
+                <!-- <div class="chat-members">
                    
-                </div>
+                </div> -->
                 <header class="header_tabcontent">
                   <div class="arrow-back">
                       <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
@@ -457,10 +267,10 @@
                     {% endfor %}
                     {% endwith %}
                 </div>
-                  <form class="chat-form">
+                  <div class="chat-form">
                           <input class="chat-form-input" id="common_chat_input" type="text" aria-label="Your message" placeholder="Написать сообщение">
                           <button class="chat-form-button" id="common_chat_submit" type="button">Отправить</button>
-                  </form>
+                  </div>
               </div>
               <!-- end of common room tab content -->
         </section>
@@ -484,148 +294,10 @@ function openDirect(evt, directName) {
     tablinks[i].className = tablinks[i].className.replace("active", "");
     }
     document.getElementById(directName).style.display = "block";
-    evt.currentTarget.classList.add("active");
+    let this_tab = $(`#${directName}`).children('#messages')
+    this_tab.scrollTop(this_tab[0].scrollHeight)
 
-
-    {% with user as me %}
-    // connect to common chat room 
-    // {% comment %} if (directName == 'common'){
-    //     var url = 'ws://' + window.location.host +
-    //     '/ws/chat/room/' + 'common/';
-    //     var chatSocket = new WebSocket(url);
-    //     chatSocket.onmessage = function(e) {
-    //         var data = JSON.parse(e.data);
-    //         var $chat = $('#common > #messages')
-    //         switch (data.type) {
-    //             case "chat_message":
-    //                 if(data.user.username != '{{me.username}}'){
-    //                     var message_div = `<div class="interlocutor message_box">
-    //                             <div class="interlocutor_img_box">
-    //                                 <a href="" class="interlocutor_img">
-    //                                     <img src="${data.user.image}">
-    //                                 </a>
-    //                             </div>
-    //                             <div class="interlocutor_message">
-    //                                 <div class="message">
-    //                                     <p>${data.message}</p>
-    //                                     <div class="edit_delete_box">
-    //                                         <button>Нравится</button>
-    //                                         <button>Бесишь</button>
-    //                                     </div>
-    //                                 </div>
-    //                             </div>
-    //                         </div>`
-    //                 }
-    //                 else{
-    //                     var message_div = `<div class="my_message message_box">
-    //                         <div class="my_message_right">
-    //                             <div class="message message_right">
-    //                                 <div class="edit_delete_box">
-    //                                     <button>Отменить</button>
-    //                                     <button>Редактировать</button>
-    //                                 </div>
-    //                                 <p> ${data.message}</p>
-    //                             </div>
-    //                         </div>
-    //                     </div>`
-    //                 }
-    //                 $chat.append(message_div);
-    //                 $chat.scrollTop($chat[0].scrollHeight);
-    //                 break;
-    //             case "user_list":
-    //                 for (let i = 0; i < data.users.length; i++) {
-    //                     $('#common > .chat-members').append(`<p>${data.users[i]}</p>`)
-    //                 }
-    //                 break;
-    //             case "user_join":
-    //                 $chat.append(
-    //                     `<div class="my_message message_box">
-    //                     <div class="my_message_right">
-    //                         <div class="message message_right">
-    //                             <div class="edit_delete_box">
-    //                                 <button></button>
-    //                                 <button></button>
-    //                             </div>
-    //                             <p> ${data.user} joined the room.</p>
-    //                         </div>
-    //                     </div>
-    //                 </div>`
-    //                 )
-    //                 // $('#common > .chat-members').append(`<p>${data.user}</p>`)
-    //                 // $('.members-count').text( parseInt($('.members-count').text())++)
-    //                 break;
-    //             case "user_leave":
-    //                 $chat.append(
-    //                         `<div class="my_message message_box">
-    //                         <div class="my_message_right">
-    //                             <div class="message message_right">
-    //                                 <div class="edit_delete_box">
-    //                                     <button></button>
-    //                                     <button></button>
-    //                                 </div>
-    //                                 <p> ${data.user} left the room.</p>
-    //                             </div>
-    //                         </div>
-    //                     </div>`
-    //                 )
-    //                 // $('.members-count').text( parseInt($('.members-count').text())--)
-    //                 // onlineUsersSelectorRemove(data.user);
-    //                 break;
-    //             default:
-    //                 console.error("Unknown message type!");
-    //                 break;
-    //         }
-            
-    //     };
-    //         chatSocket.onclose = function(e) {
-    //         console.error('Chat socket closed unexpectedly');
-    //         };
-    //         chatSocket.onopen = function(e) {
-    //             console.log("Successfully connected to the WebSocket common room.");
-    //         }
-    //         chatSocket.onerror = function(err) {
-    //         console.log("WebSocket encountered an error: " + err.message);
-    //         console.log("Closing the socket.");
-    //         chatSocket.close();
-    //         }
-    //         // send message
-    //         var $input = $('#common_chat_input');
-    //         var $submit = $('#common_chat_submit');
-    //         $submit.click(function() {
-    //         var message = $input.val();
-    //         if(message) {
-    //         // send message in JSON format
-    //         chatSocket.send(JSON.stringify({'message': message}));
-    //         // clear input
-    //         $input.val('');
-    //         // return focus
-    //         $input.focus();
-    //         }
-    //         });
-
-    //         $input.focus();
-    //         $input.keyup(function(e) {
-    //         e.preventDefault();
-    //         if (e.which === 13) {
-    //         // submit with enter / return key
-    //         $submit.click();
-    //         }
-    //         });
-
-    // } {% endcomment %}
-    //  else{ 
-       
-
-            // $input.focus();
-            // $input.keyup(function(e) {
-            // e.preventDefault();
-            // if (e.which === 13) {
-            // // submit with enter / return key
-            // $submit.click();
-            // }
-            // });
-        {% endwith %}
-    // }
+    // evt.currentTarget.classList.add("active");
 }
 
 
@@ -672,23 +344,22 @@ for (i = 0; i < arrowBack.length; i++) {
 
 <script>
 
-    $(function(){
+$(function(){
 
-        var url = 'ws://' + window.location.host +
-        '/ws/chat/room/private/' + '{{user.username}}/';
-        var chatSocket = new WebSocket(url);
-        chatSocket.onmessage = function(e) {
-            var data = JSON.parse(e.data);
-
-            switch (data.type) {
-                case "private_message":
-                    let send_user = $(`#${data.user.username}`)
-                    let my_messages_container = send_user.children('#messages')
-                    let incoming_message = 
-                    `<div class="interlocutor message_box">
+    // common chat websocket 
+    var url = 'ws://' + window.location.host +
+    '/ws/chat/room/' + 'common/';
+    var common_chatSocket = new WebSocket(url);
+    common_chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var $chat = $('#common > #messages')
+        switch (data.type) {
+            case "chat_message":
+                if(data.user.username != '{{user.username}}'){
+                    var message_div = `<div class="interlocutor message_box">
                             <div class="interlocutor_img_box">
                                 <a href="" class="interlocutor_img">
-                                    <img src="${data.user.image}" alt="">
+                                    <img src="${data.user.image}">
                                 </a>
                             </div>
                             <div class="interlocutor_message">
@@ -700,57 +371,197 @@ for (i = 0; i < arrowBack.length; i++) {
                                     </div>
                                 </div>
                             </div>
-                    </div>`
-                    my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
-                    my_messages_container.append(incoming_message)
-                    // chatLog.value += "PM from " + data.user + ": " + data.message + "\n";
-                    break;
-                case "private_message_delivered":
-                    let dm_user = $(`#${data.target}`)
-                    let messages = dm_user.children('#messages')
-                    let my_message = 
-                    `<div class="my_message message_box">
+                        </div>`
+                }
+                else{
+                    var message_div = `<div class="my_message message_box">
                         <div class="my_message_right">
                             <div class="message message_right">
                                 <div class="edit_delete_box">
                                     <button>Отменить</button>
                                     <button>Редактировать</button>
                                 </div>
-                                <p>${data.message}</p>
+                                <p> ${data.message}</p>
                             </div>
                         </div>
                     </div>`
-                    messages.scrollTop(messages[0].scrollHeight)
-                    messages.append(my_message)
-                    break;
-                default:
-                    console.error("Unknown message type!");
-                    break;
-            }
-            
-        };
-            chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
-            };
-            chatSocket.onopen = function(e) {
-                console.log("Successfully connected to the WebSocket Private messages.");
-            }
-
-            // send pm
-            var $input = document.querySelectorAll('.pm-message-send-button')
-            for (let i = 0; $input.length > i; i++){
-                $input[i].onclick = function(){
-                    message = $input[i].previousElementSibling.value;
-                    if (message){
-                        let username = $input[i].closest('.tabcontent').id;
-                        message = '/pm ' + username + ' ' + message
-                        chatSocket.send(JSON.stringify({'message': message}));
-                        $input[i].previousElementSibling.value = '';
-                        $input[i].previousElementSibling.focus();
-                    }
                 }
-            }
+                $chat.append(message_div);
+                $chat.scrollTop($chat[0].scrollHeight);
+                break;
+            case "user_list":
+                console.log('user list case')
+                // for (let i = 0; i < data.users.length; i++) {
+                    // $('#common > .chat-members').append(`<p>${data.users[i]}</p>`)
+                // }
+                break;
+            case "user_join":
+                $chat.append(
+                    `<div class="my_message message_box">
+                    <div class="my_message_right">
+                        <div class="message message_right">
+                            <div class="edit_delete_box">
+                                <button></button>
+                                <button></button>
+                            </div>
+                            <p> ${data.user} joined the room.</p>
+                        </div>
+                    </div>
+                </div>`
+                )
+                // $('#common > .chat-members').append(`<p>${data.user}</p>`)
+                // $('.members-count').text( parseInt($('.members-count').text())++)
+                break;
+            case "user_leave":
+                $chat.append(
+                        `<div class="my_message message_box">
+                        <div class="my_message_right">
+                            <div class="message message_right">
+                                <div class="edit_delete_box">
+                                    <button></button>
+                                    <button></button>
+                                </div>
+                                <p> ${data.user} left the room.</p>
+                            </div>
+                        </div>
+                    </div>`
+                )
+                // $('.members-count').text( parseInt($('.members-count').text())--)
+                // onlineUsersSelectorRemove(data.user);
+                break;
+            default:
+                console.error("Unknown message type!");
+                break;
+        }
+        
+    };
+        common_chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+        };
+        common_chatSocket.onopen = function(e) {
+            console.log("Successfully connected to the WebSocket common room.");
+        }
+        common_chatSocket.onerror = function(err) {
+        console.log("WebSocket encountered an error: " + err.message);
+        console.log("Closing the socket.");
+        common_chatSocket.close();
+        }
+        // send message
+        var $common_chat_input = $('#common_chat_input');
+        var $submit = $('#common_chat_submit');
+        $submit.click(function() {
+        var message = $common_chat_input.val();
+        if(message) {
+        // send message in JSON format
+        common_chatSocket.send(JSON.stringify({'message': message}));
+        // clear input
+        $common_chat_input.val('');
+        // return focus
+        $common_chat_input.focus();
+        }
         });
+
+        $common_chat_input.focus();
+        $common_chat_input.keyup(function(e) {
+        e.preventDefault();
+        if (e.which === 13) {
+        // submit with enter / return key
+        $submit.click();
+        }
+        });
+
+    // pm websocket
+    var url = 'ws://' + window.location.host +
+    '/ws/chat/room/private/' + '{{user.username}}/';
+    var chatSocket = new WebSocket(url);
+    chatSocket.onmessage = function(e) {
+    var pm_data = JSON.parse(e.data);
+
+    switch (pm_data.type) {
+        case "private_message":
+            let send_user = $(`#${pm_data.user.username}`)
+            let my_messages_container = send_user.children('#messages')
+            let incoming_message = 
+            `<div class="interlocutor message_box">
+                    <div class="interlocutor_img_box">
+                        <a href="" class="interlocutor_img">
+                            <img src="${pm_data.user.image}" alt="">
+                        </a>
+                    </div>
+                    <div class="interlocutor_message">
+                        <div class="message">
+                            <p>${pm_data.message}</p>
+                            <div class="edit_delete_box">
+                                <button>Нравится</button>
+                                <button>Бесишь</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>`
+            my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
+            my_messages_container.append(incoming_message)
+            // chatLog.value += "PM from " + data.user + ": " + data.message + "\n";
+            break;
+        case "private_message_delivered":
+            let dm_user = $(`#${pm_data.target}`)
+            let messages = dm_user.children('#messages')
+            let my_message = 
+            `<div class="my_message message_box">
+                <div class="my_message_right">
+                    <div class="message message_right">
+                        <div class="edit_delete_box">
+                            <button>Отменить</button>
+                            <button>Редактировать</button>
+                        </div>
+                        <p>${pm_data.message}</p>
+                    </div>
+                </div>
+            </div>`
+            messages.scrollTop(messages[0].scrollHeight)
+            messages.append(my_message)
+            break;
+        default:
+            console.error("Unknown message type!");
+            break;
+    }
+        
+    };
+    chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+    };
+    chatSocket.onopen = function(e) {
+        console.log("Successfully connected to the WebSocket Private messages.");
+    }
+
+    // send pm
+    var $input = document.querySelectorAll('.pm-message-send-button')
+    for (let i = 0; $input.length > i; i++){
+        $input[i].previousElementSibling.onkeyup = function(e){
+            if (e.which === 13) {
+                $input[i].click();
+            }
+        };
+        $input[i].onclick = function(){
+            message = $input[i].previousElementSibling.value;
+            if (message){
+                let username = $input[i].closest('.tabcontent').id;
+                message = '/pm ' + username + ' ' + message
+                chatSocket.send(JSON.stringify({'message': message}));
+                $input[i].previousElementSibling.value = '';
+                $input[i].previousElementSibling.focus();
+            }
+        }
+    }
+
+    // open dm user tab
+    var dm_username = localStorage.getItem('dm_username')
+    if (dm_username){
+        openDirect(null, dm_username)
+        localStorage.removeItem('dm_username')
+
+    }
+
+});
 
 </script>
 {% endblock %}
