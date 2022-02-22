@@ -125,7 +125,72 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
   height: 100%;
   position: relative;
 }
-.tabcontent{height: 100%; width: 100%;}
+
+.typing{
+  color: #8e8e8e;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.tabcontent{height: 100%; width: 100%; position: relative;}
+.number-of-users{
+  position: absolute;
+  top: 0;
+  right: 1px;
+  bottom: 0;
+  width: 200px;
+  background-color: #fff;
+  z-index: 10;
+  visibility: hidden;
+    transition: transform 250ms,
+    visibility 0ms linear 250ms, opacity 250ms;
+    opacity: 0;
+    transform: translateX(10%);
+    border-left: solid 1px #dbdbdb;
+    overflow-y: hidden;
+
+}
+.number-of-users:target{
+  visibility: visible;
+    transform: translateX(0);
+    transition: transform 250ms, opacity 250ms;
+    opacity: 1;
+}
+.number-of-users-box{
+  overflow-y: auto;
+  height: calc(100% - 60px);
+}
+.number-of-users header{
+  height: 60px; display: flex; align-items: center;
+  border-bottom: solid 1px #dbdbdb;
+  justify-content: flex-end;
+  padding-left: 7px; padding-right: 7px;
+}
+.close-aside{
+  width: 40px; height: 40px; display: block;
+  padding:  7px;
+}
+.close-aside:active{
+  opacity: 0.5;
+}
+.close-aside svg{
+  width: 100%; height: 100%;
+  display: block;
+}
+.number-of-users-box .tablinks{
+  height: 50px;
+}
+.number-of-users-box .tablinks:active{
+  opacity: 0.7;
+}
+.number-of-users-box .tab_user_img{
+  min-width: 30px; min-height: 30px;
+  width: 30px; height: 30px; max-width: 30px; max-height: 30px;
+}
+.number-of-users-box .tab_user_name{
+  font-size: 12px;
+}
+
 .defaultOpen{display: flex; align-items: center; height: 100%; justify-content: center;}
 .box-default{text-align: center;}
 .box-default h3{font-size: 24px; font-weight: normal;}
@@ -171,12 +236,12 @@ h2{font-size: 14px; padding-left: 16px;padding-top: 10px;}
 .edit_delete_box{display: flex; gap:  10px; opacity: 0;align-items: center;}
 .edit_delete_box button{cursor: pointer; background-color: unset; outline: unset; border: none; color: #646464; transition: .2s;}
 .edit_delete_box button:hover{color: #000;}
-.header_tabcontent{height: 60px;display: flex; align-items: center;padding-left: 24px; padding-right: 24px;border-bottom: solid 1px #dbdbdb;}
+.header_tabcontent{height: 60px;display: flex; align-items: center;padding-left: 24px; padding-right: 24px;border-bottom: solid 1px #dbdbdb; }
 .header_tabcontent a{display: flex; align-items: center; gap: 14px;}
 .header_tabcontent a:active{opacity: .6;}
 .message_user_img{width: 38px;min-width: 38px; max-width: 38px; height: 38px; min-height: 38px; max-height: 38px; overflow: hidden; border-radius: 22px;}
 .message_user_img img{width: 100%; height: 100%; object-fit: cover;}
-.message_user_name{font-size: 18px; font-weight: bold;}
+.message_user_name{font-size: 18px; font-weight: bold; display: flex; flex-direction:  column;}
 
 
 .chat-form{display: flex; justify-content: space-between;height: 84px;position: relative;}
