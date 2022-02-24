@@ -19,6 +19,30 @@
 
 {% block content %}
     <main class="main-container">
+        <div class="story_modal" id="public_open_story">
+            
+            <div class="stories_box">
+                <header class="header_public_story">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
+                    </a>
+                </header>
+                <div class="story_content" id="story-1">
+                    <div class="story_content_media">
+                        <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
+                    </div>
+                </div>
+                <footer class="footer_public_story">
+                    <button>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg></span>
+                        <span>Дополнить историю</span>
+                    </button>   
+                </footer>
+            </div>  
+
+        </div>
         <div class="story_modal" id="open_story">
             <a href="#" class="close_story">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
@@ -111,7 +135,7 @@
                         </svg>
                     </button>
                     <div class="stories__content">
-                            <button class="story story--has-story create_store">
+                            <a href="#public_open_story" class="story story--has-story create_store">
                                 <div class="story__avatar">
                                     <div class="story__border">
                                         <svg aria-label="Значок &quot;Плюс&quot;" class="_8-yf5 " style="position: absolute; bottom: 7px; right: 7px; z-index:9;" color="#0095f6" stroke="#fff"  fill="#0095f6" height="16" role="img" viewBox="0 0 24 24" width="16"><path d="M12.001.504a11.5 11.5 0 1011.5 11.5 11.513 11.513 0 00-11.5-11.5zm5 12.5h-4v4a1 1 0 01-2 0v-4h-4a1 1 0 110-2h4v-4a1 1 0 112 0v4h4a1 1 0 010 2z"></path></svg>
@@ -134,7 +158,7 @@
                                     </div>
                                 </div>
                                 <span class="story__user">Ваша история</span>
-                            </button>
+                            </a>
                         <a href="#open_story" class="story story--has-story">
                             <div class="story__avatar">
                                 <div class="story__border">
