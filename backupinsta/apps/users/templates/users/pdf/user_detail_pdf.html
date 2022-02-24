@@ -1,0 +1,35 @@
+<html>
+<body>
+ <h1>User info</h1>
+ <p>
+ Invoice no. {{ user.id }}</br>
+ <span class="secondary">
+ {{ user.date_joined|date:"M d, Y" }}
+ </span>
+ </p>
+ <h3>Info about</h3>
+ <p>
+    {{ user.full_name }}
+    {{ user.email }}<br>
+    {{ user.gender }}<br>
+    {{ user.username }}
+    </p>
+    <h3>Items bought</h3>
+    <table>
+    <thead>
+    <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table>
+   
+    <span class="{% if user.is_active %}active{% else %}not active{% endif %}">
+    {% if user.is_active %}active{% else %}not active{{% endif %}
+    </span>
+   </body>
+   </html>

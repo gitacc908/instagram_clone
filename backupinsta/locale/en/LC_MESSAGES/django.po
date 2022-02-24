@@ -1,0 +1,274 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-11 00:37+0600\n"
+"PO-Revision-Date: 2021-12-10 18:33+0000\n"
+"Last-Translator: b'Anonymous User <dylan9803@mail.ru>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.3\n"
+
+#: apps/common/templates/list_ajax/posts.html:72
+#, python-format
+msgid ""
+" Нравится<a class=\"post__name--underline\" href="
+"\"%(first_object.get_absolute_url)s\">%(first_object.username)s</a> и <span "
+"class=\"others-class\">ещё </span><a href=\"#\" class=\"likes-count\">"
+"%(post.likes.count|add:-1)s </a> </span>"
+msgstr ""
+
+#: apps/common/templates/list_ajax/posts.html:75
+msgid "Отметок \"Нравится\" "
+msgstr ""
+
+#: apps/common/templates/list_ajax/posts.html:87
+msgid "Посмотреть все комментарии"
+msgstr "Show all comments"
+
+#: apps/common/templates/list_ajax/posts.html:106
+msgid "Добавьте комментарий..."
+msgstr "Write comment"
+
+#: apps/common/templates/list_ajax/posts.html:107
+#: apps/users/templates/profile/profile.html:212
+#: apps/users/templates/profile/profile.html:411
+msgid "Опубликовать"
+msgstr "Write"
+
+#: apps/common/templates/main/base/__base__.html:141
+msgid "Ранее"
+msgstr "Events"
+
+#: apps/common/templates/main/base/__base__.html:188
+msgid "Профиль"
+msgstr "Profile"
+
+#: apps/common/templates/main/base/__base__.html:206
+#: apps/users/templates/profile/profile.html:95
+msgid "Сохраненное"
+msgstr "Saved"
+
+#: apps/common/templates/main/base/__base__.html:224
+msgid "Настройки"
+msgstr "Settings"
+
+#: apps/common/templates/main/base/__base__.html:242
+msgid "Переключение между аккаунтами"
+msgstr "Switch account"
+
+#: apps/common/templates/main/base/__base__.html:256
+#: apps/users/templates/profile/profile.html:63
+msgid "Выйти"
+msgstr "Logout"
+
+#: apps/common/templates/main/base/__base__.html:273
+#: apps/common/templates/main/base/__base__.html:377
+msgid "Поделиться"
+msgstr "Share"
+
+#: apps/common/templates/main/base/__base__.html:283
+msgid "Кому"
+msgstr "To"
+
+#: apps/common/templates/main/base/__base__.html:292
+#, fuzzy
+#| msgid "Рекомендации"
+msgid "Рекомендуемые"
+msgstr "Recommendations"
+
+#: apps/common/templates/main/base/__base__.html:321
+msgid "Отправить"
+msgstr "Send"
+
+#: apps/common/templates/main/base/__base__.html:339
+msgid "Создание публикации"
+msgstr "Share post"
+
+#: apps/common/templates/main/base/__base__.html:391
+msgid "Перетащите сюда фото и видео"
+msgstr "Drag photos and videos here"
+
+#: apps/common/templates/main/base/__base__.html:397
+msgid "Выбрать с компьютера"
+msgstr "Select from PC"
+
+#: apps/common/templates/main/base/__base__.html:403
+msgid "Публикация размещена"
+msgstr "Post shared"
+
+#: apps/common/templates/main/index.html:79
+msgid "Переключить"
+msgstr "Switch"
+
+#: apps/common/templates/main/index.html:84
+msgid "Рекомендации"
+msgstr "Recommendations"
+
+#: apps/common/templates/main/index.html:85
+msgid "Посмотреть все"
+msgstr "Show all"
+
+#: apps/users/forms.py:90
+msgid "The two password fields didn’t match."
+msgstr ""
+
+#: apps/users/forms.py:93
+msgid "New password"
+msgstr ""
+
+#: apps/users/forms.py:99
+msgid "New password confirmation"
+msgstr ""
+
+#: apps/users/managers.py:15
+msgid "The username must be set"
+msgstr ""
+
+#: apps/users/managers.py:30
+msgid "Superuser must have is_staff=True."
+msgstr ""
+
+#: apps/users/managers.py:32
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+
+#: apps/users/models.py:19
+msgid "phone"
+msgstr ""
+
+#: apps/users/models.py:22
+msgid "username"
+msgstr ""
+
+#: apps/users/models.py:25
+msgid "image"
+msgstr "image"
+
+#: apps/users/models.py:28
+msgid "full name"
+msgstr "full name"
+
+#: apps/users/models.py:31
+msgid "about me"
+msgstr "about me"
+
+#: apps/users/models.py:34
+msgid "gender"
+msgstr "gender"
+
+#: apps/users/models.py:41
+msgid "email"
+msgstr "email"
+
+#: apps/users/models.py:44
+msgid "web site"
+msgstr "web site"
+
+#: apps/users/templates/profile/profile.html:27
+msgid "Редактировать профиль"
+msgstr "Edit profile"
+
+#: apps/users/templates/profile/profile.html:33
+#: apps/users/templates/profile/profile.html:81
+msgid "публикаций"
+msgstr "posts"
+
+#: apps/users/templates/profile/profile.html:34
+#: apps/users/templates/profile/profile.html:82
+msgid "подписчиков"
+msgstr "followers"
+
+#: apps/users/templates/profile/profile.html:35
+#: apps/users/templates/profile/profile.html:83
+msgid "подписок"
+msgstr "following"
+
+#: apps/users/templates/profile/profile.html:59
+msgid "Сменить пароль"
+msgstr "Change password"
+
+#: apps/users/templates/profile/profile.html:60
+msgid "Уведомления"
+msgstr "Notifications"
+
+#: apps/users/templates/profile/profile.html:61
+msgid "Входы в аккаунт"
+msgstr "Account Auths"
+
+#: apps/users/templates/profile/profile.html:62
+msgid "Электронные письма от Instagram"
+msgstr "Emails from Instagram"
+
+#: apps/users/templates/profile/profile.html:64
+msgid "Отмена"
+msgstr "Cancel"
+
+#: apps/users/templates/profile/profile.html:91
+msgid "Публикации"
+msgstr "Share post"
+
+#: apps/users/templates/profile/profile.html:99
+msgid "Отметки"
+msgstr "Marks"
+
+#: apps/users/templates/profile/profile.html:170
+msgid "Нравится:"
+msgstr "Likes"
+
+#: apps/users/templates/profile/profile.html:170
+#: apps/users/templates/profile/profile.html:235
+#: apps/users/templates/profile/profile.html:248
+#: apps/users/templates/profile/profile.html:398
+msgid "Ответить"
+msgstr "Reply"
+
+#: apps/users/templates/profile/profile.html:205
+msgid "отметок \"Нравится\""
+msgstr "Likes"
+
+#: apps/users/templates/profile/profile.html:222
+#: apps/users/templates/profile/profile.html:385
+#, fuzzy
+#| msgid "Добавьте комментарий..."
+msgid "Комментарии"
+msgstr "Write comment"
+
+#: apps/users/templates/profile/profile.html:256
+#: apps/users/templates/profile/profile.html:419
+#: apps/users/templates/profile/profile.html:436
+msgid "likes"
+msgstr "likes"
+
+#: apps/users/templates/profile/profile.html:257
+#: apps/users/templates/profile/profile.html:420
+#: apps/users/templates/profile/profile.html:437
+msgid "comments"
+msgstr "comments"
+
+#: apps/users/templates/profile/profile.html:268
+msgid "Список сохраненного виден только вам"
+msgstr "Saved posts available only to you"
+
+#: source/settings.py:127
+msgid "Russian"
+msgstr "Russian"
+
+#: source/settings.py:128
+msgid "English"
+msgstr "English"
+
+#, fuzzy
+#~| msgid "Опубликовать"
+#~ msgid "Опубликавать"
+#~ msgstr "Write"

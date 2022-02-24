@@ -1,0 +1,297 @@
+{% extends 'main/base/__base__.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load user_tags %}
+<!-- {% load humanize %} -->
+<!-- {% load custom_tags %} -->
+<!-- {% load emoji_tags %} -->
+
+
+    {% block title %}
+    {{ request.user.username}}'s profile 
+    {% endblock %}
+    
+    {%  block styles %}
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}"> 
+    {% endblock %}
+
+
+{% block content %}
+
+
+<main>
+    <div class="dropdown">
+        <div class="mobile-dropdown">
+            <button type="button" onclick="myFunction()" class="dropbtn"><svg  aria-label="Параметры" fill="#262626" height="24" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+            <h1 style="font-size: 16px;line-height: 44px;">Редактировать профиль</h1>
+        </div>
+        
+        <div class="tab" id="myDropdown">
+            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">
+                Редактировать профиль
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5L14 11" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 17L14 11" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="tablinks" onclick="openCity(event, 'Paris')">
+                Сменить пароль
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5L14 11" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 17L14 11" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')" >
+                Push-уведомления
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5L14 11" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 17L14 11" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="tablinks" onclick="openCity(event, 'login_activity')">
+                Входы в аккаунты
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5L14 11" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 17L14 11" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+<form id="London" class="tabcontent" method="post" enctype="multipart/form-data" action="{% url 'edit_profile' request.user.pk %}">
+    {% csrf_token %}
+<div class="blocks">
+        <div class="block-one">
+            <button class="edit_user_img">
+                <img src="{{ request.user|get_user_photo }}" alt="">
+            </button>
+        </div>
+        <div class="block-two header-profile-user-img" id="avatar_form" data-avatar-url="{% url 'avatar' %}" method="post" enctype="multipart/form-data" novalidate="">
+            <div class="edit_profile_user_name">{{ request.user.username }}</div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Имя</div>
+        <div class="block-two">
+            {% render_field form.full_name|add_class:'JLJ-B zyHYP' %}
+            
+            <div class="text-p">
+                Чтобы людям было проще находить ваш аккаунт, используйте имя, под которым вас знают: ваше имя и фамилию, никнейм или название компании.
+                Изменить имя можно не более двух раз в течение 14 дней.
+            </div>
+            <div class="text-p">
+                Изменить имя можно не более двух раз в течение 14 дней.
+            </div>  
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Имя пользователя</div>
+        <div class="block-two">
+            {% render_field form.username|add_class:'JLJ-B zyHYP' placeholder="Имя пользователя"%}
+            
+            <div class="text-p">
+                В большинстве случаев у вас будет ещё 14 дней, чтобы снова поменять имя пользователя на <span>dcllns</span>.
+            </div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Веб-сайт</div>
+        <div class="block-two">
+            {% render_field form.web_site|add_class:'JLJ-B zyHYP' placeholder="Веб-сайт"%}
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">О себе</div>
+        <div class="block-two">
+            {% render_field form.biography|add_class:'p7vTm'%}
+            <div class="text-p">
+                <h3>Личная информация</h3>
+                Укажите личную информацию, даже если аккаунт будет использоваться для компании, домашнего животного или в других целях. Эти сведения не будут показываться в вашем общедоступном профиле.
+            </div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Эл.адрес</div>
+        <div class="block-two">
+            {% render_field form.email|add_class:'JLJ-B zyHYP' placeholder="Эл. адрес"%}
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Номер телефона</div>
+        <div class="block-two">
+            {% render_field form.phone|add_class:'JLJ-B zyHYP' placeholder="Номер телефона"%}
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one"></div>
+        <div class="block-two">
+            <button class="sqdOP  L3NKy   y3zKF" type="submit">Отправить</button>
+        </div>
+  </div>
+</form>
+
+<form id="Paris" class="tabcontent" method="POST" action="{% url 'edit_password' %}">
+    {% csrf_token %}
+  <div class="blocks">
+        <div class="block-one">
+            <button class="edit_user_img">
+                <img src="{{ request.user|get_user_photo }}" alt="">
+            </button>
+        </div>
+        <div class="block-two">
+            <div class="edit_password_user_name">{{ request.user.username }}</div>
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Старый пароль</div>
+        <div class="block-two">
+           {% render_field password_form.old_password|add_class:'JLJ-B zyHYP' placeholder="Старый пароль"%}
+
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Новый пароль</div>
+        <div class="block-two">
+            {% render_field password_form.new_password1|add_class:'j_2Hd    RO68f  M5V28' placeholder="Новый пароль" type="password"%}
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one">Подтвердите новый пароль</div>
+        <div class="block-two">
+            {% render_field password_form.new_password2|add_class:'j_2Hd    RO68f  M5V28' placeholder="Повторите пароль" type="password"%}
+        </div>
+  </div>
+  <div class="blocks">
+        <div class="block-one"></div>
+        <div class="block-two">
+            <button class="sqdOP  L3NKy   y3zKF     " type="submit">Сменить пароль</button>
+        </div>
+  </div>
+</form>
+
+<form id="Tokyo" class="tabcontent" method="post" style="padding-bottom: 0;" action="{% url 'edit_notification' %}">
+    {% csrf_token %}
+    <div>
+        <section>
+            <h2>Отметки "Нравится"</h2>
+            <label>
+                <div class="radio_value">
+                    {% render_field notification_form.like_notification %}
+                </div>
+            </label>
+            <div class="text-p">johnappleseed нравится ваше фото.</div>
+        </section>
+    </div>
+
+    <div>
+        <section>
+            <h2>Комментарии</h2>
+            <label>
+                <div class="radio_value">
+                    {% render_field notification_form.comment_notification %}
+                </div>
+            </label>
+            <div class="text-p">johnappleseed прокомментировал(-а): "Хороший снимок!"</div>
+        </section>
+    </div>
+
+    <div>
+        <section>
+            <h2>Отметки "Нравится" к комментариям</h2>
+            <label>
+                <div class="radio_value">
+                    {% render_field notification_form.comment_like_notification %}
+                </div>
+            </label>
+                <div class="text-p">johnappleseed нравится ваш комментарий: "Хороший снимок!"</div>
+        </section>
+    </div>
+    <div>
+        <section>
+            <h2>Принятые запросы на подписку</h2>
+            <label>
+                <div class="radio_value">
+                    {% render_field notification_form.follow_request_notification %}
+                </div>
+            </label>
+            <div class="text-p">John Appleseed (johnappleseed) принял(-а) ваш запрос на подписку.</div>
+        </section>
+    </div>
+    <button class="sqdOP  L3NKy   y3zKF" type="submit">Сохранить</button>
+</form>
+
+<div id="login_activity" class="tabcontent">
+    <div class="login__active">
+        <h3 style="font-size: 16px; color: #333; margin-bottom: 20px; margin-top: 40px;">Активные сеансы</h3>
+
+        <div class="active__seanse">
+            <div class="country">{{ country }}</div>
+            <div class="info__active__seanse">
+                <span class="activity_time">Сейчас в сети</span><span>&nbsp;·&nbsp;</span><span class="activity_device">Это устройство {{ device }}</span>
+            </div>
+            <div>
+                {{ device_full }}
+            </div>
+        </div>
+            <div class="login__active_btn">
+                <a href="{% url 'logout' %}" style="margin-top: 10px; color: #bb3838;">Выйти</a>
+            </div>
+    </div>
+</div>
+</main>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction(cityName) {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("tab");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+{% endblock %}
+
+ 
+
+{% block scripts %}
+<!-- <script src="{% static 'js/avatar_update.js' %}"> </script> -->
+<script src="{% static 'js/modals.js' %}"> </script>
+
+{% endblock %}
+
+
+{% block csrf_ready %}
+{% endblock %}
