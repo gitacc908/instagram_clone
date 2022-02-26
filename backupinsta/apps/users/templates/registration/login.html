@@ -1,0 +1,107 @@
+{% extends 'users/base/base_users.html' %}
+
+{% load static %}
+
+{% block title %}
+Instagram
+{% endblock %}
+
+{% block styles %}
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v12.0&appId=242665691171702&autoLogAppEvents=1" nonce="2SHD5PFn"></script>
+{% endblock %}
+
+{% block content %}
+<div id="fb-root"></div>
+<main class="SCxLW  o64aR " role="main">
+      <article class="_4_yKc">
+         <div class="yOZjD _80tAB">
+            <div class="V64Sp" id="loop_image">
+              <img class="RP4i1  " id="image" src="{% static 'img/0a2d3016f375.jpg' %}" alt="">
+              </div>
+         </div>
+         <div class="rgFsT   ">
+            <div class="gr27e  ">
+               <h1 class="NXVPg Szr5J  coreSpriteLoggedOutWordmark  "></h1>
+               <div class="EPjEi">
+                  <form class="HmktE" id="loginForm" method="post">
+                  {% csrf_token %}
+                     <div id="login-content" class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                              kEKum                                                ">
+                        <div class="-MzZI">
+                           <div class="_9GP1n   ">
+                              <label class="f0n8F FATdn"><span class="_9nyy2">Телефон, имя пользователя или эл. адрес</span><input aria-label="Телефон, имя пользователя или эл. адрес" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="75" name="username_email_phone" type="text" class="_2hvTZ pexuQ zyHYP"></label>
+                              <div class="i24fI"></div>
+                           </div>
+                        </div>
+                        <div class="-MzZI">
+                           <div class="_9GP1n   ">
+                              <label class="f0n8F FATdn"><span class="_9nyy2">Пароль</span><input aria-label="Пароль" aria-required="true" id="password" autocapitalize="off" autocorrect="off" name="password" type="password" class="_2hvTZ pexuQ zyHYP"></label>
+                              <div class="i24fI">
+                                 <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                      soMvl                                                                                        "><button id="togglePassword" class="sqdOP yWX7d     _8A5w5    " type="button">Показать</button></div>
+                              </div>
+                  
+                           </div>
+                        </div>
+                     {% if messages %}
+                        <ul class="messages">
+                           {% for message in messages %}
+                           <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                           {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    ">
+                           <button class="sqdOP  L3NKy   y3zKF     " type="submit">
+                              <div class="            qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              ">Войти</div>
+                           </button>
+                        </div>
+                        <div class="K-1uj Z7p_S">
+                           <div class="s311c"></div>
+                           <div class="_0tv-g">или</div>
+                           <div class="s311c"></div>
+                        </div>
+                     <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                     </div>
+                     <a class="_2Lks6" href="{% url 'password-reset' %}" tabindex="0">Забыли пароль?</a>
+                  </form>
+               </div>
+            </div>
+            <div class="gr27e">
+               <div class="_7UhW9   xLCgt      MMzan   _0PwGv         uL8Hv         ">
+                  <p class="izU2O ">У вас ещё нет аккаунта? <a href="{% url 'sign-up'%}" tabindex="0"><span class="_7UhW9   xLCgt       qyrsm      gtFbE      se6yk        ">Зарегистрироваться</span></a></p>
+               </div>
+            </div>
+         </div>
+      </article>
+   </main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/login.js' %}"></script> 
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '242665691171702',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v12.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+</script>
+
+{% endblock %}
