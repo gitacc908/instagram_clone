@@ -97,7 +97,7 @@
                     <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                 </a>
                 <button class="switching">
-                    <span>{{ user.username }}</span><svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
+                    <span>dcllns</span><svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                 </button>
                 <button class="write-btn" id="myBtn">
                     <svg aria-label="Новое сообщение" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M12.202 3.203H5.25a3 3 0 00-3 3V18.75a3 3 0 003 3h12.547a3 3 0 003-3v-6.952" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M10.002 17.226H6.774v-3.228L18.607 2.165a1.417 1.417 0 012.004 0l1.224 1.225a1.417 1.417 0 010 2.004z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="16.848" x2="20.076" y1="3.924" y2="7.153"></line></svg>
@@ -167,7 +167,6 @@
                         {% else %}
                         {{ dm_user.username }}
                         {% endif %}
-                         <span class="typing">Печатает...</span>
                     </div>
                   </a>
               </header>
@@ -220,176 +219,7 @@
                 <!-- <div class="chat-members">
                    
                 </div> -->
-                <aside class="number-of-users" id="number-of-users">
-                    <header>
-                        <a href="#" class="close-aside" title="Закрыть">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
-                        </a>
-                    </header>
-                    <div class="number-of-users-box">
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Chyngyz Esembekov
-                            </div>
-                        </a>
-                        <a href="#" class="tablinks">
-                            <div class="tab_user_img">
-                                <img src="https://avatars.mds.yandex.net/get-zen_doc/1641493/pub_5d5d8b7886c4a900ae02c014_5d5d8be6fe289100adb49c1a/scale_1200" alt="">
-                            </div>
-                            <div class="tab_user_name">
-                                Adilet Malikov
-                            </div>
-                        </a>
-                    </div>
-                </aside>
-                <header class="header_tabcontent" style="justify-content: space-between;">
+                <header class="header_tabcontent">
                   <div class="arrow-back">
                       <svg aria-label="Значок &quot;стрелка вниз&quot;" class="_8-yf5" color="#262626" fill="#262626" height="20" role="img" viewBox="0 0 24 24" width="20"><path d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg>
                   </div>
@@ -398,10 +228,6 @@
                           <img src="{% static 'img/6127863-1591506100354-ac44747b14d85.jpg' %}">
                       </div>
                       <div class="message_user_name">Chatty</div>
-
-                    </a>
-                    <a href="#number-of-users" style="padding: 10px;">
-                        Участники
                     </a>
                 </header>
                 <div class="messages" id="messages">
@@ -468,19 +294,10 @@ function openDirect(evt, directName) {
     tablinks[i].className = tablinks[i].className.replace("active", "");
     }
     document.getElementById(directName).style.display = "block";
-    if (directName != 'default'){
-        let this_tab = $(`#${directName}`).children('#messages')
-        this_tab.scrollTop(this_tab[0].scrollHeight)
-    }
-<<<<<<< HEAD
-  
-    evt.currentTarget.classList.add("active");
-=======
-    if (evt){
-        evt.currentTarget.classList.add("active");
-    }
+    // let this_tab = $(`#${directName}`).children('#messages')
+    // this_tab.scrollTop(this_tab[0].scrollHeight)
 
->>>>>>> e310319325922417b2c772fdd17c1368d2a8ea9f
+    // evt.currentTarget.classList.add("active");
 }
 
 
@@ -528,6 +345,7 @@ for (i = 0; i < arrowBack.length; i++) {
 <script>
 
 $(function(){
+
     // common chat websocket 
     var url = 'ws://' + window.location.host +
     '/ws/chat/room/' + 'common/';
@@ -680,8 +498,8 @@ $(function(){
                         </div>
                     </div>
             </div>`
-            my_messages_container.append(incoming_message)
             my_messages_container.scrollTop(my_messages_container[0].scrollHeight)
+            my_messages_container.append(incoming_message)
             // chatLog.value += "PM from " + data.user + ": " + data.message + "\n";
             break;
         case "private_message_delivered":
@@ -699,8 +517,8 @@ $(function(){
                     </div>
                 </div>
             </div>`
-            messages.append(my_message)
             messages.scrollTop(messages[0].scrollHeight)
+            messages.append(my_message)
             break;
         default:
             console.error("Unknown message type!");
@@ -737,10 +555,10 @@ $(function(){
 
     // open dm user tab
     var dm_username = localStorage.getItem('dm_username')
-    
     if (dm_username){
         openDirect(null, dm_username)
-        localStorage.removeItem('dm_username');
+        localStorage.removeItem('dm_username')
+
     }
 
 });
