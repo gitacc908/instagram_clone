@@ -28,6 +28,12 @@ def follow_suggestion(user):
     return suggestions
 
 
+def get_user_story(user):
+    user_has_story = [user for user in user.following.all() if user.user_stories.count() > 0]
+    return user_has_story
+
+
+register.filter('get_user_story', get_user_story)
 register.filter('get_liked_users', get_liked_users)
 register.filter('get_first_user', get_first_user)
 register.filter('follow_suggestion', follow_suggestion)

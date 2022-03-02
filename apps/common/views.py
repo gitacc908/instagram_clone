@@ -2,10 +2,10 @@ from aiohttp import request
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views import View
-from apps.common.forms import PostForm, UserForm, UserNotificationForm
+from apps.common.forms import PostForm, UserForm, UserNotificationForm, StoryForm
 
 from apps.catalog.models import (
-    Post, Bookmark, Comment, Image, Tag, CommentReply
+    Post, Bookmark, Comment, Image, Tag, CommentReply, Story
 )
 from apps.users.models import User, Contact
 from apps.actions.models import Action
@@ -148,7 +148,9 @@ def search(request):
 
 @login_required
 def main(request):
-    posts = Post.objects.filter(author__in=request.user.following.all())
+    my_following = request.user.following.all()
+    stories = Story.objects.filter(user__in=my_following)
+    posts = Post.objects.filter(author__in=my_following)
     paginator = Paginator(posts, 3)
     page = request.GET.get('page')
     try:
@@ -165,7 +167,7 @@ def main(request):
         posts = paginator.page(paginator.num_pages)
     if request.is_ajax():
         return render(request, 'list_ajax/posts.html', {'posts': posts})
-    return render(request, 'main/index.html',{'posts': posts})
+    return render(request, 'main/index.html',{'posts': posts, 'stories': stories})
 
 
 class LikePostView(LoginRequiredMixin, View):
@@ -275,6 +277,7 @@ class UpdateAvatarView(LoginRequiredMixin, View):
     
     def post(self, request, *args, **kwargs):
         form = UserAvatarForm(request.POST, request.FILES, instance=request.user)
+        print(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return JsonResponse({'status': 'avatar updated!'}, status=200)
@@ -298,3 +301,15 @@ class DeletePost(LoginRequiredMixin, View):
         post.delete()
         # messages.success(request, _('Your post has been deleted'))
         return redirect(request.user.get_absolute_url())
+
+
+class StoryPostView(LoginRequiredMixin, View):
+    login_url = 'signin'
+    form = StoryForm
+
+    def post(self, request, *args, **kwargs):
+        form = self.form(request.POST, request.FILES, request=request)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'status':'success'}, status=201)
+        return JsonResponse({'status':form.errors}, status=424)

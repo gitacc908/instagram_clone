@@ -149,3 +149,22 @@ class CommentReply(models.Model):
         verbose_name = 'Comment Reply'
         verbose_name_plural = 'Comment Replies'
         ordering = ('-created',)
+
+
+class Story(models.Model):
+    class Meta:
+        verbose_name = 'Story'
+        verbose_name_plural = 'Stories'
+    
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='user_stories'
+    )
+    image = models.ImageField(
+        upload_to='user_story_images/', verbose_name='image'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True, verbose_name='created date'
+    )
+
+    def __str__(self):
+        return f'story with id: {self.id}'

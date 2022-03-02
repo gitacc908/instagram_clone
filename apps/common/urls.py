@@ -21,6 +21,7 @@ urlpatterns = [
 
     # ajax requests
     path('post/', views.PostView.as_view(), name='post'),
+    path('story_post/', views.StoryPostView.as_view(), name='story_post'),
 
     path('like/', views.LikePostView.as_view(), name='like'),
     path('like_comment/', views.LikeCommentView.as_view(), name='like_comment'),

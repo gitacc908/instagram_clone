@@ -5,6 +5,7 @@ import csv
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from .forms import UserForm
 
 
 def csv_export(modeladmin, request, queryset):
@@ -40,6 +41,7 @@ def user_detail(obj):
 
 
 class UserAdmin(admin.ModelAdmin):
+    form = UserForm
     list_display = (
         'username', 'email', 'phone', 'full_name', 'gender', 
         user_detail, user_pdf

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load user_tags %}
-<!-- {% load humanize %} -->
+{% load humanize %}
 <!-- {% load custom_tags %} -->
 <!-- {% load emoji_tags %} -->
 
@@ -23,109 +23,74 @@
             
             <div class="stories_box">
                 <header class="header_public_story">
-                    <a href="#">
+                    <a href="#" id="close-story-create-container">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
                     </a>
                 </header>
-                <div class="story_content" id="story-1">
+                <div class="story_content">
                     <div class="story_content_media">
-                        <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
+                        <!-- <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt=""> -->
                     </div>
                 </div>
                 <footer class="footer_public_story">
-                    <button>
+                    <button id="add-story">
                         <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg></span>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg></span>
                         <span>Дополнить историю</span>
                     </button>   
                 </footer>
             </div>  
 
         </div>
-        <div class="story_modal" id="open_story">
+
+        {% for user_story in user|get_user_story %}
+        <div class="story_modal" id="{{ user_story.username }}">
             <a href="#" class="close_story">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
             </a>
             <div class="stories_box">
                 <div class="story_content" id="story-1">
-                    <div class="progressbar"></div>
                     <div class="story_content_profile">
                         <a href="#" class="story_content_profile_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
+                            <img src="{{ user_story|get_user_photo }}" alt="">
                         </a>
-                        <a href="#" class="story_content_profile_name" style="color: #fff;">
-                            dcllns
+                        <a href="{{ user_story.get_absolute_url }}" class="story_content_profile_name" style="color: #fff;">
+                            {{ user_story.username }}
                         </a>
-                        <span class="story_content_time">25мин. назад</span>
+                        <!-- <span class="story_content_time">{{ story.created|naturaltime }}</span> -->
                     </div>
                     <div class="story_content_media">
-                        <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
+                        <div data-slide="{{user_story.username}}" class="slide">
+                            <div class="slide-items">
+                                {% for story in user_story.user_stories.all %}
+                                <img src="{{ story.image.url }}" alt="">
+                                {% endfor %}
+                            </div>
+                            <nav class="slide-nav">
+                              <div class="slide-thumb"></div>
+                              <button class="slide-prev">Anterior</button>
+                              <button class="slide-next">Próximo</button>
+                            </nav>
+                          </div>
                     </div>
+                    
                     <div class="story_content_direct">
-                        <input type="" role="message" placeholder="Отправить сообщение">
+                        <input type="text" role="message" placeholder="Отправить сообщение">
                         <button>
                             <svg aria-label="Direct" class="_8-yf5 " color="#dbdbdb" fill="#dbdbdb" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
                         </button>
                     </div>
                 </div>
-                <div class="story_content" id="story-2">
-                    <div class="progressbar"></div>
-                    <div class="story_content_profile">
-                        <a href="#" class="story_content_profile_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
-                        </a>
-                        <a href="#" class="story_content_profile_name" style="color: #fff;">
-                            dcllns
-                        </a>
-                        <span class="story_content_time">25мин. назад</span>
-                    </div>
-                    <div class="story_content_direct">
-                        <input type="" role="message" placeholder="Отправить сообщение">
-                        <button>
-                            <svg aria-label="Direct" class="_8-yf5 " color="#dbdbdb" fill="#dbdbdb" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="story_content" id="story-3">
-                    <div class="progressbar"></div>
-                    <div class="story_content_profile">
-                        <a href="#" class="story_content_profile_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
-                        </a>
-                        <a href="#" class="story_content_profile_name" style="color: #fff;">
-                            dcllns
-                        </a>
-                        <span class="story_content_time">25мин. назад</span>
-                    </div>
-                    <div class="story_content_direct">
-                        <input type="" role="message" placeholder="Отправить сообщение">
-                        <button>
-                            <svg aria-label="Direct" class="_8-yf5 " color="#dbdbdb" fill="#dbdbdb" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="story_content" id="story-4">
-                    <div class="progressbar"></div>
-                    <div class="story_content_profile">
-                        <a href="#" class="story_content_profile_img">
-                            <img src="https://avatars.mds.yandex.net/get-zen_doc/4361269/pub_6059f04102c2e472153588e4_6059f18002c2e47215370e1e/scale_1200" alt="">
-                        </a>
-                        <a href="#" class="story_content_profile_name" style="color: #fff;">
-                            dcllns
-                        </a>
-                        <span class="story_content_time">25мин. назад</span>
-                    </div>
-                    <div class="story_content_direct">
-                        <input type="" role="message" placeholder="Отправить сообщение">
-                        <button>
-                            <svg aria-label="Direct" class="_8-yf5 " color="#dbdbdb" fill="#dbdbdb" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>  
-
+            </div>
         </div>
+        {% endfor %}
+
+        <form style="display: none;" enctype="multipart/form-data" novalidate="" method="post" action="{% url 'story_post' %}">
+            {% csrf_token %}
+            <input id="story-input" type="file" name="image" accept=".jpg, .jpeg, .png">
+        </form>
+
         <section class="content-container">
             <div class="content">
                 <div class="stories">
@@ -135,7 +100,7 @@
                         </svg>
                     </button>
                     <div class="stories__content">
-                            <a href="#public_open_story" class="story story--has-story create_store">
+                            <a href="#" id="create-story" class="story story--has-story create_store">
                                 <div class="story__avatar">
                                     <div class="story__border">
                                         <svg aria-label="Значок &quot;Плюс&quot;" class="_8-yf5 " style="position: absolute; bottom: 7px; right: 7px; z-index:9;" color="#0095f6" stroke="#fff"  fill="#0095f6" height="16" role="img" viewBox="0 0 24 24" width="16"><path d="M12.001.504a11.5 11.5 0 1011.5 11.5 11.513 11.513 0 00-11.5-11.5zm5 12.5h-4v4a1 1 0 01-2 0v-4h-4a1 1 0 110-2h4v-4a1 1 0 112 0v4h4a1 1 0 010 2z"></path></svg>
@@ -153,34 +118,37 @@
                                         </svg> -->
                                     </div>
                                     <div class="story__picture">
-                                        <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
+                                        <img src="{{ user|get_user_photo }}" alt="User Picture">
 
                                     </div>
                                 </div>
                                 <span class="story__user">Ваша история</span>
                             </a>
-                        <a href="#open_story" class="story story--has-story">
-                            <div class="story__avatar">
-                                <div class="story__border">
-                                    <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                                        <circle r="31" cy="32" cx="32"/>
-                                        <defs>
-                                            <linearGradient y2="0" x2="1" y1="1" x1="0" id="--story-gradient">
-                                                <stop offset="0" stop-color="#f09433"/>
-                                                <stop offset="0.25" stop-color="#e6683c"/>
-                                                <stop offset="0.5" stop-color="#dc2743"/>
-                                                <stop offset="0.75" stop-color="#cc2366"/>
-                                                <stop offset="1" stop-color="#bc1888"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div class="story__picture">
-                                    <img src="{% static 'assets/default-user.png' %}" alt="User Picture">
-                                </div>
-                            </div>
-                            <span class="story__user">usernick1</span>
-                        </a>
+
+                            {% for user_story_button in user|get_user_story %}
+                                <a href="#" class="story story--has-story user_story_button" data-username="{{ user_story_button.username }}">
+                                    <div class="story__avatar">
+                                        <div class="story__border">
+                                            <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+                                                <circle r="31" cy="32" cx="32"/>
+                                                <defs>
+                                                    <linearGradient y2="0" x2="1" y1="1" x1="0" id="--story-gradient">
+                                                        <stop offset="0" stop-color="#f09433"/>
+                                                        <stop offset="0.25" stop-color="#e6683c"/>
+                                                        <stop offset="0.5" stop-color="#dc2743"/>
+                                                        <stop offset="0.75" stop-color="#cc2366"/>
+                                                        <stop offset="1" stop-color="#bc1888"/>
+                                                    </linearGradient>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="story__picture">
+                                            <img src="{{ user_story_button|get_user_photo }}" alt="User Picture">
+                                        </div>
+                                    </div>
+                                    <span class="story__user">{{ user_story_button.username }}</span>
+                                </a>
+                            {% endfor %}
                     </div>
                     <button class="stories__right-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -269,7 +237,7 @@
                         </ul>
                     </div>
 
-                    <span class="side-menu__footer-copyright">&copy; 2021 instagram from Malikov Adilet</span>
+                    <span class="side-menu__footer-copyright">&copy; 2022 pet project instagram/contact devs at amalikov470@gmail.com</span>
                 </div>
             </section>
         </section>
@@ -278,17 +246,14 @@
 {% endblock %}
 
   {% block scripts %}
-   <script>
-
-    // $('.comment-input').emojioneArea(
-    //     // { }
-    // );
-    </script>
 <script src="{% static 'js/script.js' %}" defer></script>
 <script src="{% static 'js/modals.js' %}"> </script>
 <script src="{% static 'js/index.js' %}"> </script>
+<script src="{% static 'js/slide-stories.js' %}"> </script>
+
     
 <script>
+
 $(document).ready(function(){
     var page = 1;
     var empty_page = false;

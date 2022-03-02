@@ -1,5 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError 
+from django.core.exceptions import ValidationError
 from .models import User
 from .utils import validate_username
 
@@ -10,6 +10,7 @@ from django.contrib.auth import (
 from django.core.validators import validate_email
 from apps.users.tasks import email_users
 from django.contrib.sites.shortcuts import get_current_site
+from apps.users.choices import *
 
 
 class RegisterForm(forms.ModelForm):
@@ -19,6 +20,7 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         label='Password', widget=forms.PasswordInput
     )
+
     class Meta:
         model = User
         fields = ('full_name', 'username')
@@ -26,8 +28,8 @@ class RegisterForm(forms.ModelForm):
     def clean_email_or_phone(self):
         return validate_username(
             self.cleaned_data.get('email_or_phone')
-            )
-    
+        )
+
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
         data = self.cleaned_data.get('email_or_phone')
@@ -60,6 +62,7 @@ class UserEmailForm(forms.Form):
     email = forms.CharField(
         max_length=255, required=True, label='email'
     )
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserEmailForm, self).__init__(*args, **kwargs)
@@ -73,7 +76,8 @@ class UserEmailForm(forms.Form):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            raise ValidationError('Given email is not registered in this site.')
+            raise ValidationError(
+                'Given email is not registered in this site.')
         else:
             domain = get_current_site(self.request)
             # sending asynchronomous emails
@@ -105,7 +109,6 @@ class SetPasswordForm(forms.Form):
         self.user = kwargs.pop('user', None)
         super(SetPasswordForm, self).__init__(*args, **kwargs)
 
-
     def clean_new_password2(self):
         password1 = self.cleaned_data.get('new_password1')
         password2 = self.cleaned_data.get('new_password2')
@@ -129,3 +132,23 @@ class UserAvatarForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('image',)
+
+
+class UserForm(forms.ModelForm):
+    # like_notification = forms.ChoiceField(
+    #     choices=LIKE, widget=forms.RadioSelect())
+    # comment_notification = forms.ChoiceField(
+    #     choices=COMMENT, widget=forms.RadioSelect())
+    # comment_like_notification = forms.ChoiceField(
+    #     choices=COMMENT_LIKE, widget=forms.RadioSelect())
+    # follow_request_notification = forms.ChoiceField(
+    #     choices=FOLLOW_REQUEST, widget=forms.RadioSelect())
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = [
+            'phone', 'username', 'image', 'full_name', 'biography', 
+            'gender', 'email', 'web_site', 'is_active', 'is_staff', 
+            'password'
+        ]

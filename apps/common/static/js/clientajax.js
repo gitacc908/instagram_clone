@@ -231,7 +231,6 @@ $(document).ready(function(){
         for (var index = 0; index < files.length; index++) {
             formData.append("images", files[index]);
         }
- 
          $.ajax({
             type : "POST", 
             url : shareUrl,

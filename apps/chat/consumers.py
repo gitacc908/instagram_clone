@@ -29,10 +29,10 @@ class ChatConsumer(WebsocketConsumer):
         )
         
         # send the user list to the newly joined user
-        self.send(json.dumps({
-            'type': 'user_list',
-            'users': [user.username for user in self.room.online.all()],
-        }))
+        # self.send(json.dumps({
+        #     'type': 'user_list',
+        #     'users': [user.username for user in self.room.online.all()],
+        # }))
 
         # send the join event to the room
         async_to_sync(self.channel_layer.group_send)(
@@ -120,7 +120,6 @@ class PrivateChatConsumer(WebsocketConsumer):
     def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-
         if not self.user.is_authenticated:
             return
 

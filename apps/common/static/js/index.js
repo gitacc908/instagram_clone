@@ -137,8 +137,56 @@ $(document).ready(function(){
                 }
             });
         });
-    
-    
+    });
+
+    $('#create-story').click(function(){
+        $('#story-input').trigger('click'); 
+    });
+
+    $('#story-input').on('change',function(){
+        let file = this.files[0];
+        var storyCont = $('#public_open_story');
+        if(file){
+            let reader = new FileReader();
+            reader.onload = function(event){
+                $($.parseHTML('<img>'))
+                .attr('src', event.target.result).appendTo(storyCont.find('.story_content_media'));
+            }
+            reader.readAsDataURL(file);
+            storyCont.css({'visibility': 'visible', 'opacity': '1', 'transform': 'scale(1.0)'})
+        }
+    });
+
+    $('#close-story-create-container').click(function(){
+        var storyCont =  $('#public_open_story');
+        storyCont.css({'visibility': '', 'opacity': '', 'transform': ''})
+        $('#story-input').val(''); 
+        storyCont.find('.story_content_media').empty();
+    });
+
+    $('#add-story').click(function(){
+        var input = $('#story-input')
+        var data = new FormData(input.closest('form').get(0));
+        $.ajax({
+            type : "POST",
+            url : input.closest('form').attr('action'),
+            processData: false,
+            contentType: false,
+            data : data,
+            success : function(data) {
+                var storyCont =  $('#public_open_story');
+                storyCont.css({'visibility': '', 'opacity': '', 'transform': ''})
+                input.val('');
+                storyCont.find('.story_content_media').empty();
+                $('.notification-text').html("Your story was updated!");
+                $('#notify').fadeIn('slow')
+                $('#notify').delay(5000).fadeOut('slow');
+            },
+            error : function(data) {
+                console.log('something went wrong!')
+            }
+        });
+
     });
 
 });

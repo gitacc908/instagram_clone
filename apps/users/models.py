@@ -55,6 +55,7 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     # checkbox fields
     like_notification = models.CharField(
+        'like notif',
         choices=LIKE, default=FROM_ALL, blank=True, max_length=50,
     )
     comment_notification = models.CharField(
