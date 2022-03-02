@@ -552,10 +552,10 @@ $(function(){
             if (e.which === 13) {
                 $input[i].click();
             }
-            {% comment %} else{
+            else{
                 let username = $input[i].closest('.tabcontent').id;
                 chatSocket.send(JSON.stringify({'username': username}));
-            } {% endcomment %}
+            } 
         };
         $input[i].onclick = function(){
             message = $input[i].previousElementSibling.value;

@@ -3,6 +3,7 @@ from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from apps.chat.models import Room, Message
 from apps.users.templatetags.user_tags import get_user_photo
+from os import replace
 
 
 class ChatConsumer(WebsocketConsumer):
@@ -21,18 +22,20 @@ class ChatConsumer(WebsocketConsumer):
         self.user = self.scope['user']
 
         self.accept()
-        
+
         # join the room group
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name,
         )
-        
+
         # send the user list to the newly joined user
-        # self.send(json.dumps({
-        #     'type': 'user_list',
-        #     'users': [user.username for user in self.room.online.all()],
-        # }))
+        self.send(json.dumps({
+            'type': 'user_list',
+            'users': [{'user': {'username': user.full_name if user.full_name else user.username,
+                                'image': get_user_photo(user), 
+                                'link': user.get_absolute_url().replace('en-us', 'ru')}} for user in self.room.online.all()],
+        }))
 
         # send the join event to the room
         async_to_sync(self.channel_layer.group_send)(
@@ -104,7 +107,7 @@ class PrivateChatConsumer(WebsocketConsumer):
         # self.room = Room.objects.get(name=self.user.username)
 
         self.accept()
-        
+
         async_to_sync(self.channel_layer.group_add)(
             self.user_inbox,
             self.channel_name,
@@ -119,35 +122,50 @@ class PrivateChatConsumer(WebsocketConsumer):
 
     def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        message = text_data_json.get('message')
+        username = text_data_json.get('username')
+
         if not self.user.is_authenticated:
             return
 
-        if message.startswith('/pm '):
-            split = message.split(' ', 2)
-            target = split[1]
-            target_msg = split[2]
-            async_to_sync(self.channel_layer.group_send)(
-                f'inbox_{target}',
-                {
-                    'type': 'private_message',
-                    'user': {
-                        'username': self.user.username,
-                        'image': get_user_photo(self.user)
-                    },
+        if message:
+            if message.startswith('/pm '):
+                split = message.split(' ', 2)
+                target = split[1]
+                target_msg = split[2]
+                async_to_sync(self.channel_layer.group_send)(
+                    f'inbox_{target}',
+                    {
+                        'type': 'private_message',
+                        'user': {
+                            'username': self.user.username,
+                            'image': get_user_photo(self.user)
+                        },
+                        'message': target_msg,
+                    }
+                )
+                self.send(json.dumps({
+                    'type': 'private_message_delivered',
+                    'target': target,
                     'message': target_msg,
+                }))
+                room = Room.objects.get(name=target)
+                Message.objects.create(
+                    user=self.user, room=room, content=target_msg)
+        else:
+            async_to_sync(self.channel_layer.group_send)(
+                f'inbox_{username}',
+                {
+                    'type': 'user_is_typing',
+                    'user': self.user.username,
                 }
             )
-            self.send(json.dumps({
-                'type': 'private_message_delivered',
-                'target': target,
-                'message': target_msg,
-            }))
-            room = Room.objects.get(name=target)
-            Message.objects.create(user=self.user, room=room, content=target_msg)
 
     def private_message(self, event):
         self.send(text_data=json.dumps(event))
 
     def private_message_delivered(self, event):
+        self.send(text_data=json.dumps(event))
+
+    def user_is_typing(self, event):
         self.send(text_data=json.dumps(event))

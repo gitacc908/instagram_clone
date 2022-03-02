@@ -95,9 +95,12 @@ $(function() {
         }
 
         // showing modals
-        else if (confButton.contains(click_target)){
-            confWindow.style.display = 'block'
+        else if (confButton){
+            if (confButton.contains(click_target)){
+                confWindow.style.display = 'block'
+            }
         }
+    
 
     });
 

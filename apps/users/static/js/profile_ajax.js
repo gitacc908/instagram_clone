@@ -139,4 +139,36 @@ $(document).ready(function(){
         }
     }
 
+
+    $('.subs, .unsubs').click(function(){
+        let followButton = $(this);
+        $.ajax({
+            type : "POST",
+            url : $(this).attr('data-follow-url'),
+            data : {follow_user_id:$(this).attr('data-user-id')},
+            success: function(data){
+                if(data.status == 'followed'){
+                    if(followButton.text() == 'Подписаться'){
+                        followButton.text('Отписаться')
+                    }
+                    else{
+                        followButton.text('Unfollow')
+                    }
+                }
+                else if (data.status == 'unfollowed'){
+                    if(followButton.text() == 'Отписаться'){
+                        followButton.text('Подписаться')
+                    }
+                    else{
+                        followButton.text('Follow')
+                    }
+                }
+            },
+            error: function(data){
+                console.log('error')
+            }
+        });
+    });
+
+
 });
