@@ -85,3 +85,5 @@ wrapt==1.13.3
 yarl==1.7.2
 zope.interface==5.4.0
 zopfli==0.1.9
+django-celery-results
+django-celery-beat

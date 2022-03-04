@@ -190,7 +190,9 @@
                                 </a>
                                 <div class="side-menu__suggestion-info">
                                     <a href="{{ suggestion.get_absolute_url }}">{{ suggestion.username }}</a>
-                                    <span>Followed by user1, user2 and 9 others</span>
+                                    {% with suggestion.followers.all|first as first %}
+                                    <span>{% if suggestion.followers.count > 0 %} Followed by {{ first.username }}{% else %}Welcome new user!{% endif%}</span>
+                                    {% endwith %}
                                 </div>
                                 <button class="side-menu__suggestion-button follow" data-follow-url="{% url 'follow' %}" data-user-id="{{ suggestion.id }}">Follow</button>
                             </div>
