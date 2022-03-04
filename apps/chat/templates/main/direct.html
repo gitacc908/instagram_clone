@@ -4,7 +4,6 @@
 {% load chat_tags %}
 {% load humanize %}
 <!-- {% load custom_tags %} -->
-<!-- {% load emoji_tags %} -->
 
 
     {% block title %}
@@ -348,7 +347,8 @@ for (i = 0; i < arrowBack.length; i++) {
 
 $(function(){
     // common chat websocket 
-    var url = 'ws://' + window.location.host +
+    var ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://"
+    var url = ws_scheme + window.location.host +
     '/ws/chat/room/' + 'common/';
     var common_chatSocket = new WebSocket(url);
     common_chatSocket.onmessage = function(e) {
@@ -479,7 +479,7 @@ $(function(){
         });
 
     // pm websocket
-    var url = 'ws://' + window.location.host +
+    var url = ws_scheme + window.location.host +
     '/ws/chat/room/private/' + '{{user.username}}/';
     var chatSocket = new WebSocket(url);
     chatSocket.onmessage = function(e) {
