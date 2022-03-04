@@ -74,6 +74,9 @@ $(document).ready(function(){
             }
         }
         catch(TypeError){
+            console.log(TypeError)
+            console.log(totalComments)
+            console.log(commentList)
             // add comment 
             let username = this.getAttribute('data-author-of-comment');
             $.ajax({
@@ -81,6 +84,7 @@ $(document).ready(function(){
                 type : "POST", 
                 data : {'post_id': postId, 'comment': comment}, 
                 success : function(data) {
+                    console.log('aasf')
                     // check which page is this
                     if (totalComments){
                         $(`<div class="post__description addedcomment">
@@ -135,7 +139,9 @@ $(document).ready(function(){
                         </div>`).appendTo(commentList)
                         commentInput.value = "";
                         commentButton.setAttribute('disabled', '');
-                        commentList.scrollTop = commentList.scrollHeight;
+                        if(commentList){
+                            commentList.scrollTop = commentList.scrollHeight;
+                        }
                     }
                 },
                 error : function(data) {
