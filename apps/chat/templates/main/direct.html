@@ -205,7 +205,7 @@
                     </a>
                 </header>
                 <div class="messages" id="messages">
-                  <div class="date-messages"><span></span></div>
+                  <div class="date-messages"></div>
                     {% with user as me %}
                     {% for message in common_room.room_messages.all %}
                     {% if message.user != me %}
