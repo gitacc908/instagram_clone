@@ -8,15 +8,12 @@ register = template.Library()
 def get_liked_users(following, likes):
     return set(following).intersection(set(likes))
 
+
 def get_first_user(liked_users):
     return list(liked_users)[0]
 
+
 def follow_suggestion(user):
-    # if user.following.all():
-    #     following_users = user.following.all()
-    # following_of_following = [user.following.all() for user in following_users]
-
-
     exclude_list = [user.pk for user in user.following.all()]
     exclude_list.append(user.pk)
     if user.following.count() > 0:
@@ -29,7 +26,8 @@ def follow_suggestion(user):
 
 
 def get_user_story(user):
-    user_has_story = [user for user in user.following.all() if user.user_stories.count() > 0]
+    user_has_story = [user for user in user.following.all()
+                      if user.user_stories.count() > 0]
     return user_has_story
 
 
