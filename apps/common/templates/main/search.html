@@ -115,12 +115,10 @@ user_input.on('keyup', function (event) {
             mobile: true
         }
     }
-
     // if scheduled_function is NOT false, cancel the execution of the function
     if (scheduled_function_mob) {
         clearTimeout(scheduled_function_mob)
     }
-
     // setTimeout returns the ID of the function to be executed
     scheduled_function_mob = setTimeout(ajax_call_mob, delay_by_in_ms_mob, endpoint_mob, request_parameters_mob)
 })
