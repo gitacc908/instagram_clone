@@ -1,2 +1,0 @@
-celery -A source.celery worker --pool=solo -l info
-celery -A source beat -l INFO

@@ -140,7 +140,6 @@
                   </a>
               </header>
               <div class="messages" id="messages">
-                <!-- <div class="date-messages"><span>24 январь 2022г.</span></div> -->
                 {% with user as me %}
                 {% for message in dm_user|get_dm_messages:me %}
                 {% if message.user != me %}
@@ -229,7 +228,7 @@
                     </a>
                 </header>
                 <div class="messages" id="messages">
-                  <div class="date-messages"><span>24 январь 2022г.</span></div>
+                  <div class="date-messages"><span></span></div>
                     {% with user as me %}
                     {% for message in common_room.room_messages.all %}
                     {% if message.user != me %}

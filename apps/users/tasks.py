@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from apps.users.models import User
 
 
-@app.task
+# @app.task
 def email_users(domain, user_pk):
     user = get_object_or_404(User, id=user_pk)
     subject = 'Reset your password'

@@ -81,7 +81,7 @@ class UserEmailForm(forms.Form):
         else:
             domain = get_current_site(self.request)
             # sending asynchronomous emails
-            email_users.delay(str(domain), user.pk)
+            email_users(str(domain), user.pk)
             return email
 
 
