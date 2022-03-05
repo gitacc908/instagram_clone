@@ -32,7 +32,7 @@
 <div class="post-setting-container">
    <div class="post-setting-outer">
       <div class="post-setting-inner">
-         {% if post.author != request.user and post.author not in request.user.following.all %}
+         {% if post.author != request.user and post.author in request.user.following.all %}
          <a href="{{ post.unfollow }}" class="post-setting-button warning">{% trans 'Отменить подписку' %}</a>
          {% endif %}
          <a href="{{ post.get_absolute_url }}" class="post-setting-button post-link" data-domain="{{ request.get_host }}">{% trans 'Перейти к публикации' %}</a>
